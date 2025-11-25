@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { KIDNEY_SYMPTOMS, CLINIC_INFO } from '../constants';
 import { AlertCircle, CheckCircle2, ArrowRight, RotateCcw } from 'lucide-react';
 
 const KidneyCheck: React.FC = () => {
   const [answers, setAnswers] = useState<Record<string, boolean>>({});
   const [showResult, setShowResult] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = (id: string) => {
     setAnswers(prev => ({ ...prev, [id]: !prev[id] }));
@@ -25,6 +26,18 @@ const KidneyCheck: React.FC = () => {
     setAnswers({});
     setShowResult(false);
   };
+
+  // 當顯示結果時，自動捲動到卡片頂端
+  useEffect(() => {
+    if (showResult && containerRef.current) {
+      // 計算位置，預留頂部 Header 的空間 (約 100px)
+      const yOffset = -100; 
+      const element = containerRef.current;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }, [showResult]);
 
   const score = calculateRisk();
   
@@ -58,7 +71,7 @@ const KidneyCheck: React.FC = () => {
   const result = getRiskResult(score);
 
   return (
-    <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
+    <div ref={containerRef} className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
       <div className="p-8 bg-cyan-700 text-white text-center relative overflow-hidden">
         <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-600 rounded-full -translate-y-1/2 translate-x-1/2 opacity-50"></div>
         <div className="absolute bottom-0 left-0 w-32 h-32 bg-lime-500 rounded-full translate-y-1/2 -translate-x-1/2 opacity-30"></div>
