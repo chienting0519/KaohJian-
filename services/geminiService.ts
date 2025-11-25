@@ -1,5 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
-import { CLINIC_INFO, SERVICES, SCHEDULE_CONTEXT } from '../constants';
+import { CLINIC_INFO, SERVICES, SCHEDULE_CONTEXT } from '../constants';  
 
 const apiKey = import.meta.env.VITE_API_KEY || '';      
 
