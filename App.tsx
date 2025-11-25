@@ -79,18 +79,21 @@ const App: React.FC = () => {
              </div>
              <div>
                <h1 className="text-2xl font-bold text-cyan-900 leading-none tracking-tight">{CLINIC_INFO.name}</h1>
-               <p className="text-xs text-cyan-600 tracking-wide font-medium">高雄腎臟專科 • 洗腎中心</p>
+               <p className="text-sm sm:text-base text-cyan-600 tracking-wide font-bold mt-1 leading-tight">
+                 <span className="block sm:inline">高雄腎臟專科 • </span>
+                 <span className="block sm:inline">洗腎中心</span>
+               </p>
              </div>
           </div>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-4 xl:gap-6">
-            <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="text-slate-600 hover:text-cyan-700 font-medium transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-sm xl:text-base cursor-pointer">首頁</a>
-            <a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="text-slate-600 hover:text-cyan-700 font-medium transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-sm xl:text-base cursor-pointer">腎臟檢測</a>
-            <a href="#environment" onClick={(e) => scrollToSection(e, 'environment')} className="text-slate-600 hover:text-cyan-700 font-medium transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-sm xl:text-base cursor-pointer">環境介紹</a>
-            <a href="#team" onClick={(e) => scrollToSection(e, 'team')} className="text-slate-600 hover:text-cyan-700 font-medium transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-sm xl:text-base cursor-pointer">醫療團隊</a>
-            <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="text-slate-600 hover:text-cyan-700 font-medium transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-sm xl:text-base cursor-pointer">服務項目</a>
-            <a href="#info" onClick={(e) => scrollToSection(e, 'info')} className="text-slate-600 hover:text-cyan-700 font-medium transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-sm xl:text-base cursor-pointer">診所資訊</a>
+            <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="text-slate-600 hover:text-cyan-700 font-bold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-base lg:text-lg cursor-pointer">首頁</a>
+            <a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="text-slate-600 hover:text-cyan-700 font-bold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-base lg:text-lg cursor-pointer">腎臟檢測</a>
+            <a href="#environment" onClick={(e) => scrollToSection(e, 'environment')} className="text-slate-600 hover:text-cyan-700 font-bold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-base lg:text-lg cursor-pointer">環境介紹</a>
+            <a href="#team" onClick={(e) => scrollToSection(e, 'team')} className="text-slate-600 hover:text-cyan-700 font-bold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-base lg:text-lg cursor-pointer">醫療團隊</a>
+            <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="text-slate-600 hover:text-cyan-700 font-bold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-base lg:text-lg cursor-pointer">服務項目</a>
+            <a href="#info" onClick={(e) => scrollToSection(e, 'info')} className="text-slate-600 hover:text-cyan-700 font-bold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-base lg:text-lg cursor-pointer">診所資訊</a>
             
             <div className="flex items-center gap-3 ml-2">
               <button
@@ -122,12 +125,12 @@ const App: React.FC = () => {
         {isMenuOpen && (
            <div className="md:hidden bg-white border-t border-cyan-100 animate-fade-in">
              <div className="flex flex-col p-4 space-y-4">
-              <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="text-cyan-900 font-medium p-2 hover:bg-cyan-50 rounded cursor-pointer">首頁</a>
-              <a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="text-cyan-900 font-medium p-2 hover:bg-cyan-50 rounded cursor-pointer">腎臟檢測</a>
-              <a href="#environment" onClick={(e) => scrollToSection(e, 'environment')} className="text-cyan-900 font-medium p-2 hover:bg-cyan-50 rounded cursor-pointer">環境介紹</a>
-              <a href="#team" onClick={(e) => scrollToSection(e, 'team')} className="text-cyan-900 font-medium p-2 hover:bg-cyan-50 rounded cursor-pointer">醫療團隊</a>
-              <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="text-cyan-900 font-medium p-2 hover:bg-cyan-50 rounded cursor-pointer">服務項目</a>
-              <a href="#info" onClick={(e) => scrollToSection(e, 'info')} className="text-cyan-900 font-medium p-2 hover:bg-cyan-50 rounded cursor-pointer">診所資訊</a>
+              <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="text-cyan-900 font-bold text-lg p-2 hover:bg-cyan-50 rounded cursor-pointer">首頁</a>
+              <a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="text-cyan-900 font-bold text-lg p-2 hover:bg-cyan-50 rounded cursor-pointer">腎臟檢測</a>
+              <a href="#environment" onClick={(e) => scrollToSection(e, 'environment')} className="text-cyan-900 font-bold text-lg p-2 hover:bg-cyan-50 rounded cursor-pointer">環境介紹</a>
+              <a href="#team" onClick={(e) => scrollToSection(e, 'team')} className="text-cyan-900 font-bold text-lg p-2 hover:bg-cyan-50 rounded cursor-pointer">醫療團隊</a>
+              <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="text-cyan-900 font-bold text-lg p-2 hover:bg-cyan-50 rounded cursor-pointer">服務項目</a>
+              <a href="#info" onClick={(e) => scrollToSection(e, 'info')} className="text-cyan-900 font-bold text-lg p-2 hover:bg-cyan-50 rounded cursor-pointer">診所資訊</a>
               
               <div className="pt-2 border-t border-slate-100 flex flex-col gap-3">
                 <button 
@@ -187,27 +190,8 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Highlights / Features Strip */}
-        <section className="relative z-20 -mt-8 px-4">
-          <div className="container mx-auto">
-            <div className="grid md:grid-cols-3 gap-4">
-              {FEATURES.map((feature, idx) => (
-                <div key={idx} className="bg-white rounded-xl shadow-lg p-6 flex items-start gap-4 border border-slate-100 hover:shadow-xl transition-shadow">
-                  <div className={`${feature.color} p-3 rounded-lg shadow-sm flex-shrink-0`}>
-                    {feature.icon}
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-slate-800 text-lg">{feature.title}</h3>
-                    <p className="text-slate-500 text-sm mt-1">{feature.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* New Prominent AI Assistant Section */}
-        <section className="py-12 mt-8 md:mt-12 bg-white scroll-mt-24" id="ai-assistant">
+        <section className="py-12 bg-white scroll-mt-24" id="ai-assistant">
           <div className="container mx-auto px-4">
             <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 border border-cyan-200 shadow-md relative overflow-hidden group">
               {/* Decor */}
@@ -253,23 +237,25 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Environment Section (Updated with Images) */}
+        {/* Environment Section (Updated with Images, merged with Features) */}
         <section id="environment" className="py-20 bg-white relative overflow-hidden">
           {/* Background Decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 translate-x-1/3 -translate-y-1/3"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-lime-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -translate-x-1/3 translate-y-1/3"></div>
 
           <div className="container mx-auto px-4 relative z-10">
+            {/* Environment Header */}
             <div className="text-center mb-16 max-w-4xl mx-auto">
               <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm">Clinic Environment</span>
-              <h2 className="text-3xl lg:text-4xl font-bold text-cyan-900 mt-2 mb-6">明亮舒適空間</h2>
+              <h2 className="text-3xl lg:text-4xl font-bold text-cyan-900 mt-2 mb-6">環境介紹</h2>
               <p className="text-slate-600 text-lg leading-relaxed">
                 高健診所為您打造五星級的就醫環境。我們擁有獨棟透析大樓，提供寬敞明亮的治療空間，
                 結合現代化的醫療設備與人性化的空間設計，讓每位病患都能在放鬆、安心的氛圍中接受專業照護。
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            {/* Environment Items Grid */}
+            <div className="grid md:grid-cols-3 gap-8 mb-20">
               {ENVIRONMENT_ITEMS.map((item, index) => (
                 <div key={index} className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
                    {/* Image Area */}
@@ -300,11 +286,32 @@ const App: React.FC = () => {
                 </div>
               ))}
             </div>
+
+            {/* Features (Formerly separate section, now embedded) */}
+            <div className="border-t border-slate-100 pt-16">
+              <div className="text-center mb-12">
+                 <h2 className="text-2xl lg:text-3xl font-bold text-cyan-900">三大貼心特色</h2>
+                 <p className="text-slate-600 mt-4 text-lg">為您設想周到，就醫更便利</p>
+              </div>
+              <div className="grid md:grid-cols-3 gap-8">
+                {FEATURES.map((feature, idx) => (
+                  <div key={idx} className="bg-slate-50 rounded-xl shadow-md p-8 flex flex-col items-center text-center border border-slate-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <div className={`${feature.color} p-4 rounded-full shadow-md mb-6 inline-flex`}>
+                      {feature.icon}
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-cyan-900 text-xl mb-3">{feature.title}</h3>
+                      <p className="text-slate-600 leading-relaxed">{feature.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
         {/* New Medical Team Section */}
-        <section id="team" className="py-20 bg-slate-50 border-t border-slate-200 scroll-mt-20">
+        <section id="team" className="py-20 bg-white border-t border-slate-200 scroll-mt-20">
           <div className="container mx-auto px-4">
              <div className="text-center mb-16">
                <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm flex items-center justify-center gap-2">
@@ -320,7 +327,7 @@ const App: React.FC = () => {
         </section>
 
         {/* Services Section */}
-        <section id="services" className="py-20 bg-white border-t border-slate-200">
+        <section id="services" className="py-20 bg-slate-50 border-t border-slate-200">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm">Medical Services</span>
@@ -337,7 +344,7 @@ const App: React.FC = () => {
         </section>
 
         {/* Knowledge Column Section */}
-        <section id="knowledge" className="py-20 bg-slate-50 relative">
+        <section id="knowledge" className="py-20 bg-white relative">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-100 via-lime-200 to-cyan-100"></div>
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
