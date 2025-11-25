@@ -140,7 +140,7 @@ export const MEDICAL_TEAM: Doctor[] = [
     specialties: ["腎臟科", "內科"],
     experience: [
       "高雄榮總內科部 腎臟科主治醫師",
-      "屏東東鋼安泰醫院 腎臟主治醫師"
+      "屏東東港安泰醫院 腎臟主治醫師"
     ],
     certifications: [
       "台灣內科醫學會專科醫師",
