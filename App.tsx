@@ -93,7 +93,7 @@ const App: React.FC = () => {
           </nav>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden p-2 text-cyan-800" onClick={toggleMenu}>
+          <button className="md:hidden p-2 text-cyan-800" onClick={toggleMenu} aria-label="Toggle navigation menu">
             {isMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
@@ -361,7 +361,7 @@ const App: React.FC = () => {
                       </div>
                       <div>
                         <h4 className="font-bold text-cyan-900 text-xl sm:text-2xl mb-2">診所地址</h4>
-                        <p className="text-slate-700 text-xl sm:text-2xl leading-relaxed font-medium">{CLINIC_INFO.address}</p>
+                        <address className="text-slate-700 text-xl sm:text-2xl leading-relaxed font-medium not-italic">{CLINIC_INFO.address}</address>
                         <a href={CLINIC_INFO.mapLink} target="_blank" rel="noreferrer" className="text-cyan-600 text-lg font-bold hover:text-cyan-700 mt-3 inline-flex items-center group">
                           Google Maps 導航 <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                         </a>
@@ -384,7 +384,7 @@ const App: React.FC = () => {
                {/* Map */}
                <div className="h-[300px] sm:h-[400px] bg-slate-200 rounded-2xl overflow-hidden relative shadow-inner border border-slate-200">
                   <iframe 
-                    title="Google Map"
+                    title="Google Map Location of KaohJian Clinic"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.045622154483!2d120.3541459!3d22.5649129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e033355555555%3A0x1234567890abcdef!2zODEx高雄市小港區沿海一路88號!5e0!3m2!1szh-TW!2stw!4v1700000000000!5m2!1szh-TW!2stw"
                     className="w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-700"
                     allowFullScreen={true} 
@@ -411,7 +411,7 @@ const App: React.FC = () => {
                 高雄市民的健康守護者。
               </p>
               <div className="flex gap-4">
-                <a href="https://www.facebook.com/profile.php?id=61559290111933" target="_blank" rel="noreferrer" className="bg-cyan-900 p-2 rounded-full hover:bg-lime-600 hover:text-white transition-all"><Facebook className="w-5 h-5" /></a>
+                <a href="https://www.facebook.com/profile.php?id=61559290111933" target="_blank" rel="noreferrer" aria-label="Visit our Facebook page" className="bg-cyan-900 p-2 rounded-full hover:bg-lime-600 hover:text-white transition-all"><Facebook className="w-5 h-5" /></a>
               </div>
             </div>
             <div>
@@ -427,10 +427,10 @@ const App: React.FC = () => {
             </div>
             <div>
               <h4 className="text-white font-bold mb-4 text-lg">聯絡我們</h4>
-              <div className="space-y-3">
+              <address className="space-y-3 not-italic">
                   <p className="flex items-start gap-2"><Phone className="w-5 h-5 text-lime-500 mt-0.5" /> {CLINIC_INFO.phone}</p>
                   <p className="flex items-start gap-2"><MapPin className="w-5 h-5 text-lime-500 mt-0.5" /> {CLINIC_INFO.address}</p>
-              </div>
+              </address>
             </div>
           </div>
           <div className="text-center text-sm text-cyan-400/60 flex flex-col md:flex-row justify-center items-center gap-4">

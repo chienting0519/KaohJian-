@@ -1,7 +1,8 @@
 import React from 'react';
 
 export const ClinicLogo = ({ className = "w-12 h-12" }: { className?: string }) => (
-  <svg viewBox="0 0 200 200" className={className} xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 200 200" className={className} xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle">
+    <title id="logoTitle">高健診所 Logo</title>
     <defs>
       <clipPath id="circleClip">
         <circle cx="100" cy="100" r="90" />
