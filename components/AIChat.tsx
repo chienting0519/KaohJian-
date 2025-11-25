@@ -21,11 +21,30 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // 1. 當聊天視窗打開時，確保捲動到底部 (看最新的歡迎訊息或歷史紀錄)
   useEffect(() => {
     if (isOpen) {
       scrollToBottom();
     }
-  }, [messages, isOpen]);
+  }, [isOpen]);
+
+  // 2. 智能捲動邏輯
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const lastMessage = messages[messages.length - 1];
+
+    // 情況 A: 使用者剛發送訊息 (role === 'user') -> 捲動到底部確認訊息已送出
+    // 情況 B: AI 正在思考 (isLoading === true) -> 捲動到底部顯示 Loading 動畫
+    if (isLoading || (lastMessage && lastMessage.role === 'user')) {
+      scrollToBottom();
+    }
+    
+    // 情況 C: AI 回答完畢 (role === 'model' && !isLoading)
+    // 我們 "故意不" 執行 scrollToBottom()
+    // 這樣畫面會停留在 User 訊息下方 (也就是 AI 回答的開頭)，解決了 "需要往上滑" 的問題。
+
+  }, [messages, isLoading, isOpen]);
 
   // Core logic to process a message (whether typed or clicked)
   const processMessage = async (text: string) => {
