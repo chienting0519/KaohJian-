@@ -1,21 +1,8 @@
 import React from 'react';
 import { MEDICAL_TEAM } from '../constants';
-import { Stethoscope, Award, Building2, Medal } from 'lucide-react';
+import { Stethoscope, Award, Building2, Medal, UserRound } from 'lucide-react';
 
 const MedicalTeam: React.FC = () => {
-  // Helper to generate specific avatar URLs based on the doctor's name
-  const getAvatarUrl = (name: string) => {
-    if (name.includes('洪錦傳')) {
-        // Male: Handsome, clean cut, suit/blazer (Andy Lau vibe - friendly professional)
-        // Using DiceBear Avataaars
-        return `https://api.dicebear.com/9.x/avataaars/svg?seed=Felix&flip=true&rotate=0&scale=100&radius=0&backgroundColor=b6e3f4&backgroundType=gradientLinear&mouth=smile&eyebrows=default&eyes=default&clothing=blazerAndShirt&clothingColor=3c4f5c&top=shortFlat&topColor=2c1b18&facialHair=none&skinColor=f8d25c`;
-    } else {
-        // Female: Short hair (bob), gold glasses, professional suit
-        // Using DiceBear Avataaars
-        return `https://api.dicebear.com/9.x/avataaars/svg?seed=Amaya&flip=false&rotate=0&scale=100&radius=0&backgroundColor=c0aede&backgroundType=gradientLinear&mouth=smile&eyebrows=defaultNatural&eyes=default&clothing=blazerAndShirt&clothingColor=3c4f5c&top=bob&topColor=2c1b18&accessories=round&accessoriesColor=f1c40f&skinColor=f8d25c`;
-    }
-  };
-
   return (
     <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
       {MEDICAL_TEAM.map((doctor, index) => (
@@ -25,12 +12,8 @@ const MedicalTeam: React.FC = () => {
             <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full blur-2xl transform translate-x-10 -translate-y-10"></div>
             <div className="flex items-center gap-5 relative z-10">
               <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border-2 border-white/30 flex-shrink-0 overflow-hidden">
-                 {/* Custom Cartoon Avatar */}
-                 <img 
-                    src={getAvatarUrl(doctor.name)} 
-                    alt={doctor.name} 
-                    className="w-full h-full object-cover"
-                 />
+                 {/* Generic Icon Avatar */}
+                 <UserRound className="w-14 h-14 text-white/90" />
               </div>
               <div>
                 <div className="flex items-baseline gap-2 mb-1">
