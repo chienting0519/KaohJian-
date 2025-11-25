@@ -67,7 +67,7 @@ export const SERVICES: ServiceItem[] = [
     description: "早期發現早期治療，守護健康的防線。",
     icon: "ClipboardList",
     items: [
-      "免費成人健檢 (血壓/糖/脂、肝腎功能、BMI)",
+      "免費成人健檢",
       "大腸癌篩檢 (糞便潛血)",
       "肝炎篩檢 (B、C型)",
       "過敏原檢驗",
@@ -81,7 +81,6 @@ export const SERVICES: ServiceItem[] = [
     items: [
       "ILIB 靜脈雷射",
       "自費減重猛健樂",
-      "健康營養美點滴",
       "多種健康營養針"
     ]
   }

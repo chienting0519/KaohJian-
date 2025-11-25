@@ -41,8 +41,28 @@ const App: React.FC = () => {
     {
       icon: <Train className="w-8 h-8 text-white" />,
       title: "捷運步行 8 分鐘",
-      desc: "近高雄國際機場站(高雄公園)，交通便利。",
+      desc: "近高雄國際機場1號出口站(高雄公園)。",
       color: "bg-lime-600"
+    }
+  ];
+
+  // 環境介紹資料與照片 (請在此處更換您的照片連結)
+  const ENVIRONMENT_ITEMS = [
+    {
+      title: "獨棟透析大樓",
+      desc: "專屬醫療空間規劃，環境單純安全，有效落實感控分流，給您最安心的治療場域。",
+      // 請將您提供的照片命名為 "clinic_exterior.jpg" 並放在專案根目錄(與 index.html 同層)
+      image: "./clinic_exterior.jpg" 
+    },
+    {
+      title: "無障礙友善設施",
+      desc: "全棟設有醫療專用電梯與平緩的無障礙坡道，體貼行動不便的長者與輪椅使用者。",
+      image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      title: "明亮舒適空間",
+      desc: "大面採光設計，寬敞不壓迫，搭配溫馨的色調，讓等待過程也能保持心情愉悅。",
+      image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&q=80&w=800"
     }
   ];
 
@@ -233,7 +253,7 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Environment Section (Moved Down, changed to bg-white) */}
+        {/* Environment Section (Updated with Images) */}
         <section id="environment" className="py-20 bg-white relative overflow-hidden">
           {/* Background Decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 translate-x-1/3 -translate-y-1/3"></div>
@@ -250,29 +270,36 @@ const App: React.FC = () => {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-all text-center group">
-                 <div className="bg-cyan-50 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 group-hover:bg-cyan-100 transition-colors">
-                    <Building className="w-10 h-10 text-cyan-600" />
-                 </div>
-                 <h4 className="font-bold text-cyan-900 text-xl mb-3">獨棟透析大樓</h4>
-                 <p className="text-slate-600 leading-relaxed">專屬醫療空間規劃，環境單純安全，有效落實感控分流，給您最安心的治療場域。</p>
-              </div>
-
-              <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-all text-center group">
-                 <div className="bg-lime-50 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 group-hover:bg-lime-100 transition-colors">
-                    <Accessibility className="w-10 h-10 text-lime-600" />
-                 </div>
-                 <h4 className="font-bold text-cyan-900 text-xl mb-3">無障礙友善設施</h4>
-                 <p className="text-slate-600 leading-relaxed">全棟設有醫療專用電梯與平緩的無障礙坡道，體貼行動不便的長者與輪椅使用者。</p>
-              </div>
-
-              <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-all text-center group">
-                 <div className="bg-orange-50 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 group-hover:bg-orange-100 transition-colors">
-                    <Sun className="w-10 h-10 text-orange-500" />
-                 </div>
-                 <h4 className="font-bold text-cyan-900 text-xl mb-3">明亮舒適候診區</h4>
-                 <p className="text-slate-600 leading-relaxed">大面採光設計，寬敞不壓迫，搭配溫馨的色調，讓等待過程也能保持心情愉悅。</p>
-              </div>
+              {ENVIRONMENT_ITEMS.map((item, index) => (
+                <div key={index} className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
+                   {/* Image Area */}
+                   <div className="h-56 overflow-hidden relative bg-slate-200">
+                      <img 
+                        src={item.image} 
+                        alt={item.title} 
+                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                        loading="lazy"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          // 防錯機制：如果找不到 clinic_exterior.jpg，使用原本的 Unsplash 示意圖
+                          // 避免畫面出現破圖
+                          target.src = "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&q=80&w=800";
+                          target.onerror = null; // 防止無限迴圈
+                        }}
+                      />
+                   </div>
+                   
+                   {/* Content Area */}
+                   <div className="p-6 flex-1 flex flex-col">
+                      <h4 className="font-bold text-cyan-900 text-xl mb-3 hover:text-cyan-600 transition-colors">
+                        {item.title}
+                      </h4>
+                      <p className="text-slate-600 leading-relaxed text-sm">
+                        {item.desc}
+                      </p>
+                   </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
