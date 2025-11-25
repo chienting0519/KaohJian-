@@ -51,8 +51,8 @@ const App: React.FC = () => {
     {
       title: "獨棟透析大樓",
       desc: "專屬醫療空間規劃，環境單純安全，有效落實感控分流，給您最安心的治療場域。",
-      // 請將您提供的照片命名為 "clinic_exterior.jpg" 並放在專案根目錄(與 index.html 同層)
-      image: "./clinic_exterior.jpg" 
+      // 使用 WebP 格式提升載入速度與 SEO 分數
+      image: "./clinic_exterior.webp" 
     },
     {
       title: "無障礙友善設施",
@@ -262,7 +262,7 @@ const App: React.FC = () => {
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-16 max-w-4xl mx-auto">
               <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm">Clinic Environment</span>
-              <h2 className="text-3xl lg:text-4xl font-bold text-cyan-900 mt-2 mb-6">舒適寬敞的獨棟醫療大樓</h2>
+              <h2 className="text-3xl lg:text-4xl font-bold text-cyan-900 mt-2 mb-6">明亮舒適空間</h2>
               <p className="text-slate-600 text-lg leading-relaxed">
                 高健診所為您打造五星級的就醫環境。我們擁有獨棟透析大樓，提供寬敞明亮的治療空間，
                 結合現代化的醫療設備與人性化的空間設計，讓每位病患都能在放鬆、安心的氛圍中接受專業照護。
@@ -281,8 +281,7 @@ const App: React.FC = () => {
                         loading="lazy"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
-                          // 防錯機制：如果找不到 clinic_exterior.jpg，使用原本的 Unsplash 示意圖
-                          // 避免畫面出現破圖
+                          // 防錯機制：如果找不到圖片，使用原本的 Unsplash 示意圖
                           target.src = "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&q=80&w=800";
                           target.onerror = null; // 防止無限迴圈
                         }}
@@ -409,7 +408,7 @@ const App: React.FC = () => {
                </div>
 
                {/* Map */}
-               <div className="h-[300px] sm:h-[400px] bg-slate-200 rounded-2xl overflow-hidden relative shadow-inner border border-slate-200">
+               <div className="h-[200px] lg:h-[300px] bg-slate-200 rounded-2xl overflow-hidden relative shadow-inner border border-slate-200 sticky top-24">
                   <iframe 
                     title="Google Map Location of KaohJian Clinic"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.045622154483!2d120.3541459!3d22.5649129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e033355555555%3A0x1234567890abcdef!2zODEx高雄市小港區沿海一路88號!5e0!3m2!1szh-TW!2stw!4v1700000000000!5m2!1szh-TW!2stw"
