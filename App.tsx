@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CLINIC_INFO, SERVICES } from './constants';
-import { MapPin, Phone, Menu, X, ArrowRight, Facebook, Car, SquareParking, TrainFront, Building, Accessibility, Sun, BookOpen, MessageCircle, Bot, Sparkles, UserPlus } from 'lucide-react';
+import { MapPin, Phone, Menu, X, ArrowRight, Facebook, Car, ParkingSquare, Train, Building, Accessibility, Sun, BookOpen, MessageCircle, Bot, Sparkles, UserPlus } from 'lucide-react';
 import ServiceCard from './components/ServiceCard';
 import KidneyCheck from './components/KidneyCheck';
 import AIChat from './components/AIChat';
@@ -33,13 +33,13 @@ const App: React.FC = () => {
       color: "bg-rose-500" // Warm color for 'Love'
     },
     {
-      icon: <SquareParking className="w-8 h-8 text-white" />,
+      icon: <ParkingSquare className="w-8 h-8 text-white" />,
       title: "附設專屬停車場",
       desc: "停車方便，家屬接送無負擔。",
       color: "bg-cyan-600"
     },
     {
-      icon: <TrainFront className="w-8 h-8 text-white" />,
+      icon: <Train className="w-8 h-8 text-white" />,
       title: "捷運步行 8 分鐘",
       desc: "近高雄國際機場站(高雄公園)，交通便利。",
       color: "bg-lime-600"
