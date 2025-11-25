@@ -51,8 +51,8 @@ const App: React.FC = () => {
     {
       title: "獨棟透析大樓",
       desc: "專屬醫療空間規劃，環境單純安全，有效落實感控分流，給您最安心的治療場域。",
-      // 使用 WebP 格式提升載入速度與 SEO 分數
-      image: "./clinic_exterior.webp" 
+      // 使用 WebP 格式提升載入速度與 SEO 分數 (指向 public 資料夾)
+      image: "/clinic_exterior.webp" 
     },
     {
       title: "無障礙友善設施",
