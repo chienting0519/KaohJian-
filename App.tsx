@@ -171,9 +171,21 @@ const App: React.FC = () => {
               <div className="inline-block px-4 py-1 rounded-full bg-cyan-800/50 border border-cyan-400/30 text-cyan-200 mb-6 text-sm font-semibold tracking-wider">
                 小港在地的專業依靠，守護腎臟健康
               </div>
-              <h2 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+              <h2 className="text-4xl lg:text-6xl font-bold mb-4 leading-tight">
                 {CLINIC_INFO.slogan}
               </h2>
+              
+              {/* Added Locations */}
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xl sm:text-2xl font-bold text-lime-300 mb-8 tracking-wide">
+                 <span>鳳山</span>
+                 <span className="text-cyan-400 text-sm">•</span>
+                 <span>小港</span>
+                 <span className="text-cyan-400 text-sm">•</span>
+                 <span>林園</span>
+                 <span className="text-cyan-400 text-sm">•</span>
+                 <span>大寮</span>
+              </div>
+
               <p className="text-xl lg:text-2xl text-cyan-50 mb-10 leading-relaxed font-light">
                 結合醫學中心等級的透析技術與社區診所的溫馨照護。<br className="hidden sm:block" />
                 我們提供全方位的腎臟專科診療，讓您在舒適環境中重拾健康活力。
@@ -438,7 +450,8 @@ const App: React.FC = () => {
                  <a href="https://www.facebook.com/profile.php?id=61559290111933" target="_blank" rel="noreferrer" aria-label="Visit our Facebook page" className="text-cyan-200 hover:text-lime-400 transition-all"><Facebook className="w-6 h-6" /></a>
               </div>
               <p className="mb-4 text-cyan-100/80 leading-relaxed">
-                專精腎臟科、洗腎預防、三高慢性病調理。<br/>
+                專精腎臟科、洗腎預防。<br/>
+                提供小港、鳳山、林園、大寮溫馨接送。<br/>
                 高雄市民的健康守護者。
               </p>
             </div>

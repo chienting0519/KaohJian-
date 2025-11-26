@@ -13,7 +13,11 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', text: '您好！我是高健診所的 AI 腎臟健康助理。\n\n為了您的健康，我會協助您解答關於 **洗腎飲食**、**門診時間** 或 **預約掛號** 的問題。\n\n請問有什麼我可以幫您的嗎？', timestamp: new Date() }
+    { 
+      role: 'model', 
+      text: '您好！我是高健診所的 AI 腎臟健康助理。\n\n為了您的健康，我會協助您解答關於 **洗腎飲食**、**門診時間**、**預約掛號** 或 **接送服務** 的問題。\n\n請問有什麼我可以幫您的嗎？', 
+      timestamp: new Date() 
+    }
   ]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -120,21 +124,24 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
         if (part === 'https://lin.ee/RIY5AtG' || (part.startsWith('[') && part.includes('https://lin.ee/RIY5AtG'))) {
           return (
             <div key={partIdx} className="block my-4 w-full">
-              <div className="flex flex-col items-center p-4 bg-slate-50 rounded-xl border border-slate-200 shadow-sm">
+              <div className="flex flex-col gap-2 p-3 bg-slate-50 rounded-xl border border-slate-200 shadow-sm">
+                <p className="text-xs text-slate-500 font-medium text-center mb-1">請選擇聯絡方式：</p>
                 <a 
                   href="https://lin.ee/RIY5AtG" 
                   target="_blank" 
                   rel="noreferrer"
-                  className="w-full sm:w-auto text-center inline-flex items-center justify-center gap-2 bg-[#06c755] hover:bg-[#05b34c] text-white px-8 py-3 rounded-lg text-base font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                  className="w-full text-center inline-flex items-center justify-center gap-2 bg-[#06c755] hover:bg-[#05b34c] text-white px-4 py-2.5 rounded-lg text-sm font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
                 >
                   <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-5 h-5" />
-                  立即 Line 預約掛號
+                  Line 諮詢/預約
                 </a>
-                <div className="flex items-center gap-1.5 text-xs text-slate-500 mt-3 font-medium">
-                  <Phone className="w-3 h-3 text-cyan-600" />
-                  <span>預約專線:</span>
-                  <span className="font-mono font-bold text-slate-700">{CLINIC_INFO.phone}</span>
-                </div>
+                <a 
+                  href={`tel:${CLINIC_INFO.phone}`}
+                  className="w-full text-center inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-100 text-cyan-700 border border-slate-300 px-4 py-2.5 rounded-lg text-sm font-bold transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                >
+                  <Phone className="w-4 h-4" />
+                  撥打電話 ({CLINIC_INFO.phone})
+                </a>
               </div>
             </div>
           );
@@ -147,7 +154,7 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
         return (
           <div key={lineIdx} className="flex items-start gap-2 mb-3 pl-1">
             <span className="mt-2.5 w-1.5 h-1.5 bg-cyan-500 rounded-full flex-shrink-0"></span>
-            <span className="flex-1 leading-7 text-slate-700">{renderedParts}</span>
+            <span className="flex-1 leading-7 text-slate-900 font-bold">{renderedParts}</span>
           </div>
         );
       }
@@ -156,7 +163,7 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
         return <div key={lineIdx} className="h-2"></div>;
       }
 
-      return <div key={lineIdx} className="mb-3 leading-7 text-slate-700">{renderedParts}</div>;
+      return <div key={lineIdx} className="mb-3 leading-7 text-slate-900 font-bold">{renderedParts}</div>;
     });
   };
 
@@ -197,7 +204,7 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
                   className={`max-w-[88%] rounded-2xl px-5 py-4 text-[15px] shadow-sm ${
                     msg.role === 'user' 
                       ? 'bg-cyan-600 text-white rounded-tr-none' 
-                      : 'bg-white text-slate-800 border border-slate-200 rounded-tl-none'
+                      : 'bg-white text-slate-900 font-bold border border-slate-200 rounded-tl-none'
                   }`}
                 >
                   {msg.role === 'user' ? msg.text : formatMessage(msg.text)}
