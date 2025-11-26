@@ -105,11 +105,11 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
             );
         }
 
-        // Handle {{Highlight}} -> Lime Green Text (New feature for locations)
+        // Handle {{Highlight}} -> Lime Green Text (Matches the "Immediate Check" button style)
         if (part.startsWith('{{') && part.endsWith('}}')) {
             const highlight = part.slice(2, -2);
             return (
-                <span key={partIdx} className="text-[#65a30d] font-extrabold mx-0.5 px-1 bg-lime-50 rounded border border-lime-200 shadow-sm text-[1.05em]">
+                <span key={partIdx} className="text-white font-bold mx-0.5 px-2 py-0.5 bg-lime-500 rounded shadow-sm text-[0.95em] tracking-wide">
                     {highlight}
                 </span>
             );
