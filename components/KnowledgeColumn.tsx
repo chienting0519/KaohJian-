@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { ARTICLES } from '../constants';
+import { ARTICLES, CLINIC_INFO } from '../constants';
 import { Article } from '../types';
-import { BookOpen, Calendar, ArrowRight, Tag, X } from 'lucide-react';
+import { BookOpen, Calendar, ArrowRight, Tag, X, Phone } from 'lucide-react';
 
 const KnowledgeColumn: React.FC = () => {
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
@@ -93,8 +93,34 @@ const KnowledgeColumn: React.FC = () => {
              </div>
 
              {/* Body */}
-             <div className="p-6 sm:p-8 text-slate-700 leading-loose text-lg whitespace-pre-line">
+             <div className="p-6 sm:p-8 text-slate-700 leading-loose text-lg whitespace-pre-line pb-0">
                 {selectedArticle.content}
+             </div>
+
+             {/* CTA Buttons */}
+             <div className="p-6 sm:p-8 pt-6">
+                <div className="bg-cyan-50/50 rounded-2xl p-6 border border-cyan-100 flex flex-col items-center gap-4 text-center">
+                   <h4 className="text-lg font-bold text-cyan-900">想了解更多嗎?</h4>
+                   <p className="text-sm text-slate-600 -mt-2 mb-2">歡迎透過 Line 諮詢或直接來電，由專業團隊為您解答</p>
+                   <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                      <a 
+                        href={CLINIC_INFO.bookingLink} 
+                        target="_blank" 
+                        rel="noreferrer"
+                        className="bg-[#06c755] hover:bg-[#05b34c] text-white px-8 py-3 rounded-full font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center gap-2 min-w-[200px]"
+                      >
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-5 h-5" />
+                        Line 諮詢/預約
+                      </a>
+                      <a 
+                        href={`tel:${CLINIC_INFO.phone}`}
+                        className="bg-white hover:bg-slate-50 text-cyan-700 border border-cyan-200 px-8 py-3 rounded-full font-bold transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2 min-w-[200px]"
+                      >
+                        <Phone className="w-4 h-4" />
+                        撥打診所電話
+                      </a>
+                   </div>
+                </div>
              </div>
 
              {/* Footer */}
