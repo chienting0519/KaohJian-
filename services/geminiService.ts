@@ -1,4 +1,3 @@
-
 import { GoogleGenAI } from "@google/genai";
 import { CLINIC_INFO, SERVICES, SCHEDULE_CONTEXT } from '../constants';
 
@@ -68,7 +67,7 @@ export const sendMessageToGemini = async (userMessage: string, history: string[]
     6.  **強制聯絡按鈕 (Mandatory Footer)**: 
         *   **無論回答什麼問題** (飲食、時間、接送、閒聊)，回答的**最後一行**，**必須**且**只能**是以下這個原始網址 (不要加 markdown 語法，單獨一行):
         *   ${CLINIC_INFO.bookingLink}
-        *   (系統會自動將此網址轉換為 Line 與 電話 按鈕)
+        *   (這個連結非常重要，它會觸發「Line 諮詢」與「撥打電話」按鈕的顯示，絕對不能遺漏)
     
     你的任務:
     回答要親切、專業、繁體中文。請確保排版漂亮、清晰、字數精簡，讓長輩也能輕鬆閱讀。
