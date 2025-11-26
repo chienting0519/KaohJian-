@@ -1,3 +1,4 @@
+
 export interface ServiceItem {
   title: string;
   items: string[];
@@ -30,6 +31,7 @@ export interface Article {
   date: string;
   category: string;
   tags: string[];
+  content: string; // 新增內文欄位
 }
 
 export interface Doctor {

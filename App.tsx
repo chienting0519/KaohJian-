@@ -266,6 +266,11 @@ const App: React.FC = () => {
                         className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
                         loading="lazy"
                         // onError Removed for testing local image
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.onerror = null; // prevent infinite loop
+                          target.src = "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800"; // Fallback image
+                        }}
                       />
                    </div>
                    
@@ -332,33 +337,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Knowledge Column Section */}
-        <section id="knowledge" className="py-20 bg-slate-50 relative border-t border-slate-200">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-100 via-lime-200 to-cyan-100"></div>
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
-               <div>
-                  <span className="text-lime-600 font-bold tracking-wider uppercase text-sm flex items-center gap-2">
-                     <BookOpen className="w-4 h-4" /> Health Knowledge
-                  </span>
-                  <h2 className="text-3xl lg:text-4xl font-bold text-cyan-900 mt-2">高健知識專欄</h2>
-                  <p className="text-slate-600 mt-2">專業醫師為您解惑，掌握正確的腎臟保健知識。</p>
-               </div>
-               <a href="#" className="hidden md:flex text-cyan-600 font-bold items-center gap-2 hover:translate-x-1 transition-transform">
-                  查看所有文章 <ArrowRight className="w-5 h-5" />
-               </a>
-            </div>
-            
-            <KnowledgeColumn />
-            
-            <div className="mt-8 text-center md:hidden">
-               <a href="#" className="text-cyan-600 font-bold inline-flex items-center gap-2">
-                  查看所有文章 <ArrowRight className="w-5 h-5" />
-               </a>
-            </div>
-          </div>
-        </section>
-
         {/* Info & Location Section */}
         <section id="info" className="py-20 bg-white border-t border-slate-200">
           <div className="container mx-auto px-4">
@@ -417,6 +395,29 @@ const App: React.FC = () => {
             </div>
           </div>
         </section>
+
+        {/* Knowledge Column Section (Moved Here) */}
+        <section id="knowledge" className="py-20 bg-slate-50 relative border-t border-slate-200">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-100 via-lime-200 to-cyan-100"></div>
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+                  <span className="text-lime-600 font-bold tracking-wider uppercase text-sm flex items-center justify-center gap-2">
+                     <BookOpen className="w-4 h-4" /> Health Knowledge
+                  </span>
+                  <h2 className="text-3xl lg:text-4xl font-bold text-cyan-900 mt-2">高健知識專欄</h2>
+                  <p className="text-slate-600 mt-2">專業醫師為您解惑，掌握正確的腎臟保健知識。</p>
+                  <div className="w-24 h-1 bg-lime-500 mx-auto mt-6 rounded-full"></div>
+            </div>
+            
+            <KnowledgeColumn />
+            
+            <div className="mt-12 text-center">
+               <a href="#" className="inline-flex text-cyan-600 font-bold items-center gap-2 hover:translate-x-1 transition-transform border-b-2 border-transparent hover:border-cyan-600 pb-1 text-lg">
+                  查看所有文章 <ArrowRight className="w-5 h-5" />
+               </a>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Footer */}
@@ -424,21 +425,21 @@ const App: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 mb-8 border-b border-cyan-800 pb-8">
             <div>
-              <h3 className="text-white font-bold text-xl mb-4 flex items-center gap-2">
-                  <ClinicLogo className="w-8 h-8" />
-                  {CLINIC_INFO.name}
-              </h3>
+              <div className="flex items-center gap-4 mb-4">
+                 <h3 className="text-white font-bold text-xl flex items-center gap-2">
+                    <ClinicLogo className="w-8 h-8" />
+                    {CLINIC_INFO.name}
+                 </h3>
+                 <a href="https://www.facebook.com/profile.php?id=61559290111933" target="_blank" rel="noreferrer" aria-label="Visit our Facebook page" className="text-cyan-200 hover:text-lime-400 transition-all"><Facebook className="w-6 h-6" /></a>
+              </div>
               <p className="mb-4 text-cyan-100/80 leading-relaxed">
                 專精腎臟科、洗腎預防、三高慢性病調理。<br/>
                 高雄市民的健康守護者。
               </p>
-              <div className="flex gap-4">
-                <a href="https://www.facebook.com/profile.php?id=61559290111933" target="_blank" rel="noreferrer" aria-label="Visit our Facebook page" className="bg-cyan-900 p-2 rounded-full hover:bg-lime-600 hover:text-white transition-all"><Facebook className="w-5 h-5" /></a>
-              </div>
             </div>
             <div>
               <h4 className="text-white font-bold mb-4 text-lg">快速連結</h4>
-              <ul className="space-y-2">
+              <ul className="grid grid-cols-2 gap-2 md:block md:space-y-2">
                 <li><a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="hover:text-lime-400 transition-colors flex items-center gap-2 cursor-pointer"><ArrowRight className="w-3 h-3" /> 首頁</a></li>
                 <li><a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="hover:text-lime-400 transition-colors flex items-center gap-2 cursor-pointer"><ArrowRight className="w-3 h-3" /> 腎臟檢測</a></li>
                 <li><a href="#environment" onClick={(e) => scrollToSection(e, 'environment')} className="hover:text-lime-400 transition-colors flex items-center gap-2 cursor-pointer"><ArrowRight className="w-3 h-3" /> 環境介紹</a></li>
@@ -449,9 +450,9 @@ const App: React.FC = () => {
             </div>
             <div>
               <h4 className="text-white font-bold mb-4 text-lg">聯絡我們</h4>
-              <address className="space-y-3 not-italic">
-                  <p className="flex items-start gap-2"><Phone className="w-5 h-5 text-lime-500 mt-0.5" /> {CLINIC_INFO.phone}</p>
-                  <p className="flex items-start gap-2"><MapPin className="w-5 h-5 text-lime-500 mt-0.5" /> {CLINIC_INFO.address}</p>
+              <address className="grid grid-cols-2 gap-3 md:block md:space-y-3 not-italic">
+                  <p className="flex items-start gap-2"><Phone className="w-5 h-5 text-lime-500 mt-0.5 flex-shrink-0" /> {CLINIC_INFO.phone}</p>
+                  <p className="flex items-start gap-2"><MapPin className="w-5 h-5 text-lime-500 mt-0.5 flex-shrink-0" /> {CLINIC_INFO.address}</p>
               </address>
             </div>
           </div>
