@@ -27,19 +27,19 @@ const App: React.FC = () => {
 
   const FEATURES = [
     {
-      icon: <Car className="w-8 h-8 text-white" />,
+      icon: <Car className="w-6 h-6 text-white" />,
       title: "愛心接送服務",
       desc: "體恤長者與行動不便腎友，提供接送協助。",
       color: "bg-rose-500" // Warm color for 'Love'
     },
     {
-      icon: <ParkingSquare className="w-8 h-8 text-white" />,
+      icon: <ParkingSquare className="w-6 h-6 text-white" />,
       title: "附設專屬停車場",
       desc: "停車方便，家屬接送無負擔。",
       color: "bg-cyan-600"
     },
     {
-      icon: <Train className="w-8 h-8 text-white" />,
+      icon: <Train className="w-6 h-6 text-white" />,
       title: "捷運步行 8 分鐘",
       desc: "近高雄國際機場1號出口站(高雄公園)。",
       color: "bg-lime-600"
@@ -237,8 +237,8 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Environment Section (Updated with Images) */}
-        <section id="environment" className="py-20 bg-white relative overflow-hidden">
+        {/* Environment Section (Updated with Images & Features Bridge) */}
+        <section id="environment" className="py-20 pb-28 bg-white relative overflow-hidden">
           {/* Background Decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 translate-x-1/3 -translate-y-1/3"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-lime-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -translate-x-1/3 translate-y-1/3"></div>
@@ -265,12 +265,7 @@ const App: React.FC = () => {
                         alt={item.title} 
                         className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
                         loading="lazy"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          // 防錯機制：如果找不到圖片，使用原本的 Unsplash 示意圖
-                          target.src = "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&q=80&w=800";
-                          target.onerror = null; // 防止無限迴圈
-                        }}
+                        // onError Removed for testing local image
                       />
                    </div>
                    
@@ -288,28 +283,31 @@ const App: React.FC = () => {
             </div>
           </div>
         </section>
-
-        {/* Features Bridge Section (Between Environment and Team) */}
-        <section className="py-5 bg-slate-50 border-y border-slate-100">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-3 gap-8">
+        
+        {/* Features Bridge (On the Separator Line) */}
+        <div className="relative">
+          {/* The Line - positioned absolute centered vertically */}
+          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[1px] bg-slate-200 z-0"></div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="grid md:grid-cols-3 gap-6">
               {FEATURES.map((feature, idx) => (
-                <div key={idx} className="bg-white rounded-xl shadow-sm p-6 flex items-center gap-5 border border-slate-100 hover:shadow-md transition-all">
-                  <div className={`${feature.color} p-3 rounded-xl shadow-sm flex-shrink-0`}>
+                <div key={idx} className="bg-white p-4 rounded-full border border-slate-100 shadow-md flex items-center gap-4 hover:shadow-lg transition-all hover:-translate-y-1 mx-auto w-full max-w-sm group">
+                  <div className={`${feature.color} p-2.5 rounded-full shadow-sm flex-shrink-0 group-hover:scale-110 transition-transform`}>
                     {feature.icon}
                   </div>
-                  <div>
-                    <h3 className="font-bold text-cyan-900 text-lg mb-1">{feature.title}</h3>
-                    <p className="text-slate-600 text-sm leading-snug">{feature.desc}</p>
+                  <div className="flex-1 pr-2">
+                    <h3 className="font-bold text-cyan-900 text-base mb-0.5">{feature.title}</h3>
+                    <p className="text-slate-500 text-xs leading-snug">{feature.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </section>
+        </div>
 
         {/* New Medical Team Section */}
-        <section id="team" className="py-20 bg-white scroll-mt-20">
+        <section id="team" className="pt-24 pb-20 bg-slate-50 border-t border-slate-200 scroll-mt-20">
           <div className="container mx-auto px-4">
              <div className="text-center mb-16">
                <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm flex items-center justify-center gap-2">
@@ -325,7 +323,7 @@ const App: React.FC = () => {
         </section>
 
         {/* Services Section */}
-        <section id="services" className="py-20 bg-slate-50 border-t border-slate-200">
+        <section id="services" className="py-20 bg-white border-t border-slate-100">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm">Medical Services</span>
@@ -342,7 +340,7 @@ const App: React.FC = () => {
         </section>
 
         {/* Knowledge Column Section */}
-        <section id="knowledge" className="py-20 bg-white relative">
+        <section id="knowledge" className="py-20 bg-slate-50 relative border-t border-slate-200">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-100 via-lime-200 to-cyan-100"></div>
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
@@ -369,7 +367,7 @@ const App: React.FC = () => {
         </section>
 
         {/* Info & Location Section */}
-        <section id="info" className="py-20 bg-slate-50 border-t border-slate-200">
+        <section id="info" className="py-20 bg-white border-t border-slate-200">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-cyan-900 mb-8 flex items-center gap-3 justify-center md:justify-start">
               <span className="w-2 h-8 bg-lime-500 rounded-full"></span>
