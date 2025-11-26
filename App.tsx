@@ -78,8 +78,8 @@ const App: React.FC = () => {
                <ClinicLogo className="h-12 w-12 sm:h-14 sm:w-14" />
              </div>
              <div>
-               <h1 className="text-2xl font-bold text-cyan-900 leading-none tracking-tight">{CLINIC_INFO.name}</h1>
-               <p className="text-sm sm:text-base text-cyan-600 tracking-wide font-bold mt-1 leading-tight">
+               <h1 className="text-2xl sm:text-3xl font-bold text-cyan-900 leading-none tracking-tight">{CLINIC_INFO.name}</h1>
+               <p className="text-base sm:text-lg text-cyan-600 tracking-wide font-extrabold mt-1 leading-tight">
                  <span className="block sm:inline">高雄腎臟專科 • </span>
                  <span className="block sm:inline">洗腎中心</span>
                </p>
@@ -88,12 +88,12 @@ const App: React.FC = () => {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-4 xl:gap-6">
-            <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="text-slate-600 hover:text-cyan-700 font-bold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-base lg:text-lg cursor-pointer">首頁</a>
-            <a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="text-slate-600 hover:text-cyan-700 font-bold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-base lg:text-lg cursor-pointer">腎臟檢測</a>
-            <a href="#environment" onClick={(e) => scrollToSection(e, 'environment')} className="text-slate-600 hover:text-cyan-700 font-bold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-base lg:text-lg cursor-pointer">環境介紹</a>
-            <a href="#team" onClick={(e) => scrollToSection(e, 'team')} className="text-slate-600 hover:text-cyan-700 font-bold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-base lg:text-lg cursor-pointer">醫療團隊</a>
-            <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="text-slate-600 hover:text-cyan-700 font-bold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-base lg:text-lg cursor-pointer">服務項目</a>
-            <a href="#info" onClick={(e) => scrollToSection(e, 'info')} className="text-slate-600 hover:text-cyan-700 font-bold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-base lg:text-lg cursor-pointer">診所資訊</a>
+            <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="text-slate-600 hover:text-cyan-700 font-extrabold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-xl lg:text-2xl cursor-pointer">首頁</a>
+            <a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="text-slate-600 hover:text-cyan-700 font-extrabold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-xl lg:text-2xl cursor-pointer">腎臟檢測</a>
+            <a href="#environment" onClick={(e) => scrollToSection(e, 'environment')} className="text-slate-600 hover:text-cyan-700 font-extrabold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-xl lg:text-2xl cursor-pointer">環境介紹</a>
+            <a href="#team" onClick={(e) => scrollToSection(e, 'team')} className="text-slate-600 hover:text-cyan-700 font-extrabold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-xl lg:text-2xl cursor-pointer">醫療團隊</a>
+            <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="text-slate-600 hover:text-cyan-700 font-extrabold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-xl lg:text-2xl cursor-pointer">服務項目</a>
+            <a href="#info" onClick={(e) => scrollToSection(e, 'info')} className="text-slate-600 hover:text-cyan-700 font-extrabold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-xl lg:text-2xl cursor-pointer">診所資訊</a>
             
             <div className="flex items-center gap-3 ml-2">
               <button
@@ -237,7 +237,7 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Environment Section (Updated with Images, merged with Features) */}
+        {/* Environment Section (Updated with Images) */}
         <section id="environment" className="py-20 bg-white relative overflow-hidden">
           {/* Background Decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 translate-x-1/3 -translate-y-1/3"></div>
@@ -255,7 +255,7 @@ const App: React.FC = () => {
             </div>
 
             {/* Environment Items Grid */}
-            <div className="grid md:grid-cols-3 gap-8 mb-20">
+            <div className="grid md:grid-cols-3 gap-8">
               {ENVIRONMENT_ITEMS.map((item, index) => (
                 <div key={index} className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
                    {/* Image Area */}
@@ -286,32 +286,30 @@ const App: React.FC = () => {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
 
-            {/* Features (Formerly separate section, now embedded) */}
-            <div className="border-t border-slate-100 pt-16">
-              <div className="text-center mb-12">
-                 <h2 className="text-2xl lg:text-3xl font-bold text-cyan-900">三大貼心特色</h2>
-                 <p className="text-slate-600 mt-4 text-lg">為您設想周到，就醫更便利</p>
-              </div>
-              <div className="grid md:grid-cols-3 gap-8">
-                {FEATURES.map((feature, idx) => (
-                  <div key={idx} className="bg-slate-50 rounded-xl shadow-md p-8 flex flex-col items-center text-center border border-slate-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                    <div className={`${feature.color} p-4 rounded-full shadow-md mb-6 inline-flex`}>
-                      {feature.icon}
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-cyan-900 text-xl mb-3">{feature.title}</h3>
-                      <p className="text-slate-600 leading-relaxed">{feature.desc}</p>
-                    </div>
+        {/* Features Bridge Section (Between Environment and Team) */}
+        <section className="py-5 bg-slate-50 border-y border-slate-100">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-3 gap-8">
+              {FEATURES.map((feature, idx) => (
+                <div key={idx} className="bg-white rounded-xl shadow-sm p-6 flex items-center gap-5 border border-slate-100 hover:shadow-md transition-all">
+                  <div className={`${feature.color} p-3 rounded-xl shadow-sm flex-shrink-0`}>
+                    {feature.icon}
                   </div>
-                ))}
-              </div>
+                  <div>
+                    <h3 className="font-bold text-cyan-900 text-lg mb-1">{feature.title}</h3>
+                    <p className="text-slate-600 text-sm leading-snug">{feature.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* New Medical Team Section */}
-        <section id="team" className="py-20 bg-white border-t border-slate-200 scroll-mt-20">
+        <section id="team" className="py-20 bg-white scroll-mt-20">
           <div className="container mx-auto px-4">
              <div className="text-center mb-16">
                <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm flex items-center justify-center gap-2">
