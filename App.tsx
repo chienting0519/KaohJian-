@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { CLINIC_INFO, SERVICES } from './constants';
 import { MapPin, Phone, Menu, X, ArrowRight, Facebook, Car, ParkingSquare, Train, Building, Accessibility, Sun, BookOpen, MessageCircle, Bot, Sparkles, UserPlus } from 'lucide-react';
@@ -9,19 +10,114 @@ import { ClinicLogo } from './components/ClinicLogo';
 import KnowledgeColumn from './components/KnowledgeColumn';
 import MedicalTeam from './components/MedicalTeam';
 
+// --- Custom 2D Illustrations ---
+
+const IllustrationBuilding = () => (
+  <svg viewBox="0 0 200 160" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
+    {/* Ground */}
+    <rect x="0" y="140" width="200" height="20" fill="#ecfccb" />
+    {/* Building Body */}
+    <rect x="50" y="40" width="100" height="100" rx="4" fill="#fff" stroke="#0891b2" strokeWidth="3" />
+    <rect x="50" y="40" width="100" height="15" rx="4" fill="#0891b2" />
+    {/* Roof/Top details */}
+    <rect x="85" y="25" width="30" height="15" fill="#0e7490" />
+    {/* Windows */}
+    <rect x="65" y="65" width="20" height="20" rx="2" fill="#cffafe" stroke="#22d3ee" strokeWidth="2" />
+    <rect x="115" y="65" width="20" height="20" rx="2" fill="#cffafe" stroke="#22d3ee" strokeWidth="2" />
+    {/* Door */}
+    <rect x="85" y="100" width="30" height="40" rx="2" fill="#06b6d4" />
+    <path d="M 85 120 L 115 120" stroke="#fff" strokeWidth="1" opacity="0.5" />
+    {/* Cross Sign */}
+    <circle cx="100" cy="32" r="6" fill="#fff" />
+    <rect x="98" y="28" width="4" height="8" fill="#ef4444" />
+    <rect x="96" y="30" width="8" height="4" fill="#ef4444" />
+    {/* Trees */}
+    <circle cx="30" cy="130" r="15" fill="#84cc16" />
+    <rect x="28" y="140" width="4" height="10" fill="#a16207" />
+    <circle cx="170" cy="130" r="15" fill="#84cc16" />
+    <rect x="168" y="140" width="4" height="10" fill="#a16207" />
+  </svg>
+);
+
+const IllustrationAccessibility = () => (
+  <svg viewBox="0 0 200 160" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
+    {/* Background Circle */}
+    <circle cx="100" cy="80" r="60" fill="#ecfccb" opacity="0.5" />
+    {/* Wheelchair Symbol (Stylized) */}
+    <circle cx="100" cy="55" r="10" fill="#0891b2" />
+    <path d="M 100 65 L 100 95 L 120 95" stroke="#0891b2" strokeWidth="8" strokeLinecap="round" fill="none" />
+    <path d="M 100 95 L 80 115" stroke="#0891b2" strokeWidth="8" strokeLinecap="round" fill="none" />
+    <circle cx="115" cy="115" r="22" stroke="#155e75" strokeWidth="6" fill="none" />
+    {/* Ramp */}
+    <path d="M 40 140 L 160 140 L 160 130 L 70 130 Z" fill="#65a30d" />
+  </svg>
+);
+
+const IllustrationInterior = () => (
+  <svg viewBox="0 0 200 160" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
+    {/* Room Background */}
+    <rect x="20" y="20" width="160" height="120" rx="8" fill="#fff" stroke="#cbd5e1" strokeWidth="2" />
+    {/* Window */}
+    <rect x="40" y="40" width="50" height="50" fill="#e0f2fe" stroke="#38bdf8" strokeWidth="2" />
+    <path d="M 65 40 L 65 90" stroke="#38bdf8" strokeWidth="2" />
+    <path d="M 40 65 L 90 65" stroke="#38bdf8" strokeWidth="2" />
+    {/* Sun outside window */}
+    <circle cx="75" cy="55" r="6" fill="#facc15" />
+    {/* Bed/Chair */}
+    <rect x="100" y="80" width="70" height="40" rx="4" fill="#06b6d4" />
+    <path d="M 100 80 L 110 60 L 160 60" stroke="#0891b2" strokeWidth="4" fill="none" strokeLinecap="round" />
+    {/* Pillow */}
+    <circle cx="115" cy="75" r="8" fill="#fff" />
+    {/* Floor */}
+    <rect x="25" y="130" width="150" height="5" fill="#cbd5e1" opacity="0.5" />
+  </svg>
+);
+
+interface EnvironmentCardProps {
+  item: {
+    title: string;
+    desc: string;
+    illustration: React.ReactNode;
+  };
+}
+
+// Updated component to render SVG illustrations
+const EnvironmentCard: React.FC<EnvironmentCardProps> = ({ item }) => {
+  return (
+    <div className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full hover:-translate-y-1 group">
+       {/* Illustration Area */}
+       <div className="h-56 bg-slate-50 flex items-center justify-center relative overflow-hidden p-8">
+          <div className="absolute inset-0 bg-cyan-50/50 group-hover:bg-cyan-100/30 transition-colors"></div>
+          <div className="w-48 h-48 drop-shadow-md transform group-hover:scale-105 transition-transform duration-500">
+            {item.illustration}
+          </div>
+       </div>
+       
+       {/* Content Area */}
+       <div className="p-6 flex-1 flex flex-col relative z-10 bg-white">
+          <h4 className="font-bold text-cyan-900 text-xl mb-3 group-hover:text-cyan-600 transition-colors">
+            {item.title}
+          </h4>
+          <p className="text-slate-600 leading-relaxed text-sm">
+            {item.desc}
+          </p>
+       </div>
+    </div>
+  );
+};
+
 const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  // Handle smooth scroll programmatically to avoid URL hash conflicts (Connection Refused errors)
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false); // Close mobile menu if open
+      setIsMenuOpen(false);
     }
   };
 
@@ -30,7 +126,7 @@ const App: React.FC = () => {
       icon: <Car className="w-6 h-6 text-white" />,
       title: "愛心接送服務",
       desc: "體恤長者與行動不便腎友，提供接送協助。",
-      color: "bg-rose-500" // Warm color for 'Love'
+      color: "bg-rose-500"
     },
     {
       icon: <ParkingSquare className="w-6 h-6 text-white" />,
@@ -46,23 +142,22 @@ const App: React.FC = () => {
     }
   ];
 
-  // 環境介紹資料與照片 (請在此處更換您的照片連結)
+  // 環境介紹資料 (使用 2D 插畫元件)
   const ENVIRONMENT_ITEMS = [
     {
       title: "獨棟透析大樓",
       desc: "專屬醫療空間規劃，環境單純安全，有效落實感控分流，給您最安心的治療場域。",
-      // 使用 WebP 格式提升載入速度與 SEO 分數 (指向 public 資料夾)
-      image: "/clinic_exterior.webp" 
+      illustration: <IllustrationBuilding />
     },
     {
       title: "無障礙友善設施",
       desc: "全棟設有醫療專用電梯與平緩的無障礙坡道，體貼行動不便的長者與輪椅使用者。",
-      image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800"
+      illustration: <IllustrationAccessibility />
     },
     {
-      title: "環境介紹",
+      title: "寬敞明亮的治療空間", // 標題已修改
       desc: "大面採光設計，寬敞不壓迫，搭配溫馨的色調，讓等待過程也能保持心情愉悅。",
-      image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&q=80&w=800"
+      illustration: <IllustrationInterior />
     }
   ];
 
@@ -73,20 +168,17 @@ const App: React.FC = () => {
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-cyan-100 shadow-sm">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center gap-3">
-             {/* Logo Component */}
              <div className="flex items-center justify-center">
                <ClinicLogo className="h-12 w-12 sm:h-14 sm:w-14" />
              </div>
              <div>
                <h1 className="text-2xl sm:text-3xl font-bold text-cyan-900 leading-none tracking-tight">{CLINIC_INFO.name}</h1>
-               {/* 修正：移除 block sm:inline，改用 whitespace-nowrap 確保不換行 */}
                <p className="text-sm sm:text-lg text-cyan-600 font-bold mt-1 leading-tight whitespace-nowrap overflow-hidden text-ellipsis">
                  高雄腎臟專科 • 洗腎中心
                </p>
              </div>
           </div>
 
-          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-4 xl:gap-6">
             <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="text-slate-600 hover:text-cyan-700 font-extrabold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-lg lg:text-xl cursor-pointer">首頁</a>
             <a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="text-slate-600 hover:text-cyan-700 font-extrabold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-lg lg:text-xl cursor-pointer">腎臟檢測</a>
@@ -115,13 +207,11 @@ const App: React.FC = () => {
             </div>
           </nav>
 
-          {/* Mobile Menu Button */}
           <button className="md:hidden p-2 text-cyan-800" onClick={toggleMenu} aria-label="Toggle navigation menu">
             {isMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
 
-        {/* Mobile Nav Dropdown */}
         {isMenuOpen && (
            <div className="md:hidden bg-white border-t border-cyan-100 animate-fade-in">
              <div className="flex flex-col p-4 space-y-4">
@@ -159,10 +249,8 @@ const App: React.FC = () => {
       </header>
 
       <main className="flex-grow">
-        {/* Hero Section */}
         <section id="home" className="relative bg-gradient-to-br from-cyan-900 via-cyan-800 to-blue-900 text-white py-20 lg:py-32 overflow-hidden">
           <div className="absolute inset-0 opacity-10 pattern-grid-lg"></div>
-          {/* Decorative circles reflecting the logo */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-lime-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -translate-y-1/2 translate-x-1/2"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 translate-y-1/2 -translate-x-1/2"></div>
           
@@ -175,7 +263,6 @@ const App: React.FC = () => {
                 {CLINIC_INFO.slogan}
               </h2>
               
-              {/* Added Locations */}
               <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xl sm:text-2xl font-bold text-lime-300 mb-8 tracking-wide">
                  <span>鳳山</span>
                  <span className="text-cyan-400 text-sm">•</span>
@@ -202,11 +289,9 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* New Prominent AI Assistant Section */}
         <section className="py-12 bg-white scroll-mt-24" id="ai-assistant">
           <div className="container mx-auto px-4">
             <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 border border-cyan-200 shadow-md relative overflow-hidden group">
-              {/* Decor */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-200/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none group-hover:bg-cyan-300/20 transition-colors"></div>
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-lime-200/20 rounded-full blur-2xl translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
 
@@ -235,7 +320,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Interactive Kidney Check Section (Moved Up, changed to bg-slate-50) */}
         <section id="checkup" className="py-20 bg-slate-50 relative">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
@@ -249,14 +333,11 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Environment Section (Updated with Images & Features Bridge) */}
         <section id="environment" className="py-20 pb-20 bg-white relative overflow-hidden">
-          {/* Background Decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 translate-x-1/3 -translate-y-1/3"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-lime-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -translate-x-1/3 translate-y-1/3"></div>
 
           <div className="container mx-auto px-4 relative z-10">
-            {/* Environment Header */}
             <div className="text-center mb-16 max-w-4xl mx-auto">
               <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm">Clinic Environment</span>
               <h2 className="text-3xl lg:text-4xl font-bold text-cyan-900 mt-2 mb-6">環境介紹</h2>
@@ -266,40 +347,12 @@ const App: React.FC = () => {
               </p>
             </div>
 
-            {/* Environment Items Grid */}
             <div className="grid md:grid-cols-3 gap-8 mb-16">
               {ENVIRONMENT_ITEMS.map((item, index) => (
-                <div key={index} className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
-                   {/* Image Area */}
-                   <div className="h-56 overflow-hidden relative bg-slate-200">
-                      <img 
-                        src={item.image} 
-                        alt={item.title} 
-                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
-                        loading="lazy"
-                        // 修正：當圖片載入失敗時，替換為高品質的醫療大樓示意圖
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.onerror = null; // prevent infinite loop
-                          target.src = "https://images.unsplash.com/photo-1587351021759-3e566b9af923?auto=format&fit=crop&q=80&w=800"; // Modern Clinic Building
-                        }}
-                      />
-                   </div>
-                   
-                   {/* Content Area */}
-                   <div className="p-6 flex-1 flex flex-col">
-                      <h4 className="font-bold text-cyan-900 text-xl mb-3 hover:text-cyan-600 transition-colors">
-                        {item.title}
-                      </h4>
-                      <p className="text-slate-600 leading-relaxed text-sm">
-                        {item.desc}
-                      </p>
-                   </div>
-                </div>
+                <EnvironmentCard key={index} item={item} />
               ))}
             </div>
 
-            {/* Features (Highlights) Integrated - No Separate Container */}
             <div className="grid md:grid-cols-3 gap-6">
               {FEATURES.map((feature, idx) => (
                 <div key={idx} className="bg-white p-4 rounded-full border border-slate-100 shadow-md flex items-center gap-4 hover:shadow-lg transition-all hover:-translate-y-1 mx-auto w-full max-w-sm group">
@@ -316,7 +369,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* New Medical Team Section */}
         <section id="team" className="pt-24 pb-20 bg-slate-50 border-t border-slate-200 scroll-mt-20">
           <div className="container mx-auto px-4">
              <div className="text-center mb-16">
@@ -332,7 +384,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Services Section */}
         <section id="services" className="py-20 bg-white border-t border-slate-100">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
@@ -349,7 +400,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Info & Location Section */}
         <section id="info" className="py-20 bg-white border-t border-slate-200">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-cyan-900 mb-8 flex items-center gap-3 justify-center md:justify-start">
@@ -357,14 +407,11 @@ const App: React.FC = () => {
               門診資訊
             </h2>
 
-            {/* Schedule Tables - Full Width on Mobile, Side-by-Side on Desktop */}
             <div className="mb-12">
               <ScheduleTables />
             </div>
 
-            {/* Contact Info & Map - Side-by-Side on Desktop */}
             <div className="grid lg:grid-cols-2 gap-8 items-start">
-               {/* Contact Info */}
                <div className="bg-white p-6 sm:p-8 rounded-2xl border border-cyan-100 hover:border-cyan-200 transition-colors shadow-sm h-full flex flex-col justify-center">
                   <div className="space-y-8">
                     <div className="flex items-start gap-5">
@@ -393,7 +440,6 @@ const App: React.FC = () => {
                   </div>
                </div>
 
-               {/* Map */}
                <div className="h-[200px] lg:h-[300px] bg-slate-200 rounded-2xl overflow-hidden relative shadow-inner border border-slate-200 sticky top-24">
                   <iframe 
                     title="Google Map Location of KaohJian Clinic"
@@ -408,7 +454,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Knowledge Column Section (Moved Here) */}
         <section id="knowledge" className="py-20 bg-slate-50 relative border-t border-slate-200">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-100 via-lime-200 to-cyan-100"></div>
           <div className="container mx-auto px-4">
@@ -437,7 +482,6 @@ const App: React.FC = () => {
         </section>
       </main>
 
-      {/* Footer */}
       <footer className="bg-cyan-950 text-slate-300 py-12 border-t-4 border-lime-500">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 mb-8 border-b border-cyan-800 pb-8">
@@ -480,7 +524,6 @@ const App: React.FC = () => {
         </div>
       </footer>
 
-      {/* AI Chat Assistant - Controlled via Props */}
       <AIChat isOpen={isChatOpen} setIsOpen={setIsChatOpen} />
     </div>
   );
