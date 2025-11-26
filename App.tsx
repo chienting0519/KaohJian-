@@ -79,9 +79,9 @@ const App: React.FC = () => {
              </div>
              <div>
                <h1 className="text-2xl sm:text-3xl font-bold text-cyan-900 leading-none tracking-tight">{CLINIC_INFO.name}</h1>
-               <p className="text-base sm:text-lg text-cyan-600 font-bold mt-1 leading-tight">
-                 <span className="block sm:inline">高雄腎臟專科 • </span>
-                 <span className="block sm:inline">洗腎中心</span>
+               {/* 修正：移除 block sm:inline，改用 whitespace-nowrap 確保不換行 */}
+               <p className="text-sm sm:text-lg text-cyan-600 font-bold mt-1 leading-tight whitespace-nowrap overflow-hidden text-ellipsis">
+                 高雄腎臟專科 • 洗腎中心
                </p>
              </div>
           </div>
@@ -277,11 +277,11 @@ const App: React.FC = () => {
                         alt={item.title} 
                         className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
                         loading="lazy"
-                        // onError Removed for testing local image
+                        // 修正：當圖片載入失敗時，替換為高品質的醫療大樓示意圖
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.onerror = null; // prevent infinite loop
-                          target.src = "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800"; // Fallback image
+                          target.src = "https://images.unsplash.com/photo-1587351021759-3e566b9af923?auto=format&fit=crop&q=80&w=800"; // Modern Clinic Building
                         }}
                       />
                    </div>
