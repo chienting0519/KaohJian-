@@ -90,8 +90,9 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
       // Split by special tokens:
       // 1. **text** -> Interactive Button
       // 2. [[text]] -> Red Warning Text
-      // 3. Links -> Booking Button
-      const parts = content.split(/(\*\*.*?\*\*|\[\[.*?\]\]|\[.*?\]\(https:\/\/lin\.ee\/RIY5AtG\)|https:\/\/lin\.ee\/RIY5AtG)/g);
+      // 3. {{text}} -> Lime Green Highlight Text (New)
+      // 4. Links -> Booking Button
+      const parts = content.split(/(\*\*.*?\*\*|\[\[.*?\]\]|\{\{.*?\}\}|\[.*?\]\(https:\/\/lin\.ee\/RIY5AtG\)|https:\/\/lin\.ee\/RIY5AtG)/g);
 
       const renderedParts = parts.map((part, partIdx) => {
         // Handle [[Warning]] -> Red Text (Bold & Red)
@@ -100,6 +101,16 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
             return (
                 <span key={partIdx} className="text-red-600 font-extrabold mx-0.5 px-1 bg-red-50 rounded border border-red-100 shadow-sm text-[1.05em]">
                     {warning}
+                </span>
+            );
+        }
+
+        // Handle {{Highlight}} -> Lime Green Text (New feature for locations)
+        if (part.startsWith('{{') && part.endsWith('}}')) {
+            const highlight = part.slice(2, -2);
+            return (
+                <span key={partIdx} className="text-[#65a30d] font-extrabold mx-0.5 px-1 bg-lime-50 rounded border border-lime-200 shadow-sm text-[1.05em]">
+                    {highlight}
                 </span>
             );
         }
@@ -126,22 +137,24 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
             <div key={partIdx} className="block my-4 w-full">
               <div className="flex flex-col gap-2 p-3 bg-slate-50 rounded-xl border border-slate-200 shadow-sm">
                 <p className="text-xs text-slate-500 font-medium text-center mb-1">請選擇聯絡方式：</p>
-                <a 
-                  href="https://lin.ee/RIY5AtG" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="w-full text-center inline-flex items-center justify-center gap-2 bg-[#06c755] hover:bg-[#05b34c] text-white px-4 py-2.5 rounded-lg text-sm font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
-                >
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-5 h-5" />
-                  Line 諮詢/預約
-                </a>
-                <a 
-                  href={`tel:${CLINIC_INFO.phone}`}
-                  className="w-full text-center inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-100 text-cyan-700 border border-slate-300 px-4 py-2.5 rounded-lg text-sm font-bold transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
-                >
-                  <Phone className="w-4 h-4" />
-                  撥打電話 ({CLINIC_INFO.phone})
-                </a>
+                <div className="flex gap-2">
+                  <a 
+                    href="https://lin.ee/RIY5AtG" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="flex-1 text-center inline-flex items-center justify-center gap-1.5 bg-[#06c755] hover:bg-[#05b34c] text-white px-2 py-3 rounded-lg text-sm font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                  >
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-5 h-5" />
+                    Line 預約
+                  </a>
+                  <a 
+                    href={`tel:${CLINIC_INFO.phone}`}
+                    className="flex-1 text-center inline-flex items-center justify-center gap-1.5 bg-white hover:bg-slate-100 text-cyan-700 border border-slate-300 px-2 py-3 rounded-lg text-sm font-bold transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                  >
+                    <Phone className="w-4 h-4" />
+                    撥打電話
+                  </a>
+                </div>
               </div>
             </div>
           );
