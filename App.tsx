@@ -412,8 +412,13 @@ const App: React.FC = () => {
             <KnowledgeColumn />
             
             <div className="mt-12 text-center">
-               <a href="#" className="inline-flex text-cyan-600 font-bold items-center gap-2 hover:translate-x-1 transition-transform border-b-2 border-transparent hover:border-cyan-600 pb-1 text-lg">
-                  查看所有文章 <ArrowRight className="w-5 h-5" />
+               <a 
+                 href="https://www.facebook.com/profile.php?id=61559290111933"
+                 target="_blank"
+                 rel="noreferrer"
+                 className="inline-flex text-cyan-600 font-bold items-center gap-2 hover:translate-x-1 transition-transform border-b-2 border-transparent hover:border-cyan-600 pb-1 text-lg"
+               >
+                  前往 Facebook 粉絲專頁查看更多 <ArrowRight className="w-5 h-5" />
                </a>
             </div>
           </div>
