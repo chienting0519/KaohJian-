@@ -157,7 +157,7 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
                     className="flex-1 text-center inline-flex items-center justify-center gap-1.5 bg-[#06c755] hover:bg-[#05b34c] text-white px-2 py-3 rounded-lg text-sm font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
                   >
                     <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-5 h-5" />
-                    Line 諮詢
+                    Line 真人諮詢
                   </a>
                   <a 
                     href={`tel:${CLINIC_INFO.phone}`}
