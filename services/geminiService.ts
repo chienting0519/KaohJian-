@@ -28,6 +28,7 @@ export const sendMessageToGemini = async (userMessage: string, history: string[]
     電話: ${CLINIC_INFO.phone}
     口號: ${CLINIC_INFO.slogan}
     預約連結: ${CLINIC_INFO.bookingLink}
+    交通資訊: 捷運高雄國際機場站(R4) 1號出口，步行約 6 分鐘。
     
     ${SCHEDULE_CONTEXT}
     

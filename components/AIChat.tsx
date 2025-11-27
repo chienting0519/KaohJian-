@@ -15,7 +15,7 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     { 
       role: 'model', 
-      text: '您好！我是高健診所的 AI 腎臟健康助理。\n\n為了您的健康，我會協助您解答關於 **洗腎飲食**、**門診時間**、**預約掛號** 或 **接送服務** 的問題。\n\n請問有什麼我可以幫您的嗎？', 
+      text: '您好！\n我是高健診所 AI 健康助理\n我會協助您解答關於 : **洗腎飲食**、**門診時間**、**預約掛號** 或 **接送服務** 的問題。\n請問有什麼我可以幫您的嗎？', 
       timestamp: new Date() 
     }
   ]);
