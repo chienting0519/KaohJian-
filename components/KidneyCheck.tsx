@@ -177,7 +177,7 @@ const KidneyCheck: React.FC = () => {
             {score === 0 ? <CheckCircle2 className={`w-14 h-14 ${result.iconColor}`} /> : <AlertCircle className={`w-14 h-14 ${result.iconColor}`} />}
           </div>
           <h3 className="text-2xl font-bold text-slate-800 mb-2">檢測結果：<span className={result.color}>{result.level}</span></h3>
-          <div className={`p-6 rounded-xl ${result.bg} ${result.border} border mb-8 max-w-2xl`}>
+          <div className={`p-6 rounded-xl ${result.bg} ${result.border} border mb-8 max-w-2xl w-full text-left`}>
             <p className="text-slate-800 text-lg leading-relaxed whitespace-pre-line">{result.msg}</p>
           </div>
 

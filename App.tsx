@@ -13,6 +13,7 @@ const App: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [infoModal, setInfoModal] = useState<'checkup' | 'visit' | 'booking' | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -173,11 +174,14 @@ const App: React.FC = () => {
                  <span>前鎮</span>
               </div>
 
-              <p className="text-2xl lg:text-3xl text-cyan-50 mb-12 leading-relaxed font-light mx-auto max-w-4xl">
-                結合醫學中心等級的透析技術與社區診所的溫馨照護。<br className="hidden sm:block" />
-                我們提供全方位的腎臟專科診療，讓您在舒適環境中重拾健康活力。
-              </p>
-              <div className="flex flex-col sm:flex-row gap-5 mb-14 items-center justify-center">
+              <div className="flex justify-center mb-12">
+                <p className="text-2xl lg:text-3xl text-cyan-50 leading-relaxed font-light text-left inline-block">
+                  結合醫學中心等級的透析技術與社區診所的溫馨照護。<br className="hidden sm:block" />
+                  我們提供全方位的腎臟專科診療，讓您在舒適環境中重拾健康活力。
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-5 mb-8 items-center justify-center">
                  <a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="w-full sm:w-auto bg-lime-500 text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-lime-600 transition-all shadow-lg hover:shadow-lime-500/30 text-center transform hover:-translate-y-1 cursor-pointer">
                    立即檢測腎臟健康
                  </a>
@@ -203,6 +207,30 @@ const App: React.FC = () => {
                        </div>
                     </button>
                  </div>
+              </div>
+
+              {/* Text Links Section */}
+              <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-lg sm:text-xl font-bold text-cyan-100">
+                <button 
+                  onClick={() => setInfoModal('checkup')}
+                  className="hover:text-white transition-colors border-b-2 border-transparent hover:border-lime-400 pb-0.5 tracking-wide"
+                >
+                  免費成人健檢
+                </button>
+                <span className="text-cyan-500 hidden sm:inline">|</span>
+                <button 
+                  onClick={() => setInfoModal('visit')}
+                  className="hover:text-white transition-colors border-b-2 border-transparent hover:border-lime-400 pb-0.5 tracking-wide"
+                >
+                  洗腎參觀
+                </button>
+                <span className="text-cyan-500 hidden sm:inline">|</span>
+                <button 
+                  onClick={() => setInfoModal('booking')}
+                  className="hover:text-white transition-colors border-b-2 border-transparent hover:border-lime-400 pb-0.5 tracking-wide"
+                >
+                  門診掛號
+                </button>
               </div>
             </div>
           </div>
@@ -319,6 +347,122 @@ const App: React.FC = () => {
       </footer>
 
       <AIChat isOpen={isChatOpen} setIsOpen={setIsChatOpen} />
+      
+      {/* Information Modal */}
+      {infoModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div 
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+            onClick={() => setInfoModal(null)}
+          ></div>
+          <div className="bg-white rounded-2xl w-full max-w-md p-6 sm:p-8 relative z-10 animate-in zoom-in-95 shadow-2xl">
+            <button 
+              onClick={() => setInfoModal(null)} 
+              className="absolute top-4 right-4 p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {infoModal === 'checkup' && (
+              <div className="text-slate-800">
+                <h3 className="text-2xl font-bold text-cyan-800 mb-6 border-b border-slate-100 pb-4">免費成人健康檢查</h3>
+                <div className="space-y-5 text-lg leading-relaxed">
+                  <div className="bg-cyan-50 p-4 rounded-xl border border-cyan-100">
+                    <p className="font-bold text-cyan-900 mb-2">符合資格：</p>
+                    <ul className="list-disc pl-5 space-y-1 text-cyan-800">
+                      <li>40歲 ~ 64歲：每3年補助一次</li>
+                      <li>65歲以上：每年補助一次</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-bold text-slate-900 mb-2">檢查項目：</p>
+                    <ul className="list-disc pl-5 space-y-1 text-slate-600">
+                      <li>身體檢查 (身高、體重、血壓、視力)</li>
+                      <li>血液生化檢查 (血糖、血脂、肝腎功能)</li>
+                      <li>尿液蛋白檢查</li>
+                    </ul>
+                  </div>
+                  <div className="flex items-start gap-2 text-orange-600 font-bold text-base bg-orange-50 p-3 rounded-lg border border-orange-100">
+                    <span className="mt-1 flex-shrink-0">⚠️</span>
+                    <p>注意事項：檢查前需空腹 8 小時，請務必攜帶健保卡。</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {infoModal === 'visit' && (
+              <div className="text-slate-800">
+                <h3 className="text-2xl font-bold text-cyan-800 mb-6 border-b border-slate-100 pb-4">預約參觀洗腎中心</h3>
+                <p className="text-lg leading-relaxed text-slate-600 mb-8">
+                  高健診所具備醫學中心等級的透析設備，環境寬敞明亮、溫馨舒適。<br/><br/>
+                  歡迎家屬與腎友親臨參觀，將由專業護理長親自為您解說環境與設備，讓您安心選擇。
+                </p>
+                <div className="space-y-3">
+                  <a 
+                    href={CLINIC_INFO.bookingLink} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="flex items-center justify-center gap-3 w-full bg-[#06c755] hover:bg-[#05b34c] text-white font-bold text-lg py-4 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                  >
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-6 h-6" />
+                    Line 預約參觀
+                  </a>
+                  <a 
+                    href={`tel:${CLINIC_INFO.phone}`}
+                    className="flex items-center justify-center gap-3 w-full bg-white border-2 border-slate-200 hover:border-cyan-500 hover:text-cyan-700 text-slate-600 font-bold text-lg py-4 rounded-xl transition-all"
+                  >
+                    <Phone className="w-5 h-5" />
+                    致電預約參觀
+                  </a>
+                </div>
+              </div>
+            )}
+
+            {infoModal === 'booking' && (
+              <div className="text-slate-800">
+                <h3 className="text-2xl font-bold text-cyan-800 mb-6 border-b border-slate-100 pb-4">門診掛號須知</h3>
+                <div className="space-y-6 text-lg">
+                  <div className="space-y-4">
+                     <div className="flex gap-4">
+                        <div className="w-12 h-12 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-700 font-bold flex-shrink-0">1</div>
+                        <div>
+                           <h4 className="font-bold text-slate-900">掛號方式</h4>
+                           <p className="text-slate-600 text-base">提供「現場掛號」與「LINE 線上預約」。建議多利用線上預約，減少現場等候時間。</p>
+                        </div>
+                     </div>
+                     <div className="flex gap-4">
+                        <div className="w-12 h-12 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-700 font-bold flex-shrink-0">2</div>
+                        <div>
+                           <h4 className="font-bold text-slate-900">攜帶證件</h4>
+                           <p className="text-slate-600 text-base">請務必攜帶<span className="font-bold text-cyan-700">健保卡</span>。初診患者請加帶身分證辦理資料建檔。</p>
+                        </div>
+                     </div>
+                     <div className="flex gap-4">
+                        <div className="w-12 h-12 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-700 font-bold flex-shrink-0">3</div>
+                        <div>
+                           <h4 className="font-bold text-slate-900">掛號費用</h4>
+                           <p className="text-slate-600 text-base">健保部分給付掛號費 <span className="font-bold text-red-500">150 元</span>。</p>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div className="pt-4">
+                    <a 
+                      href={CLINIC_INFO.bookingLink} 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="flex items-center justify-center gap-2 w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-lg py-4 rounded-xl transition-all shadow-md hover:shadow-lg"
+                    >
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-6 h-6 filter brightness-0 invert" />
+                      立即線上掛號
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
       
       <button 
         onClick={scrollToTop}
