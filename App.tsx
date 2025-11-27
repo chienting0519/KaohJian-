@@ -210,7 +210,7 @@ const App: React.FC = () => {
               </div>
 
               {/* Text Links Section */}
-              <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-lg sm:text-xl font-bold text-cyan-100">
+              <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-2xl sm:text-3xl font-bold text-cyan-100">
                 <button 
                   onClick={() => setInfoModal('checkup')}
                   className="hover:text-white transition-colors border-b-2 border-transparent hover:border-lime-400 pb-0.5 tracking-wide"
@@ -386,6 +386,25 @@ const App: React.FC = () => {
                     <span className="mt-1 flex-shrink-0">⚠️</span>
                     <p>注意事項：檢查前需空腹 8 小時，請務必攜帶健保卡。</p>
                   </div>
+
+                  <div className="pt-4 space-y-3">
+                    <a 
+                      href={CLINIC_INFO.bookingLink} 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="flex items-center justify-center gap-3 w-full bg-[#06c755] hover:bg-[#05b34c] text-white font-bold text-lg py-4 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                    >
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-6 h-6" />
+                      Line 預約健檢
+                    </a>
+                    <a 
+                      href={`tel:${CLINIC_INFO.phone}`}
+                      className="flex items-center justify-center gap-3 w-full bg-white border-2 border-slate-200 hover:border-cyan-500 hover:text-cyan-700 text-slate-600 font-bold text-lg py-4 rounded-xl transition-all"
+                    >
+                      <Phone className="w-5 h-5" />
+                      致電預約健檢
+                    </a>
+                  </div>
                 </div>
               </div>
             )}
@@ -446,15 +465,22 @@ const App: React.FC = () => {
                      </div>
                   </div>
 
-                  <div className="pt-4">
+                  <div className="pt-4 space-y-3">
                     <a 
                       href={CLINIC_INFO.bookingLink} 
                       target="_blank" 
                       rel="noreferrer"
-                      className="flex items-center justify-center gap-2 w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-lg py-4 rounded-xl transition-all shadow-md hover:shadow-lg"
+                      className="flex items-center justify-center gap-3 w-full bg-[#06c755] hover:bg-[#05b34c] text-white font-bold text-lg py-4 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
                     >
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-6 h-6 filter brightness-0 invert" />
-                      立即線上掛號
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-6 h-6" />
+                      立即 Line 掛號
+                    </a>
+                    <a 
+                      href={`tel:${CLINIC_INFO.phone}`}
+                      className="flex items-center justify-center gap-3 w-full bg-white border-2 border-slate-200 hover:border-cyan-500 hover:text-cyan-700 text-slate-600 font-bold text-lg py-4 rounded-xl transition-all"
+                    >
+                      <Phone className="w-5 h-5" />
+                      致電掛號
                     </a>
                   </div>
                 </div>
