@@ -16,7 +16,7 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     { 
       role: 'model', 
-      text: '您好！有什麼我可以幫您的嗎？\n我是高健診所 AI 健康助理\n我會協助您解答 :\n**洗腎飲食**\n**腎臟健康**\n**門診時間**\n**預約掛號**\n**接送服務**', 
+      text: '您好！有什麼我可以幫您的嗎？\n我是高健診所 AI 健康助理\n我會協助您解答 :\n**洗腎飲食**\n**護腎飲食**\n**腎臟健康**\n**門診時間**\n**預約掛號**\n**接送服務**', 
       timestamp: new Date() 
     }
   ]);
@@ -91,11 +91,22 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
       // Split by special tokens:
       // 1. **text** -> Interactive Button
       // 2. [[text]] -> Red Warning Text
-      // 3. {{text}} -> Lime Green Highlight Text (New)
-      // 4. Links -> Booking Button
-      const parts = content.split(/(\*\*.*?\*\*|\[\[.*?\]\]|\{\{.*?\}\}|\[.*?\]\(https:\/\/lin\.ee\/RIY5AtG\)|https:\/\/lin\.ee\/RIY5AtG)/g);
+      // 3. {{text}} -> Lime Green Highlight Text
+      // 4. ((text)) -> Orange Info/Guide Block (New)
+      // 5. Links -> Booking Button
+      const parts = content.split(/(\(\(.*?\)\)|\*\*.*?\*\*|\[\[.*?\]\]|\{\{.*?\}\}|\[.*?\]\(https:\/\/lin\.ee\/RIY5AtG\)|https:\/\/lin\.ee\/RIY5AtG)/g);
 
       const renderedParts = parts.map((part, partIdx) => {
+        // Handle ((Highlight Block)) -> Amber/Orange Block for Guidance
+        if (part.startsWith('((') && part.endsWith('))')) {
+            const guideText = part.slice(2, -2);
+            return (
+                <span key={partIdx} className="block w-full my-2 p-3 bg-orange-50 border-l-4 border-orange-400 text-orange-800 font-bold rounded-r text-sm leading-relaxed shadow-sm">
+                   {guideText}
+                </span>
+            );
+        }
+
         // Handle [[Warning]] -> Red Text (Bold & Red)
         if (part.startsWith('[[') && part.endsWith(']]')) {
             const warning = part.slice(2, -2);

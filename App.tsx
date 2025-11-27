@@ -156,13 +156,15 @@ const App: React.FC = () => {
               </h3>
               
               <div className="mb-10">
-                  <h2 className="text-6xl sm:text-7xl lg:text-8xl font-bold leading-tight">
+                  {/* 字體調整：手機版 text-4xl，平板以上 sm:text-7xl，避免手機版換行 */}
+                  <h2 className="text-4xl sm:text-7xl lg:text-8xl font-bold leading-tight">
                     高雄市民的健康<br />
                     交給高健診所
                   </h2>
               </div>
               
-              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-3xl sm:text-4xl font-bold text-lime-300 mb-10 tracking-wide">
+              {/* Desktop Location Display */}
+              <div className="hidden sm:flex flex-wrap items-center justify-center gap-6 text-4xl font-bold text-lime-300 mb-10 tracking-wide">
                  <span>鳳山</span>
                  <span className="text-cyan-400 text-lg">•</span>
                  <span>小港</span>
@@ -172,6 +174,23 @@ const App: React.FC = () => {
                  <span>大寮</span>
                  <span className="text-cyan-400 text-lg">•</span>
                  <span>前鎮</span>
+              </div>
+
+              {/* Mobile Location Display (Stacked) */}
+              <div className="flex sm:hidden flex-col items-center justify-center gap-2 text-3xl font-bold text-lime-300 mb-10 tracking-wide">
+                  <div className="flex items-center gap-4">
+                     <span>鳳山</span>
+                     <span className="text-cyan-400 text-lg">•</span>
+                     <span>小港</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                     <span>林園</span>
+                     <span className="text-cyan-400 text-lg">•</span>
+                     <span>大寮</span>
+                  </div>
+                  <div>
+                     <span>前鎮</span>
+                  </div>
               </div>
 
               <div className="flex justify-center mb-12">
@@ -227,21 +246,21 @@ const App: React.FC = () => {
               </div>
 
               {/* Text Links Section */}
-              <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-2xl sm:text-3xl font-bold text-cyan-100">
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 text-2xl sm:text-3xl font-bold text-cyan-100">
                 <button 
                   onClick={() => setInfoModal('checkup')}
                   className="hover:text-white transition-colors border-b-2 border-transparent hover:border-lime-400 pb-0.5 tracking-wide"
                 >
                   免費成人健檢
                 </button>
-                <span className="text-cyan-500">|</span>
+                <span className="hidden sm:inline text-cyan-500">|</span>
                 <button 
                   onClick={() => setInfoModal('visit')}
                   className="hover:text-white transition-colors border-b-2 border-transparent hover:border-lime-400 pb-0.5 tracking-wide"
                 >
                   洗腎參觀
                 </button>
-                <span className="text-cyan-500">|</span>
+                <span className="hidden sm:inline text-cyan-500">|</span>
                 <button 
                   onClick={() => setInfoModal('booking')}
                   className="hover:text-white transition-colors border-b-2 border-transparent hover:border-lime-400 pb-0.5 tracking-wide"
