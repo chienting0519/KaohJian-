@@ -156,6 +156,10 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
                     撥打電話
                   </a>
                 </div>
+                {/* 增加免責聲明於此 */}
+                <p className="text-[11px] text-slate-400 text-center mt-2 border-t border-slate-200 pt-2 leading-tight">
+                  此資訊僅供參考，無法取代醫師親自診斷，請務必回診評估。
+                </p>
               </div>
             </div>
           );
