@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, MapPin, Clock, MessageCircle, ChevronUp } from 'lucide-react';
+import { Menu, X, Phone, MapPin, MessageCircle, ChevronUp } from 'lucide-react';
 import { CLINIC_INFO, SERVICES } from './constants';
 import ServiceCard from './components/ServiceCard';
 import KidneyCheck from './components/KidneyCheck';
@@ -276,8 +275,7 @@ const App: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-12">
              <div>
-                <div className="flex items-center gap-2 mb-6">
-                   <ClinicLogo className="w-10 h-10 brightness-0 invert opacity-80" />
+                <div className="flex items-center gap-3 mb-6">
                    <h3 className="text-xl font-bold text-white tracking-wide">{CLINIC_INFO.name}</h3>
                 </div>
                 <p className="text-slate-400 mb-6 leading-relaxed">
@@ -300,20 +298,16 @@ const App: React.FC = () => {
                         {CLINIC_INFO.phone}
                       </a>
                    </li>
-                   <li className="flex items-center gap-3">
-                      <Clock className="w-5 h-5 text-lime-500 flex-shrink-0" />
-                      <span>週一至週六 08:00 - 22:00</span>
-                   </li>
                 </ul>
              </div>
              
              <div>
                 <h4 className="text-white font-bold text-lg mb-6 border-l-4 border-lime-500 pl-3">快速連結</h4>
-                <ul className="space-y-2 text-slate-400">
-                   <li><a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="hover:text-lime-400 transition-colors">服務項目</a></li>
-                   <li><a href="#doctors" onClick={(e) => scrollToSection(e, 'doctors')} className="hover:text-lime-400 transition-colors">醫師團隊</a></li>
-                   <li><a href="#schedule" onClick={(e) => scrollToSection(e, 'schedule')} className="hover:text-lime-400 transition-colors">門診時間</a></li>
-                   <li><a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="hover:text-lime-400 transition-colors">腎臟檢測</a></li>
+                <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-slate-400">
+                   <li><a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="hover:text-lime-400 transition-colors block">服務項目</a></li>
+                   <li><a href="#doctors" onClick={(e) => scrollToSection(e, 'doctors')} className="hover:text-lime-400 transition-colors block">醫師團隊</a></li>
+                   <li><a href="#schedule" onClick={(e) => scrollToSection(e, 'schedule')} className="hover:text-lime-400 transition-colors block">門診時間</a></li>
+                   <li><a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="hover:text-lime-400 transition-colors block">腎臟檢測</a></li>
                 </ul>
              </div>
           </div>

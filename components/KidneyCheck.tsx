@@ -4,11 +4,15 @@ import { AlertCircle, CheckCircle2, ArrowRight, RotateCcw, AlertTriangle } from 
 
 const KidneyCheck: React.FC = () => {
   const [answers, setAnswers] = useState<Record<string, boolean>>({});
+  const [noSymptoms, setNoSymptoms] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = (id: string) => {
+    if (!answers[id]) {
+      setNoSymptoms(false);
+    }
     setAnswers(prev => {
       const newState = { ...prev, [id]: !prev[id] };
       if (Object.values(newState).some(v => v)) {
@@ -18,18 +22,23 @@ const KidneyCheck: React.FC = () => {
     });
   };
 
-  const handleShowResult = () => {
-    const hasChecked = Object.values(answers).some(v => v);
-    if (!hasChecked) {
-      setError('請勾選您符合的症狀項目，才能為您進行分析喔！');
-      return;
-    }
-    setError(null);
-    setShowResult(true);
+  const handleNoSymptomsCheck = () => {
+    setNoSymptoms(prev => {
+      const newState = !prev;
+      if (newState) {
+        setAnswers({});
+        setError(null);
+      }
+      return newState;
+    });
   };
 
-  const handleNoSymptoms = () => {
-    setAnswers({});
+  const handleShowResult = () => {
+    const hasChecked = Object.values(answers).some(v => v);
+    if (!hasChecked && !noSymptoms) {
+      setError('請勾選您符合的症狀項目，或是勾選「我完全沒有以上症狀」，才能為您進行分析喔！');
+      return;
+    }
     setError(null);
     setShowResult(true);
   };
@@ -47,6 +56,7 @@ const KidneyCheck: React.FC = () => {
 
   const resetTest = () => {
     setAnswers({});
+    setNoSymptoms(false);
     setShowResult(false);
     setError(null);
   };
@@ -72,7 +82,7 @@ const KidneyCheck: React.FC = () => {
       bg: 'bg-lime-50', 
       border: 'border-lime-200',
       iconColor: 'text-lime-500',
-      msg: '您的腎臟健康狀況目前看起來良好。建議定期利用本診所的免費成人健檢持續追蹤。' 
+      msg: '您的腎臟健康狀況目前看起來良好。\n建議定期利用本診所的免費成人健檢持續追蹤。\n高健診所關心您的健康' 
     };
     if (score <= 3) return { 
       level: '中度風險', 
@@ -128,6 +138,24 @@ const KidneyCheck: React.FC = () => {
             ))}
           </div>
           <div className="mt-8 flex flex-col items-center gap-4">
+            
+            <label 
+              className={`flex items-center px-6 py-3 border rounded-full cursor-pointer transition-all duration-200 ${noSymptoms ? 'bg-cyan-50 border-cyan-500 shadow-sm' : 'hover:bg-slate-50 border-slate-300'}`}
+            >
+              <div className={`w-5 h-5 rounded border mr-2 flex items-center justify-center transition-colors ${noSymptoms ? 'bg-cyan-600 border-cyan-600' : 'border-slate-400 bg-white'}`}>
+                {noSymptoms && <CheckCircle2 className="w-3.5 h-3.5 text-white" />}
+              </div>
+              <input
+                type="checkbox"
+                className="hidden"
+                checked={noSymptoms}
+                onChange={handleNoSymptomsCheck}
+              />
+              <span className={`${noSymptoms ? 'text-cyan-900 font-bold' : 'text-slate-600 font-medium'}`}>
+                我完全沒有以上症狀
+              </span>
+            </label>
+
             <button
               onClick={handleShowResult}
               className="bg-lime-500 hover:bg-lime-600 text-white font-bold py-3 px-12 rounded-full transition-all duration-300 shadow-lg hover:shadow-lime-500/40 flex items-center gap-2 text-lg transform hover:-translate-y-1"
@@ -141,13 +169,6 @@ const KidneyCheck: React.FC = () => {
                  {error}
               </div>
             )}
-
-            <button 
-                onClick={handleNoSymptoms}
-                className="text-slate-400 text-sm hover:text-cyan-600 underline underline-offset-4 decoration-slate-300 hover:decoration-cyan-600 transition-all"
-            >
-                我完全沒有以上症狀
-            </button>
           </div>
         </div>
       ) : (
@@ -157,7 +178,7 @@ const KidneyCheck: React.FC = () => {
           </div>
           <h3 className="text-2xl font-bold text-slate-800 mb-2">檢測結果：<span className={result.color}>{result.level}</span></h3>
           <div className={`p-6 rounded-xl ${result.bg} ${result.border} border mb-8 max-w-2xl`}>
-            <p className="text-slate-800 text-lg leading-relaxed">{result.msg}</p>
+            <p className="text-slate-800 text-lg leading-relaxed whitespace-pre-line">{result.msg}</p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
