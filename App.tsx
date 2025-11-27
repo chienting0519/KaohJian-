@@ -1,7 +1,7 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Phone, MapPin, Clock, MessageCircle, ChevronUp } from 'lucide-react';
 import { CLINIC_INFO, SERVICES } from './constants';
-import { MapPin, Phone, Menu, X, ArrowRight, Facebook, Car, ParkingSquare, Train, Building, Accessibility, Sun, BookOpen, MessageCircle, Bot, Sparkles, UserPlus } from 'lucide-react';
 import ServiceCard from './components/ServiceCard';
 import KidneyCheck from './components/KidneyCheck';
 import AIChat from './components/AIChat';
@@ -10,390 +10,212 @@ import { ClinicLogo } from './components/ClinicLogo';
 import KnowledgeColumn from './components/KnowledgeColumn';
 import MedicalTeam from './components/MedicalTeam';
 
-// --- Custom 2D Illustrations ---
-
-const IllustrationBuilding = () => (
-  <svg viewBox="0 0 200 160" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
-    {/* Ground */}
-    <rect x="0" y="140" width="200" height="20" fill="#ecfccb" />
-    {/* Building Body */}
-    <rect x="50" y="40" width="100" height="100" rx="4" fill="#fff" stroke="#0891b2" strokeWidth="3" />
-    <rect x="50" y="40" width="100" height="15" rx="4" fill="#0891b2" />
-    {/* Roof/Top details */}
-    <rect x="85" y="25" width="30" height="15" fill="#0e7490" />
-    {/* Windows */}
-    <rect x="65" y="65" width="20" height="20" rx="2" fill="#cffafe" stroke="#22d3ee" strokeWidth="2" />
-    <rect x="115" y="65" width="20" height="20" rx="2" fill="#cffafe" stroke="#22d3ee" strokeWidth="2" />
-    {/* Door */}
-    <rect x="85" y="100" width="30" height="40" rx="2" fill="#06b6d4" />
-    <path d="M 85 120 L 115 120" stroke="#fff" strokeWidth="1" opacity="0.5" />
-    {/* Cross Sign */}
-    <circle cx="100" cy="32" r="6" fill="#fff" />
-    <rect x="98" y="28" width="4" height="8" fill="#ef4444" />
-    <rect x="96" y="30" width="8" height="4" fill="#ef4444" />
-    {/* Trees */}
-    <circle cx="30" cy="130" r="15" fill="#84cc16" />
-    <rect x="28" y="140" width="4" height="10" fill="#a16207" />
-    <circle cx="170" cy="130" r="15" fill="#84cc16" />
-    <rect x="168" y="140" width="4" height="10" fill="#a16207" />
-  </svg>
-);
-
-const IllustrationAccessibility = () => (
-  <svg viewBox="0 0 200 160" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
-    {/* Background Circle */}
-    <circle cx="100" cy="80" r="60" fill="#ecfccb" opacity="0.5" />
-    {/* Wheelchair Symbol (Stylized) */}
-    <circle cx="100" cy="55" r="10" fill="#0891b2" />
-    <path d="M 100 65 L 100 95 L 120 95" stroke="#0891b2" strokeWidth="8" strokeLinecap="round" fill="none" />
-    <path d="M 100 95 L 80 115" stroke="#0891b2" strokeWidth="8" strokeLinecap="round" fill="none" />
-    <circle cx="115" cy="115" r="22" stroke="#155e75" strokeWidth="6" fill="none" />
-    {/* Ramp */}
-    <path d="M 40 140 L 160 140 L 160 130 L 70 130 Z" fill="#65a30d" />
-  </svg>
-);
-
-const IllustrationInterior = () => (
-  <svg viewBox="0 0 200 160" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
-    {/* Room Background */}
-    <rect x="20" y="20" width="160" height="120" rx="8" fill="#fff" stroke="#cbd5e1" strokeWidth="2" />
-    {/* Window */}
-    <rect x="40" y="40" width="50" height="50" fill="#e0f2fe" stroke="#38bdf8" strokeWidth="2" />
-    <path d="M 65 40 L 65 90" stroke="#38bdf8" strokeWidth="2" />
-    <path d="M 40 65 L 90 65" stroke="#38bdf8" strokeWidth="2" />
-    {/* Sun outside window */}
-    <circle cx="75" cy="55" r="6" fill="#facc15" />
-    {/* Bed/Chair */}
-    <rect x="100" y="80" width="70" height="40" rx="4" fill="#06b6d4" />
-    <path d="M 100 80 L 110 60 L 160 60" stroke="#0891b2" strokeWidth="4" fill="none" strokeLinecap="round" />
-    {/* Pillow */}
-    <circle cx="115" cy="75" r="8" fill="#fff" />
-    {/* Floor */}
-    <rect x="25" y="130" width="150" height="5" fill="#cbd5e1" opacity="0.5" />
-  </svg>
-);
-
-interface EnvironmentCardProps {
-  item: {
-    title: string;
-    desc: string;
-    illustration: React.ReactNode;
-  };
-}
-
-// Updated component to render SVG illustrations
-const EnvironmentCard: React.FC<EnvironmentCardProps> = ({ item }) => {
-  return (
-    <div className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full hover:-translate-y-1 group">
-       {/* Illustration Area */}
-       <div className="h-56 bg-slate-50 flex items-center justify-center relative overflow-hidden p-8">
-          <div className="absolute inset-0 bg-cyan-50/50 group-hover:bg-cyan-100/30 transition-colors"></div>
-          <div className="w-48 h-48 drop-shadow-md transform group-hover:scale-105 transition-transform duration-500">
-            {item.illustration}
-          </div>
-       </div>
-       
-       {/* Content Area */}
-       <div className="p-6 flex-1 flex flex-col relative z-10 bg-white">
-          <h4 className="font-bold text-cyan-900 text-xl mb-3 group-hover:text-cyan-600 transition-colors">
-            {item.title}
-          </h4>
-          <p className="text-slate-600 leading-relaxed text-sm">
-            {item.desc}
-          </p>
-       </div>
-    </div>
-  );
-};
-
 const App: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 500);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
       setIsMenuOpen(false);
     }
   };
 
-  const FEATURES = [
-    {
-      icon: <Car className="w-6 h-6 text-white" />,
-      title: "愛心接送服務",
-      desc: "體恤長者與行動不便腎友，提供接送協助。",
-      color: "bg-rose-500"
-    },
-    {
-      icon: <ParkingSquare className="w-6 h-6 text-white" />,
-      title: "附設專屬停車場",
-      desc: "停車方便，家屬接送無負擔。",
-      color: "bg-cyan-600"
-    },
-    {
-      icon: <Train className="w-6 h-6 text-white" />,
-      title: "捷運步行 6 分鐘",
-      desc: "近高雄國際機場1號出口站(高雄公園)。",
-      color: "bg-lime-600"
-    }
-  ];
-
-  // 環境介紹資料 (使用 2D 插畫元件)
-  const ENVIRONMENT_ITEMS = [
-    {
-      title: "獨棟透析大樓",
-      desc: "專屬醫療空間規劃，環境單純安全，有效落實感控分流，給您最安心的治療場域。",
-      illustration: <IllustrationBuilding />
-    },
-    {
-      title: "無障礙友善設施",
-      desc: "全棟設有醫療專用電梯與平緩的無障礙坡道，體貼行動不便的長者與輪椅使用者。",
-      illustration: <IllustrationAccessibility />
-    },
-    {
-      title: "寬敞明亮的治療空間",
-      desc: "大面採光設計，寬敞不壓迫，搭配溫馨的色調，讓等待過程也能保持心情愉悅。",
-      illustration: <IllustrationInterior />
-    }
-  ];
-
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-900">
-      
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-lime-200 selection:text-slate-900">
       {/* Navigation */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-cyan-100 shadow-sm">
-        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-             <div className="flex items-center justify-center">
-               <ClinicLogo className="h-12 w-12 sm:h-14 sm:w-14" />
-             </div>
-             <div>
-               <h1 className="text-2xl sm:text-3xl font-bold text-cyan-900 leading-none tracking-tight">{CLINIC_INFO.name}</h1>
-               <p className="text-sm sm:text-lg text-cyan-600 font-bold mt-1 leading-tight whitespace-nowrap overflow-hidden text-ellipsis">
-                 高雄腎臟專科 • 洗腎中心
-               </p>
-             </div>
-          </div>
+      <nav className="fixed w-full z-40 bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-200 transition-all duration-300">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center h-20">
+            {/* Logo */}
+            <a href="#" onClick={scrollToTop} className="flex items-center gap-3 group">
+              <ClinicLogo className="w-10 h-10 sm:w-12 sm:h-12 group-hover:scale-105 transition-transform" />
+              <div>
+                <h1 className="text-xl sm:text-2xl font-bold text-cyan-900 tracking-tight group-hover:text-cyan-700 transition-colors">
+                  {CLINIC_INFO.name}
+                </h1>
+                <p className="text-sm text-slate-500 font-bold tracking-wide">
+                  高雄腎臟專科 • 洗腎中心
+                </p>
+              </div>
+            </a>
 
-          <nav className="hidden md:flex items-center gap-4 xl:gap-6">
-            <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="text-slate-600 hover:text-cyan-700 font-extrabold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-lg lg:text-xl cursor-pointer">首頁</a>
-            <a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="text-slate-600 hover:text-cyan-700 font-extrabold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-lg lg:text-xl cursor-pointer">腎臟檢測</a>
-            <a href="#environment" onClick={(e) => scrollToSection(e, 'environment')} className="text-slate-600 hover:text-cyan-700 font-extrabold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-lg lg:text-xl cursor-pointer">環境介紹</a>
-            <a href="#team" onClick={(e) => scrollToSection(e, 'team')} className="text-slate-600 hover:text-cyan-700 font-extrabold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-lg lg:text-xl cursor-pointer">醫療團隊</a>
-            <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="text-slate-600 hover:text-cyan-700 font-extrabold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-lg lg:text-xl cursor-pointer">服務項目</a>
-            <a href="#info" onClick={(e) => scrollToSection(e, 'info')} className="text-slate-600 hover:text-cyan-700 font-extrabold transition-colors hover:underline decoration-lime-500 decoration-2 underline-offset-4 text-lg lg:text-xl cursor-pointer">診所資訊</a>
-            
-            <div className="flex items-center gap-3 ml-2">
-              <button
-                onClick={() => setIsChatOpen(true)}
-                className="bg-cyan-50 hover:bg-cyan-100 text-cyan-700 border border-cyan-200 px-4 py-2 rounded-full font-bold transition-all shadow-sm flex items-center gap-2 transform hover:-translate-y-0.5 text-sm"
-              >
-                <Bot className="w-4 h-4" />
-                詢問 AI 助理
-              </button>
-              <a 
-                href={CLINIC_INFO.bookingLink} 
-                target="_blank" 
-                rel="noreferrer"
-                className="bg-[#06c755] hover:bg-[#05b34c] text-white px-5 py-2 rounded-full font-bold transition-all shadow-md hover:shadow-lg flex items-center gap-2 transform hover:-translate-y-0.5 text-sm"
-              >
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-4 h-4" />
-                預約掛號
-              </a>
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center gap-1">
+               {['home', 'services', 'doctors', 'schedule', 'checkup', 'knowledge'].map((item) => {
+                  const labels: Record<string, string> = {
+                    home: '首頁',
+                    services: '服務項目',
+                    doctors: '醫療團隊',
+                    schedule: '門診時間',
+                    checkup: '腎臟檢測',
+                    knowledge: '健康新知'
+                  };
+                  return (
+                    <a
+                      key={item}
+                      href={`#${item}`}
+                      onClick={(e) => scrollToSection(e, item === 'home' ? 'home' : item)}
+                      className="px-4 py-2 text-slate-600 font-bold hover:text-cyan-700 hover:bg-cyan-50 rounded-full transition-all text-sm lg:text-base"
+                    >
+                      {labels[item]}
+                    </a>
+                  );
+               })}
+               <a 
+                 href={CLINIC_INFO.bookingLink}
+                 target="_blank"
+                 rel="noreferrer" 
+                 className="ml-2 bg-[#06c755] hover:bg-[#05b34c] text-white px-5 py-2.5 rounded-full font-bold transition-all shadow-sm hover:shadow-green-200 hover:-translate-y-0.5"
+               >
+                 預約掛號
+               </a>
             </div>
-          </nav>
 
-          <button className="md:hidden p-2 text-cyan-800" onClick={toggleMenu} aria-label="Toggle navigation menu">
-            {isMenuOpen ? <X /> : <Menu />}
-          </button>
+            {/* Mobile Menu Button */}
+            <button 
+              className="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
+        {/* Mobile Menu Dropdown */}
         {isMenuOpen && (
-           <div className="md:hidden bg-white border-t border-cyan-100 animate-fade-in">
-             <div className="flex flex-col p-4 space-y-4">
-              <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="text-cyan-900 font-bold text-lg p-2 hover:bg-cyan-50 rounded cursor-pointer">首頁</a>
-              <a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="text-cyan-900 font-bold text-lg p-2 hover:bg-cyan-50 rounded cursor-pointer">腎臟檢測</a>
-              <a href="#environment" onClick={(e) => scrollToSection(e, 'environment')} className="text-cyan-900 font-bold text-lg p-2 hover:bg-cyan-50 rounded cursor-pointer">環境介紹</a>
-              <a href="#team" onClick={(e) => scrollToSection(e, 'team')} className="text-cyan-900 font-bold text-lg p-2 hover:bg-cyan-50 rounded cursor-pointer">醫療團隊</a>
-              <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="text-cyan-900 font-bold text-lg p-2 hover:bg-cyan-50 rounded cursor-pointer">服務項目</a>
-              <a href="#info" onClick={(e) => scrollToSection(e, 'info')} className="text-cyan-900 font-bold text-lg p-2 hover:bg-cyan-50 rounded cursor-pointer">診所資訊</a>
-              
-              <div className="pt-2 border-t border-slate-100 flex flex-col gap-3">
-                <button 
-                  onClick={() => {
-                    setIsChatOpen(true);
-                    setIsMenuOpen(false);
-                  }}
-                  className="bg-cyan-50 text-cyan-700 border border-cyan-200 px-4 py-3 rounded-lg font-bold text-center shadow-sm flex items-center justify-center gap-2"
-                >
-                  <Bot className="w-5 h-5" />
-                  詢問 AI 助理
-                </button>
-                <a 
-                  href={CLINIC_INFO.bookingLink} 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="bg-[#06c755] text-white px-4 py-3 rounded-lg font-bold text-center shadow-sm flex items-center justify-center gap-2"
-                >
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-5 h-5" />
-                  Line 預約掛號
-                </a>
-              </div>
-             </div>
-           </div>
+          <div className="md:hidden bg-white border-t border-slate-100 absolute w-full shadow-lg animate-in slide-in-from-top-5 duration-200">
+            <div className="flex flex-col p-4 space-y-2">
+              {['home', 'services', 'doctors', 'schedule', 'checkup', 'knowledge'].map((item) => {
+                  const labels: Record<string, string> = {
+                    home: '首頁',
+                    services: '服務項目',
+                    doctors: '醫療團隊',
+                    schedule: '門診時間',
+                    checkup: '腎臟檢測',
+                    knowledge: '健康新知'
+                  };
+                  return (
+                    <a
+                      key={item}
+                      href={`#${item}`}
+                      onClick={(e) => scrollToSection(e, item === 'home' ? 'home' : item)}
+                      className="px-4 py-3 text-slate-600 font-bold hover:text-cyan-700 hover:bg-cyan-50 rounded-xl transition-all"
+                    >
+                      {labels[item]}
+                    </a>
+                  );
+               })}
+               <a 
+                 href={CLINIC_INFO.bookingLink}
+                 target="_blank"
+                 rel="noreferrer" 
+                 className="mt-2 bg-[#06c755] hover:bg-[#05b34c] text-white px-4 py-3 rounded-xl font-bold text-center shadow-sm"
+               >
+                 立即預約掛號
+               </a>
+            </div>
+          </div>
         )}
-      </header>
+      </nav>
 
-      <main className="flex-grow">
-        <section id="home" className="relative bg-gradient-to-br from-cyan-900 via-cyan-800 to-blue-900 text-white py-20 lg:py-32 overflow-hidden">
+      <main className="pt-20">
+        <section id="home" className="relative bg-gradient-to-br from-cyan-900 via-cyan-800 to-blue-900 text-white py-24 lg:py-40 overflow-hidden">
           <div className="absolute inset-0 opacity-10 pattern-grid-lg"></div>
           <div className="absolute top-0 right-0 w-96 h-96 bg-lime-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -translate-y-1/2 translate-x-1/2"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 translate-y-1/2 -translate-x-1/2"></div>
           
           <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-3xl">
-              <div className="inline-block px-4 py-1 rounded-full bg-cyan-800/50 border border-cyan-400/30 text-cyan-200 mb-6 text-sm font-semibold tracking-wider">
+            <div className="max-w-5xl mx-auto text-center">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-cyan-200 mb-8 tracking-wider">
                 小港在地的專業依靠，守護腎臟健康
-              </div>
-              <h2 className="text-4xl lg:text-6xl font-bold mb-4 leading-tight">
-                {CLINIC_INFO.slogan}
-              </h2>
+              </h3>
               
-              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xl sm:text-2xl font-bold text-lime-300 mb-8 tracking-wide">
+              <div className="mb-10">
+                  <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
+                    高雄市民的健康<br />
+                    交給高健診所
+                  </h2>
+              </div>
+              
+              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-2xl sm:text-3xl font-bold text-lime-300 mb-10 tracking-wide">
                  <span>鳳山</span>
-                 <span className="text-cyan-400 text-sm">•</span>
+                 <span className="text-cyan-400 text-lg">•</span>
                  <span>小港</span>
-                 <span className="text-cyan-400 text-sm">•</span>
+                 <span className="text-cyan-400 text-lg">•</span>
                  <span>林園</span>
-                 <span className="text-cyan-400 text-sm">•</span>
+                 <span className="text-cyan-400 text-lg">•</span>
                  <span>大寮</span>
-                 <span className="text-cyan-400 text-sm">•</span>
+                 <span className="text-cyan-400 text-lg">•</span>
                  <span>前鎮</span>
               </div>
 
-              <p className="text-xl lg:text-2xl text-cyan-50 mb-10 leading-relaxed font-light">
+              <p className="text-2xl lg:text-3xl text-cyan-50 mb-12 leading-relaxed font-light mx-auto max-w-4xl">
                 結合醫學中心等級的透析技術與社區診所的溫馨照護。<br className="hidden sm:block" />
                 我們提供全方位的腎臟專科診療，讓您在舒適環境中重拾健康活力。
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                 <a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="bg-lime-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-lime-600 transition-all shadow-lg hover:shadow-lime-500/30 text-center transform hover:-translate-y-1 cursor-pointer">
+              <div className="flex flex-col sm:flex-row gap-5 mb-14 items-center justify-center">
+                 <a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="w-full sm:w-auto bg-lime-500 text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-lime-600 transition-all shadow-lg hover:shadow-lime-500/30 text-center transform hover:-translate-y-1 cursor-pointer">
                    立即檢測腎臟健康
                  </a>
-                 <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-colors text-center cursor-pointer">
+                 <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="w-full sm:w-auto bg-transparent border-2 border-white text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-white/10 transition-colors text-center cursor-pointer">
                    了解服務項目
                  </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-12 bg-white scroll-mt-24" id="ai-assistant">
-          <div className="container mx-auto px-4">
-            <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 border border-cyan-200 shadow-md relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-200/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none group-hover:bg-cyan-300/20 transition-colors"></div>
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-lime-200/20 rounded-full blur-2xl translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
-
-              <div className="relative z-10 flex-1 text-center md:text-left">
-                 <div className="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-full border border-cyan-200 shadow-sm mb-4 animate-bounce-slow">
-                    <Bot className="w-4 h-4 text-cyan-600" />
-                    <span className="text-xs font-bold text-cyan-800">24小時線上服務</span>
+                 
+                 <div className="w-full sm:w-auto">
+                    <button 
+                       onClick={() => setIsChatOpen(true)}
+                       className="w-full sm:w-auto bg-cyan-500 hover:bg-cyan-400 text-white px-8 py-4 rounded-full font-bold text-xl transition-all shadow-lg shadow-cyan-500/30 text-center transform hover:-translate-y-1 cursor-pointer flex items-center justify-center gap-4 ring-2 ring-white/20"
+                    >
+                       <MessageCircle className="w-9 h-9 flex-shrink-0" />
+                       <div className="flex flex-col items-start text-left">
+                           <span className="leading-none mb-1.5">諮詢高健 AI 助理</span>
+                           <div className="flex items-center gap-2">
+                               <span className="relative flex h-2.5 w-2.5">
+                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"></span>
+                                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-lime-500"></span>
+                               </span>
+                               <span className="text-base text-lime-100 font-bold">了解健康資訊</span>
+                           </div>
+                       </div>
+                    </button>
                  </div>
-                 <h2 className="text-2xl md:text-3xl font-bold text-cyan-900 mb-3">有任何健康疑問？想預約掛號？</h2>
-                 <p className="text-slate-600 text-lg leading-relaxed max-w-2xl">
-                   高健 AI 助理能即時回答您的問題，協助您<strong className="text-cyan-700">查詢門診時間</strong>、<strong className="text-cyan-700">了解洗腎資訊</strong>或<strong className="text-cyan-700">完成線上掛號</strong>，無需等待，隨問隨答。
-                 </p>
-              </div>
-              
-              <div className="relative z-10 flex-shrink-0">
-                <button 
-                   onClick={() => setIsChatOpen(true)}
-                   className="bg-cyan-600 hover:bg-cyan-700 text-white text-lg font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-cyan-500/30 transition-all transform hover:-translate-y-1 flex items-center gap-3 animate-pulse-slow ring-4 ring-cyan-100"
-                >
-                   <MessageCircle className="w-6 h-6" />
-                   立即諮詢 AI 助理
-                   <Sparkles className="w-4 h-4 text-lime-300" />
-                </button>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="checkup" className="py-20 bg-slate-50 relative">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <span className="text-lime-600 font-bold tracking-wider uppercase text-sm">Self Assessment</span>
-              <h2 className="text-3xl lg:text-4xl font-bold text-cyan-900 mt-2">您的腎臟健康嗎？</h2>
-              <p className="text-slate-600 mt-4 max-w-2xl mx-auto">
-                慢性腎臟病初期通常沒有明顯症狀。透過簡單的自我評估，了解是否需要進一步檢查。
-              </p>
-            </div>
-            <KidneyCheck />
-          </div>
-        </section>
-
-        <section id="environment" className="py-20 pb-20 bg-white relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 translate-x-1/3 -translate-y-1/3"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-lime-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -translate-x-1/3 translate-y-1/3"></div>
-
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="text-center mb-16 max-w-4xl mx-auto">
-              <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm">Clinic Environment</span>
-              <h2 className="text-3xl lg:text-4xl font-bold text-cyan-900 mt-2 mb-6">環境介紹</h2>
-              <p className="text-slate-600 text-lg leading-relaxed">
-                高健診所為您打造五星級的就醫環境。我們擁有獨棟透析大樓，提供寬敞明亮的治療空間，
-                結合現代化的醫療設備與人性化的空間設計，讓每位病患都能在放鬆、安心的氛圍中接受專業照護。
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
-              {ENVIRONMENT_ITEMS.map((item, index) => (
-                <EnvironmentCard key={index} item={item} />
-              ))}
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {FEATURES.map((feature, idx) => (
-                <div key={idx} className="bg-white p-4 rounded-full border border-slate-100 shadow-md flex items-center gap-4 hover:shadow-lg transition-all hover:-translate-y-1 mx-auto w-full max-w-sm group">
-                  <div className={`${feature.color} p-2.5 rounded-full shadow-sm flex-shrink-0 group-hover:scale-110 transition-transform`}>
-                    {feature.icon}
-                  </div>
-                  <div className="flex-1 pr-2">
-                    <h3 className="font-bold text-cyan-900 text-base mb-0.5">{feature.title}</h3>
-                    <p className="text-slate-600 text-sm leading-snug font-bold">{feature.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="team" className="pt-24 pb-20 bg-slate-50 border-t border-slate-200 scroll-mt-20">
-          <div className="container mx-auto px-4">
-             <div className="text-center mb-16">
-               <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm flex items-center justify-center gap-2">
-                 <UserPlus className="w-4 h-4" /> Professional Team
-               </span>
-               <h2 className="text-3xl lg:text-4xl font-bold text-cyan-900 mt-2">專業醫療團隊</h2>
-               <p className="text-slate-600 mt-4 text-lg">提供最專業、親切的醫療服務</p>
-               <div className="w-24 h-1 bg-lime-500 mx-auto mt-6 rounded-full"></div>
-             </div>
-             
-             <MedicalTeam />
-          </div>
-        </section>
-
-        <section id="services" className="py-20 bg-white border-t border-slate-100">
+        <section id="services" className="py-20 bg-slate-50 relative">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm">Medical Services</span>
-              <h2 className="text-3xl lg:text-4xl font-bold text-cyan-900 mt-2">專業醫療服務項目</h2>
-              <div className="w-24 h-1 bg-lime-500 mx-auto mt-6 rounded-full"></div>
+              <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm mb-2 block">Our Services</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-800">專業醫療服務項目</h2>
+              <div className="w-20 h-1.5 bg-lime-500 mx-auto mt-4 rounded-full"></div>
             </div>
-            
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {SERVICES.map((service, index) => (
                 <ServiceCard key={index} service={service} />
@@ -402,131 +224,113 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        <section id="info" className="py-20 bg-white border-t border-slate-200">
+        <section id="doctors" className="py-20 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-cyan-900 mb-8 flex items-center gap-3 justify-center md:justify-start">
-              <span className="w-2 h-8 bg-lime-500 rounded-full"></span>
-              門診資訊
-            </h2>
-
-            <div className="mb-12">
-              <ScheduleTables />
+             <div className="text-center mb-16">
+              <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm mb-2 block">Medical Team</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-800">專業醫師團隊</h2>
+              <div className="w-20 h-1.5 bg-lime-500 mx-auto mt-4 rounded-full"></div>
+              <p className="mt-4 text-slate-500 max-w-2xl mx-auto">由榮總、成大等醫學中心資歷的專科醫師親自看診</p>
             </div>
-
-            <div className="grid lg:grid-cols-2 gap-8 items-start">
-               <div className="bg-white p-6 sm:p-8 rounded-2xl border border-cyan-100 hover:border-cyan-200 transition-colors shadow-sm h-full flex flex-col justify-center">
-                  <div className="space-y-8">
-                    <div className="flex items-start gap-5">
-                      <div className="bg-cyan-50 p-4 rounded-xl text-cyan-600 shadow-sm border border-cyan-100 flex-shrink-0 mt-1">
-                        <MapPin className="w-8 h-8" />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-cyan-900 text-xl sm:text-2xl mb-2">診所地址</h4>
-                        <address className="text-slate-700 text-xl sm:text-2xl leading-relaxed font-medium not-italic">{CLINIC_INFO.address}</address>
-                        <a href={CLINIC_INFO.mapLink} target="_blank" rel="noreferrer" className="text-cyan-600 text-lg font-bold hover:text-cyan-700 mt-3 inline-flex items-center group">
-                          Google Maps 導航 <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-5 border-t border-slate-50 pt-8">
-                      <div className="bg-cyan-50 p-4 rounded-xl text-cyan-600 shadow-sm border border-cyan-100 flex-shrink-0 mt-1">
-                        <Phone className="w-8 h-8" />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-cyan-900 text-xl sm:text-2xl mb-2">聯絡電話</h4>
-                        <p className="text-slate-700 text-3xl sm:text-4xl font-mono font-bold tracking-tight text-cyan-800">{CLINIC_INFO.phone}</p>
-                        <p className="text-slate-500 mt-2">歡迎來電預約或諮詢</p>
-                      </div>
-                    </div>
-                  </div>
-               </div>
-
-               <div className="h-[200px] lg:h-[300px] bg-slate-200 rounded-2xl overflow-hidden relative shadow-inner border border-slate-200 sticky top-24">
-                  <iframe 
-                    title="Google Map Location of KaohJian Clinic"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.045622154483!2d120.3541459!3d22.5649129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e033355555555%3A0x1234567890abcdef!2zODEx高雄市小港區沿海一路88號!5e0!3m2!1szh-TW!2stw!4v1700000000000!5m2!1szh-TW!2stw"
-                    className="w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-700"
-                    allowFullScreen={true} 
-                    loading="lazy" 
-                    referrerPolicy="no-referrer-when-downgrade"
-                  ></iframe>
-                </div>
-            </div>
+            <MedicalTeam />
           </div>
         </section>
 
-        <section id="knowledge" className="py-20 bg-slate-50 relative border-t border-slate-200">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-100 via-lime-200 to-cyan-100"></div>
+        <section id="schedule" className="py-20 bg-slate-50/50">
+           <div className="container mx-auto px-4">
+             <div className="text-center mb-16">
+              <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm mb-2 block">Outpatient & Dialysis Hours</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-800">門診與透析時間</h2>
+              <div className="w-20 h-1.5 bg-lime-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+            <ScheduleTables />
+           </div>
+        </section>
+
+        <section id="checkup" className="py-20 bg-gradient-to-b from-cyan-900 to-cyan-800 text-white relative overflow-hidden">
+           <div className="absolute top-0 left-0 w-full h-full opacity-10 pattern-dots"></div>
+           <div className="container mx-auto px-4 relative z-10">
+              <div className="text-center mb-12">
+                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">腎臟健康自我檢測</h2>
+                 <p className="text-cyan-100 max-w-2xl mx-auto text-lg">
+                   腎臟病初期往往沒有明顯症狀，透過簡單的自我評估，提早發現潛在風險。
+                 </p>
+              </div>
+              <KidneyCheck />
+           </div>
+        </section>
+
+        <section id="knowledge" className="py-20 bg-white">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-                  <span className="text-lime-600 font-bold tracking-wider uppercase text-sm flex items-center justify-center gap-2">
-                     <BookOpen className="w-4 h-4" /> Health Knowledge
-                  </span>
-                  <h2 className="text-3xl lg:text-4xl font-bold text-cyan-900 mt-2">高健知識專欄</h2>
-                  <p className="text-slate-600 mt-2">專業醫師為您解惑，掌握正確的腎臟保健知識。</p>
-                  <div className="w-24 h-1 bg-lime-500 mx-auto mt-6 rounded-full"></div>
+            <div className="text-center mb-16">
+              <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm mb-2 block">Health Knowledge</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-800">衛教專欄</h2>
+              <div className="w-20 h-1.5 bg-lime-500 mx-auto mt-4 rounded-full"></div>
             </div>
-            
             <KnowledgeColumn />
-            
-            <div className="mt-12 text-center">
-               <a 
-                 href="https://www.facebook.com/profile.php?id=61559290111933"
-                 target="_blank"
-                 rel="noreferrer"
-                 className="inline-flex text-cyan-600 font-bold items-center gap-2 hover:translate-x-1 transition-transform border-b-2 border-transparent hover:border-cyan-600 pb-1 text-lg"
-               >
-                  前往 Facebook 粉絲專頁查看更多 <ArrowRight className="w-5 h-5" />
-               </a>
-            </div>
           </div>
         </section>
       </main>
 
-      <footer className="bg-cyan-950 text-slate-300 py-12 border-t-4 border-lime-500">
+      <footer className="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8 mb-8 border-b border-cyan-800 pb-8">
-            <div>
-              <div className="flex items-center gap-4 mb-4">
-                 <h3 className="text-white font-bold text-xl flex items-center gap-2">
-                    <ClinicLogo className="w-8 h-8" />
-                    {CLINIC_INFO.name}
-                 </h3>
-                 <a href="https://www.facebook.com/profile.php?id=61559290111933" target="_blank" rel="noreferrer" aria-label="Visit our Facebook page" className="text-cyan-200 hover:text-lime-400 transition-all"><Facebook className="w-6 h-6" /></a>
-              </div>
-              <p className="mb-4 text-cyan-100/80 leading-relaxed">
-                專精腎臟科、洗腎預防。<br/>
-                提供小港、鳳山、林園、大寮、前鎮溫馨接送。<br/>
-                高雄市民的健康守護者。
-              </p>
-            </div>
-            <div>
-              <h4 className="text-white font-bold mb-4 text-lg">快速連結</h4>
-              <ul className="grid grid-cols-2 gap-2 md:block md:space-y-2">
-                <li><a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="hover:text-lime-400 transition-colors flex items-center gap-2 cursor-pointer"><ArrowRight className="w-3 h-3" /> 首頁</a></li>
-                <li><a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="hover:text-lime-400 transition-colors flex items-center gap-2 cursor-pointer"><ArrowRight className="w-3 h-3" /> 腎臟檢測</a></li>
-                <li><a href="#environment" onClick={(e) => scrollToSection(e, 'environment')} className="hover:text-lime-400 transition-colors flex items-center gap-2 cursor-pointer"><ArrowRight className="w-3 h-3" /> 環境介紹</a></li>
-                <li><a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="hover:text-lime-400 transition-colors flex items-center gap-2 cursor-pointer"><ArrowRight className="w-3 h-3" /> 服務項目</a></li>
-                <li><a href="#knowledge" onClick={(e) => scrollToSection(e, 'knowledge')} className="hover:text-lime-400 transition-colors flex items-center gap-2 cursor-pointer"><ArrowRight className="w-3 h-3" /> 知識專欄</a></li>
-                <li><a href={CLINIC_INFO.bookingLink} className="hover:text-lime-400 transition-colors flex items-center gap-2"><ArrowRight className="w-3 h-3" /> 預約掛號</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-bold mb-4 text-lg">聯絡我們</h4>
-              <address className="grid grid-cols-2 gap-3 md:block md:space-y-3 not-italic">
-                  <p className="flex items-start gap-2"><Phone className="w-5 h-5 text-lime-500 mt-0.5 flex-shrink-0" /> {CLINIC_INFO.phone}</p>
-                  <p className="flex items-start gap-2"><MapPin className="w-5 h-5 text-lime-500 mt-0.5 flex-shrink-0" /> {CLINIC_INFO.address}</p>
-              </address>
-            </div>
+          <div className="grid md:grid-cols-3 gap-12">
+             <div>
+                <div className="flex items-center gap-2 mb-6">
+                   <ClinicLogo className="w-10 h-10 brightness-0 invert opacity-80" />
+                   <h3 className="text-xl font-bold text-white tracking-wide">{CLINIC_INFO.name}</h3>
+                </div>
+                <p className="text-slate-400 mb-6 leading-relaxed">
+                  {CLINIC_INFO.slogan}<br/>
+                  致力於提供小港地區最優質的洗腎與內科醫療服務。
+                </p>
+             </div>
+             
+             <div>
+                <h4 className="text-white font-bold text-lg mb-6 border-l-4 border-lime-500 pl-3">聯絡資訊</h4>
+                <ul className="space-y-4 text-slate-400">
+                   <li className="flex items-start gap-3">
+                      <MapPin className="w-5 h-5 text-lime-500 flex-shrink-0 mt-1" />
+                      <span>{CLINIC_INFO.address}</span>
+                   </li>
+                   <li className="flex items-center gap-3">
+                      <Phone className="w-5 h-5 text-lime-500 flex-shrink-0" />
+                      <a href={`tel:${CLINIC_INFO.phone}`} className="hover:text-white transition-colors">
+                        {CLINIC_INFO.phone}
+                      </a>
+                   </li>
+                   <li className="flex items-center gap-3">
+                      <Clock className="w-5 h-5 text-lime-500 flex-shrink-0" />
+                      <span>週一至週六 08:00 - 22:00</span>
+                   </li>
+                </ul>
+             </div>
+             
+             <div>
+                <h4 className="text-white font-bold text-lg mb-6 border-l-4 border-lime-500 pl-3">快速連結</h4>
+                <ul className="space-y-2 text-slate-400">
+                   <li><a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="hover:text-lime-400 transition-colors">服務項目</a></li>
+                   <li><a href="#doctors" onClick={(e) => scrollToSection(e, 'doctors')} className="hover:text-lime-400 transition-colors">醫師團隊</a></li>
+                   <li><a href="#schedule" onClick={(e) => scrollToSection(e, 'schedule')} className="hover:text-lime-400 transition-colors">門診時間</a></li>
+                   <li><a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="hover:text-lime-400 transition-colors">腎臟檢測</a></li>
+                </ul>
+             </div>
           </div>
-          <div className="text-center text-sm text-cyan-400/60 flex flex-col md:flex-row justify-center items-center gap-4">
-            <span>&copy; {new Date().getFullYear()} {CLINIC_INFO.name}. All rights reserved.</span>
+          
+          <div className="border-t border-slate-800 mt-12 pt-8 text-center text-sm text-slate-500">
+             <p>&copy; {new Date().getFullYear()} {CLINIC_INFO.name}. All rights reserved.</p>
           </div>
         </div>
       </footer>
 
       <AIChat isOpen={isChatOpen} setIsOpen={setIsChatOpen} />
+      
+      <button 
+        onClick={scrollToTop}
+        className={`fixed bottom-6 left-6 z-40 bg-white text-cyan-800 p-3 rounded-full shadow-lg border border-cyan-100 transition-all duration-300 hover:bg-cyan-50 ${showScrollTop ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
+      >
+        <ChevronUp className="w-6 h-6" />
+      </button>
     </div>
   );
 };

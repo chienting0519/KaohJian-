@@ -66,7 +66,11 @@ export const sendMessageToGemini = async (userMessage: string, history: string[]
         *   **互動按鈕**: 用 \`**\` 和 \`**\` 包起來 (如: **預約掛號**)。
         *   請多使用 **條列式** 來整理資訊，避免大段落文字。
 
-    6.  **強制聯絡按鈕 (Mandatory Footer)**: 
+    6.  **預約掛號提醒 (Booking Reminder)**:
+        *   若用戶詢問「預約」、「掛號」相關資訊。
+        *   **必須**在回答中提醒：「看診請務必攜帶**健保卡**，健保部分給付掛號費 **150元**。」
+
+    7.  **強制聯絡按鈕 (Mandatory Footer)**: 
         *   **無論回答什麼問題** (飲食、時間、接送、閒聊)，回答的**最後一行**，**必須**且**只能**是以下這個原始網址 (不要加 markdown 語法，單獨一行):
         *   ${CLINIC_INFO.bookingLink}
         *   (這個連結非常重要，它會觸發「Line 諮詢」與「撥打電話」按鈕的顯示，絕對不能遺漏)
