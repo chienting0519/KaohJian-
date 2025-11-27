@@ -81,7 +81,8 @@ export const SERVICES: ServiceItem[] = [
     icon: "ShieldCheck",
     items: [
       "ILIB 靜脈雷射",
-      "自費減重猛健樂"
+      "自費減重猛健樂",
+      "健康營養點滴"
     ]
   }
 ];

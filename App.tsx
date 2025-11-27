@@ -80,7 +80,7 @@ const App: React.FC = () => {
                       key={item}
                       href={`#${item}`}
                       onClick={(e) => scrollToSection(e, item === 'home' ? 'home' : item)}
-                      className="px-4 py-2 text-slate-600 font-bold hover:text-cyan-700 hover:bg-cyan-50 rounded-full transition-all text-sm lg:text-base"
+                      className="px-4 py-2 text-slate-600 font-bold hover:text-cyan-700 hover:bg-cyan-50 rounded-full transition-all text-lg lg:text-xl"
                     >
                       {labels[item]}
                     </a>
@@ -124,7 +124,7 @@ const App: React.FC = () => {
                       key={item}
                       href={`#${item}`}
                       onClick={(e) => scrollToSection(e, item === 'home' ? 'home' : item)}
-                      className="px-4 py-3 text-slate-600 font-bold hover:text-cyan-700 hover:bg-cyan-50 rounded-xl transition-all"
+                      className="px-4 py-3 text-slate-600 font-bold hover:text-cyan-700 hover:bg-cyan-50 rounded-xl transition-all text-xl"
                     >
                       {labels[item]}
                     </a>
@@ -134,7 +134,7 @@ const App: React.FC = () => {
                  href={CLINIC_INFO.bookingLink}
                  target="_blank"
                  rel="noreferrer" 
-                 className="mt-2 bg-[#06c755] hover:bg-[#05b34c] text-white px-4 py-3 rounded-xl font-bold text-center shadow-sm"
+                 className="mt-2 bg-[#06c755] hover:bg-[#05b34c] text-white px-4 py-3 rounded-xl font-bold text-center shadow-sm text-xl"
                >
                  立即預約掛號
                </a>
