@@ -144,25 +144,25 @@ const App: React.FC = () => {
       </nav>
 
       <main className="pt-20">
-        <section id="home" className="relative bg-gradient-to-br from-cyan-900 via-cyan-800 to-blue-900 text-white py-24 lg:py-40 overflow-hidden">
+        <section id="home" className="relative bg-gradient-to-br from-cyan-900 via-cyan-800 to-blue-900 text-white pt-20 pb-24 lg:pt-32 lg:pb-40 overflow-hidden">
           <div className="absolute inset-0 opacity-10 pattern-grid-lg"></div>
           <div className="absolute top-0 right-0 w-96 h-96 bg-lime-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -translate-y-1/2 translate-x-1/2"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 translate-y-1/2 -translate-x-1/2"></div>
           
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-5xl mx-auto text-center">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-cyan-200 mb-8 tracking-wider">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-cyan-200 mb-8 tracking-wider">
                 小港在地的專業依靠，守護腎臟健康
               </h3>
               
               <div className="mb-10">
-                  <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
+                  <h2 className="text-6xl sm:text-7xl lg:text-8xl font-bold leading-tight">
                     高雄市民的健康<br />
                     交給高健診所
                   </h2>
               </div>
               
-              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-2xl sm:text-3xl font-bold text-lime-300 mb-10 tracking-wide">
+              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-3xl sm:text-4xl font-bold text-lime-300 mb-10 tracking-wide">
                  <span>鳳山</span>
                  <span className="text-cyan-400 text-lg">•</span>
                  <span>小港</span>
@@ -281,8 +281,9 @@ const App: React.FC = () => {
                    <h3 className="text-xl font-bold text-white tracking-wide">{CLINIC_INFO.name}</h3>
                 </div>
                 <p className="text-slate-400 mb-6 leading-relaxed">
-                  {CLINIC_INFO.slogan}<br/>
-                  致力於提供小港地區最優質的洗腎與內科醫療服務。
+                  高雄市民的健康就交給高健診所<br/>
+                  於提供小港地區最優質的洗腎與內科醫療服務。<br/>
+                  提供小港、鳳山、林園、大寮、前鎮溫馨接送。
                 </p>
              </div>
              

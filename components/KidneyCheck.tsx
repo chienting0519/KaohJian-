@@ -1,14 +1,37 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { KIDNEY_SYMPTOMS, CLINIC_INFO } from '../constants';
-import { AlertCircle, CheckCircle2, ArrowRight, RotateCcw } from 'lucide-react';
+import { AlertCircle, CheckCircle2, ArrowRight, RotateCcw, AlertTriangle } from 'lucide-react';
 
 const KidneyCheck: React.FC = () => {
   const [answers, setAnswers] = useState<Record<string, boolean>>({});
   const [showResult, setShowResult] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = (id: string) => {
-    setAnswers(prev => ({ ...prev, [id]: !prev[id] }));
+    setAnswers(prev => {
+      const newState = { ...prev, [id]: !prev[id] };
+      if (Object.values(newState).some(v => v)) {
+        setError(null);
+      }
+      return newState;
+    });
+  };
+
+  const handleShowResult = () => {
+    const hasChecked = Object.values(answers).some(v => v);
+    if (!hasChecked) {
+      setError('請勾選您符合的症狀項目，才能為您進行分析喔！');
+      return;
+    }
+    setError(null);
+    setShowResult(true);
+  };
+
+  const handleNoSymptoms = () => {
+    setAnswers({});
+    setError(null);
+    setShowResult(true);
   };
 
   const calculateRisk = () => {
@@ -25,6 +48,7 @@ const KidneyCheck: React.FC = () => {
   const resetTest = () => {
     setAnswers({});
     setShowResult(false);
+    setError(null);
   };
 
   // 當顯示結果時，自動捲動到卡片頂端
@@ -103,12 +127,26 @@ const KidneyCheck: React.FC = () => {
               </label>
             ))}
           </div>
-          <div className="mt-8 flex justify-center">
+          <div className="mt-8 flex flex-col items-center gap-4">
             <button
-              onClick={() => setShowResult(true)}
+              onClick={handleShowResult}
               className="bg-lime-500 hover:bg-lime-600 text-white font-bold py-3 px-12 rounded-full transition-all duration-300 shadow-lg hover:shadow-lime-500/40 flex items-center gap-2 text-lg transform hover:-translate-y-1"
             >
               查看分析結果 <ArrowRight className="w-5 h-5" />
+            </button>
+            
+            {error && (
+              <div className="flex items-center gap-2 text-orange-600 font-bold bg-orange-50 px-4 py-2 rounded-lg border border-orange-200 animate-in fade-in slide-in-from-top-1">
+                 <AlertTriangle className="w-5 h-5" />
+                 {error}
+              </div>
+            )}
+
+            <button 
+                onClick={handleNoSymptoms}
+                className="text-slate-400 text-sm hover:text-cyan-600 underline underline-offset-4 decoration-slate-300 hover:decoration-cyan-600 transition-all"
+            >
+                我完全沒有以上症狀
             </button>
           </div>
         </div>

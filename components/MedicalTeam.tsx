@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { MEDICAL_TEAM } from '../constants';
 import { Stethoscope, Award, Building2, Medal, UserRound } from 'lucide-react';
@@ -44,7 +45,7 @@ const MedicalTeam: React.FC = () => {
           {/* Body Content */}
           <div className="p-8 flex-1 flex flex-col gap-8 bg-white">
             
-            {/* Experience */}
+            {/* Experience & Certifications */}
             <div>
               <h4 className="flex items-center gap-2 font-bold text-slate-800 mb-4 border-l-4 border-cyan-500 pl-3 text-xl sm:text-2xl">
                 <Building2 className="w-6 h-6 text-cyan-600" />
@@ -57,18 +58,9 @@ const MedicalTeam: React.FC = () => {
                     {exp}
                   </li>
                 ))}
-              </ul>
-            </div>
-
-            {/* Certifications */}
-            <div className="mt-auto pt-8 border-t border-slate-50">
-              <h4 className="flex items-center gap-2 font-bold text-slate-800 mb-4 border-l-4 border-lime-500 pl-3 text-xl sm:text-2xl">
-                <Award className="w-6 h-6 text-lime-600" />
-                專業認證
-              </h4>
-              <ul className="space-y-3">
+                {/* Append Certifications here */}
                 {doctor.certifications.map((cert, i) => (
-                  <li key={i} className="text-slate-600 flex items-start text-base sm:text-lg font-bold leading-relaxed">
+                  <li key={`cert-${i}`} className="text-slate-600 flex items-start text-base sm:text-lg font-bold leading-relaxed">
                     <Medal className="w-5 h-5 text-lime-500 mr-3 mt-1 flex-shrink-0" />
                     {cert}
                   </li>
