@@ -136,7 +136,7 @@ const App: React.FC = () => {
     },
     {
       icon: <Train className="w-6 h-6 text-white" />,
-      title: "捷運步行 8 分鐘",
+      title: "捷運步行 6 分鐘",
       desc: "近高雄國際機場1號出口站(高雄公園)。",
       color: "bg-lime-600"
     }
@@ -155,7 +155,7 @@ const App: React.FC = () => {
       illustration: <IllustrationAccessibility />
     },
     {
-      title: "寬敞明亮的治療空間", // 標題已修改
+      title: "寬敞明亮的治療空間",
       desc: "大面採光設計，寬敞不壓迫，搭配溫馨的色調，讓等待過程也能保持心情愉悅。",
       illustration: <IllustrationInterior />
     }
@@ -271,6 +271,8 @@ const App: React.FC = () => {
                  <span>林園</span>
                  <span className="text-cyan-400 text-sm">•</span>
                  <span>大寮</span>
+                 <span className="text-cyan-400 text-sm">•</span>
+                 <span>前鎮</span>
               </div>
 
               <p className="text-xl lg:text-2xl text-cyan-50 mb-10 leading-relaxed font-light">
@@ -495,7 +497,7 @@ const App: React.FC = () => {
               </div>
               <p className="mb-4 text-cyan-100/80 leading-relaxed">
                 專精腎臟科、洗腎預防。<br/>
-                提供小港、鳳山、林園、大寮溫馨接送。<br/>
+                提供小港、鳳山、林園、大寮、前鎮溫馨接送。<br/>
                 高雄市民的健康守護者。
               </p>
             </div>
