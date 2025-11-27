@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, MapPin, MessageCircle, ChevronUp } from 'lucide-react';
+import { Menu, X, Phone, MapPin, MessageCircle, ChevronUp, ClipboardCheck, Stethoscope } from 'lucide-react';
 import { CLINIC_INFO, SERVICES } from './constants';
 import ServiceCard from './components/ServiceCard';
 import KidneyCheck from './components/KidneyCheck';
@@ -182,11 +182,28 @@ const App: React.FC = () => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-5 mb-8 items-center justify-center">
-                 <a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="w-full sm:w-auto bg-lime-500 text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-lime-600 transition-all shadow-lg hover:shadow-lime-500/30 text-center transform hover:-translate-y-1 cursor-pointer">
-                   立即檢測腎臟健康
+                 <a 
+                   href="#checkup" 
+                   onClick={(e) => scrollToSection(e, 'checkup')} 
+                   className="w-full sm:w-auto bg-lime-500 hover:bg-lime-600 text-white px-8 py-4 rounded-full font-bold text-xl transition-all shadow-lg hover:shadow-lime-500/30 text-center transform hover:-translate-y-1 cursor-pointer flex items-center justify-center gap-4 ring-2 ring-white/20"
+                 >
+                   <ClipboardCheck className="w-9 h-9 flex-shrink-0" />
+                   <div className="flex flex-col items-start text-left">
+                     <span className="leading-none mb-1.5">立即檢測腎臟健康</span>
+                     <span className="text-base text-white/90 font-bold">一分鐘自我檢測</span>
+                   </div>
                  </a>
-                 <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="w-full sm:w-auto bg-transparent border-2 border-white text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-white/10 transition-colors text-center cursor-pointer">
-                   了解服務項目
+                 
+                 <a 
+                   href="#services" 
+                   onClick={(e) => scrollToSection(e, 'services')} 
+                   className="w-full sm:w-auto bg-transparent border-2 border-white hover:bg-white/10 text-white px-8 py-4 rounded-full font-bold text-xl transition-colors text-center cursor-pointer flex items-center justify-center gap-4"
+                 >
+                   <Stethoscope className="w-9 h-9 flex-shrink-0" />
+                   <div className="flex flex-col items-start text-left">
+                     <span className="leading-none mb-1.5">了解服務項目</span>
+                     <span className="text-base text-cyan-100 font-bold">專業醫療照護</span>
+                   </div>
                  </a>
                  
                  <div className="w-full sm:w-auto">
