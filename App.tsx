@@ -423,61 +423,61 @@ const App: React.FC = () => {
 
             {infoModal === 'checkup' && (
               <div className="text-slate-800">
-                <h3 className="text-2xl font-bold text-cyan-800 mb-6 border-b border-slate-100 pb-4">免費健康檢查項目</h3>
-                <div className="space-y-6 text-lg leading-relaxed">
+                <h3 className="text-xl font-bold text-cyan-800 mb-4 border-b border-slate-100 pb-3">免費健康檢查項目</h3>
+                <div className="space-y-3 text-base leading-relaxed">
                   
                   {/* 1. 成人健檢 */}
-                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                      <h4 className="font-bold text-cyan-900 text-xl mb-2 flex items-center gap-2">
+                  <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                      <h4 className="font-bold text-cyan-900 text-lg mb-1 flex items-center gap-2">
                           1. 免費成人健檢
                       </h4>
-                      <ul className="list-disc pl-5 text-base text-slate-600 space-y-1">
+                      <ul className="list-disc pl-5 text-sm text-slate-600 space-y-0.5">
                           <li><strong>資格：</strong>40-64歲每3年一次，65歲以上每年一次。</li>
                           <li><strong>內容：</strong>身體檢查、血糖、血脂、肝腎功能、尿液檢查。</li>
                       </ul>
                   </div>
 
                   {/* 2. 大腸癌篩檢 */}
-                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                      <h4 className="font-bold text-cyan-900 text-xl mb-2 flex items-center gap-2">
+                  <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                      <h4 className="font-bold text-cyan-900 text-lg mb-1 flex items-center gap-2">
                           2. 大腸癌篩檢 (糞便潛血)
                       </h4>
-                      <ul className="list-disc pl-5 text-base text-slate-600 space-y-1">
+                      <ul className="list-disc pl-5 text-sm text-slate-600 space-y-0.5">
                           <li><strong>資格：</strong>50-74歲民眾，每2年補助一次。</li>
                           <li><strong>方式：</strong>定量免疫法糞便潛血檢查。</li>
                       </ul>
                   </div>
 
                   {/* 3. 肝炎篩檢 */}
-                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                      <h4 className="font-bold text-cyan-900 text-xl mb-2 flex items-center gap-2">
+                  <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                      <h4 className="font-bold text-cyan-900 text-lg mb-1 flex items-center gap-2">
                           3. 肝炎篩檢 (B、C型)
                       </h4>
-                      <ul className="list-disc pl-5 text-base text-slate-600 space-y-1">
+                      <ul className="list-disc pl-5 text-sm text-slate-600 space-y-0.5">
                           <li><strong>資格：</strong>45-79歲民眾 (原住民40-79歲)，終身補助一次。</li>
                       </ul>
                   </div>
 
-                  <div className="flex items-start gap-2 text-orange-600 font-bold text-base bg-orange-50 p-3 rounded-lg border border-orange-100 mt-2">
-                    <span className="mt-1 flex-shrink-0">⚠️</span>
+                  <div className="flex items-start gap-2 text-orange-600 font-bold text-sm bg-orange-50 p-2.5 rounded-lg border border-orange-100 mt-1">
+                    <span className="mt-0.5 flex-shrink-0">⚠️</span>
                     <p>注意事項：成人健檢需空腹 8 小時，請務必攜帶健保卡。</p>
                   </div>
 
-                  <div className="pt-4 space-y-3">
+                  <div className="pt-2 space-y-2">
                     <a 
                       href={CLINIC_INFO.bookingLink} 
                       target="_blank" 
                       rel="noreferrer"
-                      className="flex items-center justify-center gap-3 w-full bg-[#06c755] hover:bg-[#05b34c] text-white font-bold text-lg py-4 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                      className="flex items-center justify-center gap-2 w-full bg-[#06c755] hover:bg-[#05b34c] text-white font-bold text-base py-3 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
                     >
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-6 h-6" />
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-5 h-5" />
                       Line 預約健檢
                     </a>
                     <a 
                       href={`tel:${CLINIC_INFO.phone}`}
-                      className="flex items-center justify-center gap-3 w-full bg-white border-2 border-slate-200 hover:border-cyan-500 hover:text-cyan-700 text-slate-600 font-bold text-lg py-4 rounded-xl transition-all"
+                      className="flex items-center justify-center gap-2 w-full bg-white border-2 border-slate-200 hover:border-cyan-500 hover:text-cyan-700 text-slate-600 font-bold text-base py-3 rounded-xl transition-all"
                     >
-                      <Phone className="w-5 h-5" />
+                      <Phone className="w-4 h-4" />
                       致電預約健檢
                     </a>
                   </div>
