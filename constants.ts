@@ -229,6 +229,7 @@ export const MEDICAL_TEAM: Doctor[] = [
 ];
 
 export const KAOHSIUNG_CLINICS_LIST: Clinic[] = [
+  { name: "高健診所", address: "高雄市小港區沿海一路88號", phone: "07-8027828" },
   { name: "惠仁醫院", address: "高雄市新興區中山一路67-2號", phone: "07-2010196" },
   { name: "李一鳴內科診所", address: "高雄市新興區復興一路44號", phone: "07-2266893" },
   { name: "高欣診所", address: "高雄市新興區復興一路44號2樓", phone: "07-2266893" },
@@ -278,7 +279,6 @@ export const KAOHSIUNG_CLINICS_LIST: Clinic[] = [
   { name: "高雄市立小港醫院", address: "高雄市小港區山明路482號", phone: "07-8036783" },
   { name: "佳生診所", address: "高雄市小港區康莊路136號", phone: "07-8053465" },
   { name: "明港診所", address: "高雄市小港區華山路137號", phone: "07-8055116" },
-  { name: "高健診所", address: "高雄市小港區漢民路702號1、2樓", phone: "07-8027828" },
   { name: "高雄榮民總醫院", address: "高雄市左營區大中一路386號", phone: "07-3422121#2051" },
   { name: "國軍左營醫院", address: "高雄市左營區軍校路553號", phone: "07-5810179" },
   { name: "龍華診所", address: "高雄市左營區自由二路67號", phone: "07-5563868" },

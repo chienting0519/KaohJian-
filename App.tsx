@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, MapPin, MessageCircle, ChevronUp, ClipboardCheck, Stethoscope, Building2, ExternalLink } from 'lucide-react';
 import { CLINIC_INFO, SERVICES, KAOHSIUNG_CLINICS_LIST } from './constants';
@@ -407,7 +409,7 @@ const App: React.FC = () => {
 
              {/* SEO Links Section */}
              <div>
-                <h4 className="text-white font-bold text-lg mb-6 border-l-4 border-lime-500 pl-3">高雄透析醫療資源</h4>
+                <h4 className="text-white font-bold text-lg mb-6 border-l-4 border-lime-500 pl-3">高雄醫療照護聯盟</h4>
                 <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-slate-400 text-sm">
                    <li><a href="https://www.kmhk.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">高雄市立小港醫院</a></li>
                    <li><a href="https://www.vghks.gov.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">高雄榮民總醫院</a></li>
@@ -599,13 +601,18 @@ const App: React.FC = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {KAOHSIUNG_CLINICS_LIST.map((clinic, index) => (
-                        <tr key={index} className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
-                          <td className="p-3 sm:p-4 font-bold text-slate-700">{clinic.name}</td>
-                          <td className="p-3 sm:p-4 text-slate-600">{clinic.address}</td>
-                          <td className="p-3 sm:p-4 text-slate-600 whitespace-nowrap text-right sm:text-left">{clinic.phone}</td>
-                        </tr>
-                      ))}
+                      {KAOHSIUNG_CLINICS_LIST.map((clinic, index) => {
+                        const isTarget = clinic.name === '高健診所';
+                        return (
+                          <tr key={index} className={`border-b border-slate-50 transition-colors ${isTarget ? 'bg-cyan-50/50 hover:bg-cyan-50' : 'hover:bg-slate-50'}`}>
+                            <td className={`p-3 sm:p-4 ${isTarget ? 'font-bold text-cyan-800 text-lg' : 'text-slate-100 font-normal blur-[1px]'}`}>
+                              {clinic.name}
+                            </td>
+                            <td className={`p-3 sm:p-4 ${isTarget ? 'text-slate-700 font-medium' : 'text-slate-100 blur-[1px]'}`}>{clinic.address}</td>
+                            <td className={`p-3 sm:p-4 whitespace-nowrap text-right sm:text-left ${isTarget ? 'text-slate-700 font-bold' : 'text-slate-100 blur-[1px]'}`}>{clinic.phone}</td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
