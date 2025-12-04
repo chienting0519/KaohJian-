@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, MapPin, MessageCircle, ChevronUp, ClipboardCheck, Stethoscope, Building2, ExternalLink } from 'lucide-react';
-import { CLINIC_INFO, SERVICES } from './constants';
+import { CLINIC_INFO, SERVICES, KAOHSIUNG_CLINICS_LIST } from './constants';
 import ServiceCard from './components/ServiceCard';
 import KidneyCheck from './components/KidneyCheck';
 import AIChat from './components/AIChat';
@@ -13,7 +13,7 @@ const App: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [infoModal, setInfoModal] = useState<'checkup' | 'visit' | 'booking' | null>(null);
+  const [infoModal, setInfoModal] = useState<'checkup' | 'visit' | 'booking' | 'kaohsiung_clinics' | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -393,21 +393,30 @@ const App: React.FC = () => {
                    <li><a href="#doctors" onClick={(e) => scrollToSection(e, 'doctors')} className="hover:text-lime-400 transition-colors block">醫師團隊</a></li>
                    <li><a href="#schedule" onClick={(e) => scrollToSection(e, 'schedule')} className="hover:text-lime-400 transition-colors block">門診時間</a></li>
                    <li><a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="hover:text-lime-400 transition-colors block">腎臟檢測</a></li>
+                   {/* 新增連結: 高雄市洗腎診所 */}
+                   <li>
+                     <button 
+                       onClick={() => setInfoModal('kaohsiung_clinics')}
+                       className="hover:text-lime-400 transition-colors block text-left"
+                     >
+                       高雄市洗腎診所
+                     </button>
+                   </li>
                 </ul>
              </div>
 
              {/* SEO Links Section */}
              <div>
                 <h4 className="text-white font-bold text-lg mb-6 border-l-4 border-lime-500 pl-3">高雄透析醫療資源</h4>
-                <ul className="grid grid-cols-1 gap-2 text-slate-400 text-sm">
-                   <li><a href="https://www.kmhk.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 flex items-center gap-1"><ExternalLink className="w-3 h-3" />高雄市立小港醫院</a></li>
-                   <li><a href="https://www.vghks.gov.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 flex items-center gap-1"><ExternalLink className="w-3 h-3" />高雄榮民總醫院</a></li>
-                   <li><a href="https://www.kmuh.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 flex items-center gap-1"><ExternalLink className="w-3 h-3" />高雄醫學大學附設醫院</a></li>
-                   <li><a href="https://cghd.cgmh.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 flex items-center gap-1"><ExternalLink className="w-3 h-3" />高雄長庚紀念醫院</a></li>
-                   <li><a href="https://edah.edah.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 flex items-center gap-1"><ExternalLink className="w-3 h-3" />義大醫療財團法人</a></li>
-                   <li><a href="http://www.yuanhosp.com.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 flex items-center gap-1"><ExternalLink className="w-3 h-3" />阮綜合醫院</a></li>
-                   <li><a href="https://www.jiannren.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 flex items-center gap-1"><ExternalLink className="w-3 h-3" />健仁醫院</a></li>
-                   <li><a href="https://802.mnd.gov.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 flex items-center gap-1"><ExternalLink className="w-3 h-3" />國軍高雄總醫院</a></li>
+                <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-slate-400 text-sm">
+                   <li><a href="https://www.kmhk.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">高雄市立小港醫院</a></li>
+                   <li><a href="https://www.vghks.gov.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">高雄榮民總醫院</a></li>
+                   <li><a href="https://www.kmuh.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">高雄醫學大學附設醫院</a></li>
+                   <li><a href="https://www.cgmh.org.tw/tw/Systems/AreaInfo/10" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">高雄長庚紀念醫院</a></li>
+                   <li><a href="https://www.edah.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">義大醫療財團法人</a></li>
+                   <li><a href="http://www.yuanhosp.com.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">阮綜合醫院</a></li>
+                   <li><a href="https://www.jiannren.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">健仁醫院</a></li>
+                   <li><a href="https://802.mnd.gov.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">國軍高雄總醫院</a></li>
                 </ul>
              </div>
           </div>
@@ -427,10 +436,10 @@ const App: React.FC = () => {
             className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
             onClick={() => setInfoModal(null)}
           ></div>
-          <div className="bg-white rounded-2xl w-full max-w-md p-6 sm:p-8 relative z-10 animate-in zoom-in-95 shadow-2xl">
+          <div className={`bg-white rounded-2xl w-full ${infoModal === 'kaohsiung_clinics' ? 'max-w-4xl max-h-[85vh]' : 'max-w-md'} p-6 sm:p-8 relative z-10 animate-in zoom-in-95 shadow-2xl flex flex-col`}>
             <button 
               onClick={() => setInfoModal(null)} 
-              className="absolute top-4 right-4 p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
+              className="absolute top-4 right-4 p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors z-20"
             >
               <X className="w-6 h-6" />
             </button>
@@ -573,6 +582,32 @@ const App: React.FC = () => {
                       致電掛號
                     </a>
                   </div>
+                </div>
+              </div>
+            )}
+
+            {infoModal === 'kaohsiung_clinics' && (
+              <div className="text-slate-800 flex flex-col h-full overflow-hidden">
+                <h3 className="text-2xl font-bold text-cyan-800 mb-4 border-b border-slate-100 pb-3 flex-shrink-0">高雄市洗腎醫療院所名冊</h3>
+                <div className="overflow-y-auto flex-1 pr-2">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
+                    <thead className="bg-cyan-50 sticky top-0 z-10">
+                      <tr>
+                        <th className="p-3 sm:p-4 font-bold text-cyan-900 border-b border-cyan-100">醫院名稱</th>
+                        <th className="p-3 sm:p-4 font-bold text-cyan-900 border-b border-cyan-100">地址</th>
+                        <th className="p-3 sm:p-4 font-bold text-cyan-900 border-b border-cyan-100 text-right sm:text-left">電話</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {KAOHSIUNG_CLINICS_LIST.map((clinic, index) => (
+                        <tr key={index} className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
+                          <td className="p-3 sm:p-4 font-bold text-slate-700">{clinic.name}</td>
+                          <td className="p-3 sm:p-4 text-slate-600">{clinic.address}</td>
+                          <td className="p-3 sm:p-4 text-slate-600 whitespace-nowrap text-right sm:text-left">{clinic.phone}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             )}

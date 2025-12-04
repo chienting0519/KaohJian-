@@ -1,4 +1,5 @@
 
+
 export interface ServiceItem {
   title: string;
   items: string[];
@@ -40,4 +41,10 @@ export interface Doctor {
   specialties: string[];
   experience: string[];
   certifications: string[];
+}
+
+export interface Clinic {
+  name: string;
+  address: string;
+  phone: string;
 }

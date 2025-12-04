@@ -1,5 +1,6 @@
 
-import { OperatingHours, ServiceItem, Symptom, Article, Doctor } from './types';
+
+import { OperatingHours, ServiceItem, Symptom, Article, Doctor, Clinic } from './types';
 
 export const CLINIC_INFO = {
   name: "高健診所",
@@ -225,4 +226,17 @@ export const MEDICAL_TEAM: Doctor[] = [
       "台灣腎臟醫學會專科醫師"
     ]
   }
+];
+
+export const KAOHSIUNG_CLINICS_LIST: Clinic[] = [
+  { name: "高雄榮民總醫院", address: "高雄市左營區大中一路386號", phone: "07-342-2121" },
+  { name: "高雄醫學大學附設醫院", address: "高雄市三民區自由一路100號", phone: "07-312-1101" },
+  { name: "高雄長庚紀念醫院", address: "高雄市鳥松區大埤路123號", phone: "07-731-7123" },
+  { name: "義大醫院", address: "高雄市燕巢區角宿里義大路1號", phone: "07-615-0011" },
+  { name: "阮綜合醫院", address: "高雄市苓雅區成功一路162號", phone: "07-335-1121" },
+  { name: "高雄市立小港醫院", address: "高雄市小港區山明路482號", phone: "07-803-6783" },
+  { name: "健仁醫院", address: "高雄市楠梓區楠陽路136號", phone: "07-351-7166" },
+  { name: "國軍高雄總醫院", address: "高雄市苓雅區中正一路2號", phone: "07-749-6751" },
+  { name: "安泰醫院", address: "屏東縣東港鎮中正路一段210號", phone: "08-832-9966" },
+  { name: "高健診所", address: "812高雄市小港區沿海一路88號", phone: "07 802 7828" },
 ];
