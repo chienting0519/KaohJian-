@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, MapPin, MessageCircle, ChevronUp, ClipboardCheck, Stethoscope, Building2 } from 'lucide-react';
+import { Menu, X, Phone, MapPin, MessageCircle, ChevronUp, ClipboardCheck, Stethoscope, Building2, ExternalLink } from 'lucide-react';
 import { CLINIC_INFO, SERVICES } from './constants';
 import ServiceCard from './components/ServiceCard';
 import KidneyCheck from './components/KidneyCheck';
@@ -359,7 +358,7 @@ const App: React.FC = () => {
 
       <footer className="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
              <div>
                 <div className="flex items-center gap-3 mb-6">
                    <h3 className="text-xl font-bold text-white tracking-wide">{CLINIC_INFO.name}</h3>
@@ -394,6 +393,21 @@ const App: React.FC = () => {
                    <li><a href="#doctors" onClick={(e) => scrollToSection(e, 'doctors')} className="hover:text-lime-400 transition-colors block">醫師團隊</a></li>
                    <li><a href="#schedule" onClick={(e) => scrollToSection(e, 'schedule')} className="hover:text-lime-400 transition-colors block">門診時間</a></li>
                    <li><a href="#checkup" onClick={(e) => scrollToSection(e, 'checkup')} className="hover:text-lime-400 transition-colors block">腎臟檢測</a></li>
+                </ul>
+             </div>
+
+             {/* SEO Links Section */}
+             <div>
+                <h4 className="text-white font-bold text-lg mb-6 border-l-4 border-lime-500 pl-3">高雄透析醫療資源</h4>
+                <ul className="grid grid-cols-1 gap-2 text-slate-400 text-sm">
+                   <li><a href="https://www.kmhk.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 flex items-center gap-1"><ExternalLink className="w-3 h-3" />高雄市立小港醫院</a></li>
+                   <li><a href="https://www.vghks.gov.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 flex items-center gap-1"><ExternalLink className="w-3 h-3" />高雄榮民總醫院</a></li>
+                   <li><a href="https://www.kmuh.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 flex items-center gap-1"><ExternalLink className="w-3 h-3" />高雄醫學大學附設醫院</a></li>
+                   <li><a href="https://cghd.cgmh.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 flex items-center gap-1"><ExternalLink className="w-3 h-3" />高雄長庚紀念醫院</a></li>
+                   <li><a href="https://edah.edah.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 flex items-center gap-1"><ExternalLink className="w-3 h-3" />義大醫療財團法人</a></li>
+                   <li><a href="http://www.yuanhosp.com.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 flex items-center gap-1"><ExternalLink className="w-3 h-3" />阮綜合醫院</a></li>
+                   <li><a href="https://www.jiannren.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 flex items-center gap-1"><ExternalLink className="w-3 h-3" />健仁醫院</a></li>
+                   <li><a href="https://802.mnd.gov.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 flex items-center gap-1"><ExternalLink className="w-3 h-3" />國軍高雄總醫院</a></li>
                 </ul>
              </div>
           </div>
