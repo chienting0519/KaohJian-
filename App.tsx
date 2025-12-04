@@ -32,7 +32,8 @@ const App: React.FC = () => {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80;
+      // Offset calculation: Navbar (80px) + Marquee (approx 60px) = ~140px
+      const offset = 140;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -48,9 +49,9 @@ const App: React.FC = () => {
 
   // Marquee items data
   const marqueeItems = [
-    { label: '免費成人健檢', icon: <ClipboardCheck className="w-5 h-5 sm:w-6 sm:h-6" />, action: () => setInfoModal('checkup') },
-    { label: '洗腎參觀', icon: <Building2 className="w-5 h-5 sm:w-6 sm:h-6" />, action: () => setInfoModal('visit') },
-    { label: '門診掛號', icon: <Phone className="w-5 h-5 sm:w-6 sm:h-6" />, action: () => setInfoModal('booking') },
+    { label: '免費成人健檢', icon: <ClipboardCheck className="w-5 h-5" />, action: () => setInfoModal('checkup') },
+    { label: '洗腎參觀', icon: <Building2 className="w-5 h-5" />, action: () => setInfoModal('visit') },
+    { label: '門診掛號', icon: <Phone className="w-5 h-5" />, action: () => setInfoModal('booking') },
   ];
 
   return (
@@ -68,10 +69,10 @@ const App: React.FC = () => {
         }
       `}</style>
 
-      {/* Navigation */}
-      <nav className="fixed w-full z-40 bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-200 transition-all duration-300">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center h-20">
+      {/* Navigation - Fixed at top (h-20 = 80px) */}
+      <nav className="fixed top-0 left-0 w-full z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 transition-all duration-300 h-20">
+        <div className="container mx-auto px-4 h-full">
+          <div className="flex justify-between items-center h-full">
             {/* Logo */}
             <a href="#" onClick={scrollToTop} className="flex items-center gap-3 group">
               <ClinicLogo className="w-10 h-10 sm:w-12 sm:h-12 group-hover:scale-105 transition-transform" />
@@ -164,38 +165,41 @@ const App: React.FC = () => {
         )}
       </nav>
 
-      <main className="pt-20">
+      {/* Fixed Marquee Banner - Placed immediately below Navbar (top-20) */}
+      <div className="fixed top-20 left-0 w-full z-30 bg-cyan-900 border-b border-white/10 shadow-md h-14 flex items-center overflow-hidden">
+        <div className="flex animate-marquee whitespace-nowrap w-full">
+          {/* Repeat list multiple times for seamless loop */}
+          {[...Array(10)].map((_, i) => (
+            <div key={i} className="flex items-center gap-12 sm:gap-24 px-6 flex-shrink-0">
+              {marqueeItems.map((item, idx) => (
+                <button 
+                  key={`${i}-${idx}`} 
+                  onClick={item.action} 
+                  className="flex items-center gap-2 text-lg sm:text-xl font-bold text-cyan-50 hover:text-lime-300 transition-colors group"
+                >
+                  <span className="p-1 bg-white/10 rounded-full group-hover:bg-lime-400 group-hover:text-cyan-900 transition-colors">
+                      {item.icon}
+                  </span>
+                  <span>{item.label}</span>
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Main Content - Added padding top to account for Fixed Nav (80px) + Fixed Marquee (56px) = 136px */}
+      <main className="pt-[136px]">
         <section id="home" className="relative bg-gradient-to-br from-cyan-900 via-cyan-800 to-blue-900 text-white pt-20 pb-24 lg:pt-32 lg:pb-40 overflow-hidden">
           <div className="absolute inset-0 opacity-10 pattern-grid-lg"></div>
           <div className="absolute top-0 right-0 w-96 h-96 bg-lime-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -translate-y-1/2 translate-x-1/2"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 translate-y-1/2 -translate-x-1/2"></div>
           
           <div className="container mx-auto px-4 relative z-10">
-            
-            {/* Scrolling Marquee Banner */}
-            <div className="w-full overflow-hidden bg-white/10 backdrop-blur-md border-y border-white/20 mb-8 sm:mb-12 rounded-xl shadow-lg">
-              <div className="flex animate-marquee whitespace-nowrap py-3 sm:py-4">
-                {/* Repeat list multiple times for seamless loop */}
-                {[...Array(6)].map((_, i) => (
-                  <div key={i} className="flex items-center gap-12 sm:gap-24 px-6 sm:px-12">
-                    {marqueeItems.map((item, idx) => (
-                      <button 
-                        key={`${i}-${idx}`} 
-                        onClick={item.action} 
-                        className="flex items-center gap-2 sm:gap-3 text-2xl sm:text-3xl font-bold text-cyan-100 hover:text-lime-300 transition-colors group"
-                      >
-                        <span className="p-1.5 bg-white/10 rounded-full group-hover:bg-lime-400 group-hover:text-cyan-900 transition-colors">
-                            {item.icon}
-                        </span>
-                        <span>{item.label}</span>
-                      </button>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </div>
-
             <div className="max-w-5xl mx-auto text-center">
+              
+              {/* NOTE: Previous Marquee location was here, now removed as it is fixed at top */}
+
               <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-cyan-200 mb-8 tracking-wider">
                 小港在地的專業依靠，守護腎臟健康
               </h3>
