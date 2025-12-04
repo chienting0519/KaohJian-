@@ -32,8 +32,8 @@ const App: React.FC = () => {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      // Offset calculation: Navbar (80px) + Marquee (approx 60px) = ~140px
-      const offset = 140;
+      // Offset calculation: Navbar (80px) + Marquee (64px) + Buffer = ~150px
+      const offset = 150;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -49,9 +49,9 @@ const App: React.FC = () => {
 
   // Marquee items data
   const marqueeItems = [
-    { label: '免費成人健檢', icon: <ClipboardCheck className="w-5 h-5" />, action: () => setInfoModal('checkup') },
-    { label: '洗腎參觀', icon: <Building2 className="w-5 h-5" />, action: () => setInfoModal('visit') },
-    { label: '門診掛號', icon: <Phone className="w-5 h-5" />, action: () => setInfoModal('booking') },
+    { label: '免費成人健檢', icon: <ClipboardCheck className="w-6 h-6 sm:w-8 sm:h-8" />, action: () => setInfoModal('checkup') },
+    { label: '洗腎參觀', icon: <Building2 className="w-6 h-6 sm:w-8 sm:h-8" />, action: () => setInfoModal('visit') },
+    { label: '門診掛號', icon: <Phone className="w-6 h-6 sm:w-8 sm:h-8" />, action: () => setInfoModal('booking') },
   ];
 
   return (
@@ -165,8 +165,8 @@ const App: React.FC = () => {
         )}
       </nav>
 
-      {/* Fixed Marquee Banner - Placed immediately below Navbar (top-20) */}
-      <div className="fixed top-20 left-0 w-full z-30 bg-cyan-900 border-b border-white/10 shadow-md h-14 flex items-center overflow-hidden">
+      {/* Fixed Marquee Banner - h-16 (64px) | No borders | No shadows | Bigger Text */}
+      <div className="fixed top-20 left-0 w-full z-30 bg-cyan-900 h-16 flex items-center overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap w-full">
           {/* Repeat list multiple times for seamless loop */}
           {[...Array(10)].map((_, i) => (
@@ -175,9 +175,9 @@ const App: React.FC = () => {
                 <button 
                   key={`${i}-${idx}`} 
                   onClick={item.action} 
-                  className="flex items-center gap-2 text-lg sm:text-xl font-bold text-cyan-50 hover:text-lime-300 transition-colors group"
+                  className="flex items-center gap-3 text-2xl sm:text-3xl font-bold text-cyan-50 hover:text-lime-300 transition-colors group"
                 >
-                  <span className="p-1 bg-white/10 rounded-full group-hover:bg-lime-400 group-hover:text-cyan-900 transition-colors">
+                  <span className="p-1.5 bg-white/10 rounded-full group-hover:bg-lime-400 group-hover:text-cyan-900 transition-colors">
                       {item.icon}
                   </span>
                   <span>{item.label}</span>
@@ -188,8 +188,8 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Content - Added padding top to account for Fixed Nav (80px) + Fixed Marquee (56px) = 136px */}
-      <main className="pt-[136px]">
+      {/* Main Content - Added padding top: Fixed Nav (80px) + Fixed Marquee (64px) = 144px */}
+      <main className="pt-[144px]">
         <section id="home" className="relative bg-gradient-to-br from-cyan-900 via-cyan-800 to-blue-900 text-white pt-20 pb-24 lg:pt-32 lg:pb-40 overflow-hidden">
           <div className="absolute inset-0 opacity-10 pattern-grid-lg"></div>
           <div className="absolute top-0 right-0 w-96 h-96 bg-lime-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -translate-y-1/2 translate-x-1/2"></div>
@@ -198,8 +198,6 @@ const App: React.FC = () => {
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-5xl mx-auto text-center">
               
-              {/* NOTE: Previous Marquee location was here, now removed as it is fixed at top */}
-
               <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-cyan-200 mb-8 tracking-wider">
                 小港在地的專業依靠，守護腎臟健康
               </h3>
