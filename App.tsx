@@ -605,11 +605,11 @@ const App: React.FC = () => {
                         const isTarget = clinic.name === '高健診所';
                         return (
                           <tr key={index} className={`border-b border-slate-50 transition-colors ${isTarget ? 'bg-cyan-50/50 hover:bg-cyan-50' : 'hover:bg-slate-50'}`}>
-                            <td className={`p-3 sm:p-4 ${isTarget ? 'font-bold text-cyan-800 text-lg' : 'text-slate-100 font-normal blur-[1px]'}`}>
+                            <td className={`p-3 sm:p-4 ${isTarget ? 'font-bold text-cyan-800 text-lg' : 'text-slate-400 font-normal'}`}>
                               {clinic.name}
                             </td>
-                            <td className={`p-3 sm:p-4 ${isTarget ? 'text-slate-700 font-medium' : 'text-slate-100 blur-[1px]'}`}>{clinic.address}</td>
-                            <td className={`p-3 sm:p-4 whitespace-nowrap text-right sm:text-left ${isTarget ? 'text-slate-700 font-bold' : 'text-slate-100 blur-[1px]'}`}>{clinic.phone}</td>
+                            <td className={`p-3 sm:p-4 ${isTarget ? 'text-slate-700 font-medium' : 'text-slate-400'}`}>{clinic.address}</td>
+                            <td className={`p-3 sm:p-4 whitespace-nowrap text-right sm:text-left ${isTarget ? 'text-slate-700 font-bold' : 'text-slate-400'}`}>{clinic.phone}</td>
                           </tr>
                         );
                       })}
