@@ -17,12 +17,14 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
     }
   };
 
+  const IconComponent = () => getIcon(service.icon);
+
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border border-slate-100 flex flex-col h-full group hover:-translate-y-1">
       <div className="p-8 border-b border-slate-50 bg-gradient-to-br from-cyan-50/50 to-white">
         <div className="flex items-center gap-4 mb-4">
           <div className="p-3.5 bg-white rounded-xl shadow-sm border border-cyan-100 group-hover:border-cyan-200 transition-colors">
-            {getIcon(service.icon)}
+            <IconComponent />
           </div>
           <h3 className="text-2xl sm:text-3xl font-bold text-cyan-900 group-hover:text-cyan-700 transition-colors">{service.title}</h3>
         </div>

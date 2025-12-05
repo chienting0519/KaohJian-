@@ -2,7 +2,17 @@
 import { GoogleGenAI } from "@google/genai";
 import { CLINIC_INFO, SERVICES, SCHEDULE_CONTEXT } from '../constants';
 
-const apiKey = process.env.API_KEY || '';
+// Safe check for process.env in case it's not defined in the environment
+const getApiKey = () => {
+  try {
+    return process.env.API_KEY || '';
+  } catch (e) {
+    console.warn("Environment variable access failed");
+    return '';
+  }
+};
+
+const apiKey = getApiKey();
 
 let ai: GoogleGenAI | null = null;
 
