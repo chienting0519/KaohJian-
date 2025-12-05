@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 export const ClinicLogo = ({ className = "w-12 h-12" }: { className?: string }) => {
   const [imgError, setImgError] = useState(false);
 
-  // 如果圖片讀取失敗，自動降級顯示這個高品質的 SVG 向量 Logo
+  // 如果圖片讀取失敗 (例如 public 資料夾沒有 logo.png)，會自動切換顯示下方的備用 SVG
   if (imgError) {
     return (
+      // ★★★ 在這裡貼上您的 SVG 代碼 (方法二) ★★★
+      // 如果您有設計好的 SVG 程式碼，請直接替換下方的 <svg>...</svg> 整塊內容
       <svg
         viewBox="0 0 500 500"
         className={className}
@@ -63,10 +65,11 @@ export const ClinicLogo = ({ className = "w-12 h-12" }: { className?: string }) 
 
   return (
     <img 
-      src="/logo.webp" 
+      // ★★★ (方法一) 請將您的 Logo 檔案命名為 logo.png 並放入 public 資料夾 ★★★
+      src="/logo.png" 
       alt="高健診所 Logo" 
       className={`${className} object-contain`}
-      onError={() => setImgError(true)} // 圖片讀取失敗時觸發
+      onError={() => setImgError(true)} // 圖片讀取失敗時觸發，轉為顯示上方的 SVG
     />
   );
 };
