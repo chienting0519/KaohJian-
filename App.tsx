@@ -374,17 +374,24 @@ const App: React.FC = () => {
                 </div>
                 <p className="text-slate-400 mb-6 leading-relaxed">
                   高雄市民的健康就交給高健診所<br/>
-                  於提供小港地區最優質的洗腎與內科醫療服務。<br/>
-                  提供小港、鳳山、林園、大寮、前鎮溫馨接送。
+                  提供小港地區最優質的洗腎與內科醫療服務。<br/>
+                  <span className="text-lime-400 font-bold">小港、鳳山、林園、大寮、前鎮</span>溫馨接送
                 </p>
              </div>
              
              <div>
                 <h4 className="text-white font-bold text-lg mb-6 border-l-4 border-lime-500 pl-3">聯絡資訊</h4>
-                <ul className="space-y-4 text-slate-400">
+                <ul className="space-y-4 text-slate-400 mb-6">
                    <li className="flex items-start gap-3">
                       <MapPin className="w-5 h-5 text-lime-500 flex-shrink-0 mt-1" />
-                      <span>{CLINIC_INFO.address}</span>
+                      <a 
+                        href={CLINIC_INFO.mapLink} 
+                        target="_blank" 
+                        rel="noreferrer"
+                        className="hover:text-white transition-colors hover:underline"
+                      >
+                        {CLINIC_INFO.address}
+                      </a>
                    </li>
                    <li className="flex items-center gap-3">
                       <Phone className="w-5 h-5 text-lime-500 flex-shrink-0" />
@@ -393,6 +400,20 @@ const App: React.FC = () => {
                       </a>
                    </li>
                 </ul>
+
+                <div className="w-full h-48 bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-lg relative">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      frameBorder="0"
+                      title="高健診所地圖"
+                      marginHeight={0}
+                      marginWidth={0}
+                      scrolling="no"
+                      src={`https://maps.google.com/maps?q=${encodeURIComponent(CLINIC_INFO.address)}&t=&z=16&ie=UTF8&iwloc=&output=embed`}
+                      className="absolute inset-0 filter opacity-90 hover:opacity-100 transition-opacity"
+                    ></iframe>
+                </div>
              </div>
              
              <div>

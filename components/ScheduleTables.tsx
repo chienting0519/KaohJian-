@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const ScheduleTables: React.FC = () => {
@@ -9,7 +10,7 @@ const ScheduleTables: React.FC = () => {
         <div className="rounded-xl overflow-hidden shadow-md bg-white border border-cyan-100 ring-1 ring-cyan-50 h-full flex flex-col">
           <div className="bg-cyan-600 py-4 px-4 text-white text-center shadow-sm relative overflow-hidden flex-shrink-0">
             <div className="absolute top-0 right-0 w-20 h-20 bg-white opacity-10 rounded-full blur-xl transform translate-x-4 -translate-y-4"></div>
-            <h3 className="text-lg md:text-xl font-bold tracking-[0.2em] leading-snug drop-shadow-sm relative z-10">洗 腎 透 析 時 段</h3>
+            <h3 className="text-2xl md:text-3xl font-bold tracking-[0.2em] leading-snug drop-shadow-sm relative z-10">洗 腎 透 析 時 段</h3>
           </div>
           
           <div className="w-full text-slate-700 flex-1 flex flex-col text-sm">
@@ -61,7 +62,7 @@ const ScheduleTables: React.FC = () => {
         <div className="rounded-xl overflow-hidden shadow-md bg-white border border-lime-100 ring-1 ring-lime-50 h-full flex flex-col">
           <div className="bg-[#a3d154] py-4 px-4 text-white text-center shadow-sm relative overflow-hidden flex-shrink-0">
             <div className="absolute top-0 right-0 w-20 h-20 bg-white opacity-10 rounded-full blur-xl transform translate-x-4 -translate-y-4"></div>
-            <h3 className="text-lg md:text-xl font-bold tracking-[0.2em] leading-snug drop-shadow-sm relative z-10">門 診 時 段</h3>
+            <h3 className="text-2xl md:text-3xl font-bold tracking-[0.2em] leading-snug drop-shadow-sm relative z-10">門 診 時 段</h3>
           </div>
           
           <div className="w-full text-slate-700 flex-1 flex flex-col text-sm">
