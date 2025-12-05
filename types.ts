@@ -48,3 +48,10 @@ export interface Clinic {
   address: string;
   phone: string;
 }
+
+export interface AllianceHospital {
+  name: string;
+  url: string;
+  address: string;
+  phone: string;
+}

@@ -1,6 +1,6 @@
 
 
-import { OperatingHours, ServiceItem, Symptom, Article, Doctor, Clinic } from './types';
+import { OperatingHours, ServiceItem, Symptom, Article, Doctor, Clinic, AllianceHospital } from './types';
 
 export const CLINIC_INFO = {
   name: "高健診所",
@@ -322,4 +322,67 @@ export const KAOHSIUNG_CLINICS_LIST: Clinic[] = [
   { name: "壬禾診所", address: "高雄市鼓山區美術南三路82號", phone: "07-5557300" },
   { name: "裕禾診所", address: "高雄市前鎮區南天街125號", phone: "07-3313811" },
   { name: "為好診所", address: "高雄市鼓山區九如四路957號", phone: "07-5215489#112" }
+];
+
+export const ALLIANCE_HOSPITALS: AllianceHospital[] = [
+  { 
+    name: "高雄市政府衛生局", 
+    address: "高雄市苓雅區凱旋二路132-1號", 
+    phone: "07-7134000", 
+    url: "https://health.kcg.gov.tw/" 
+  },
+  { 
+    name: "高雄小港衛生局", 
+    address: "高雄市小港區小港路158號", 
+    phone: "07-8216939", 
+    url: "https://sig.kcg.gov.tw/" 
+  },
+  { 
+    name: "高雄市立小港醫院", 
+    address: "高雄市小港區山明路482號", 
+    phone: "07-8036783", 
+    url: "https://www.kmhk.org.tw/" 
+  },
+  { 
+    name: "高雄榮民總醫院", 
+    address: "高雄市左營區大中一路386號", 
+    phone: "07-3422121", 
+    url: "https://www.vghks.gov.tw/" 
+  },
+  { 
+    name: "高雄醫學大學附設醫院", 
+    address: "高雄市三民區自由一路100號", 
+    phone: "07-3121101", 
+    url: "https://www.kmuh.org.tw/" 
+  },
+  { 
+    name: "高雄長庚紀念醫院", 
+    address: "高雄市鳥松區大埤路123號", 
+    phone: "07-7317123", 
+    url: "https://www.cgmh.org.tw/tw/Systems/AreaInfo/10" 
+  },
+  { 
+    name: "義大醫療財團法人", 
+    address: "高雄市燕巢區角宿村義大路1號", 
+    phone: "07-6150011", 
+    url: "https://www.edah.org.tw/" 
+  },
+  { 
+    name: "阮綜合醫院", 
+    address: "高雄市苓雅區成功一路62號", 
+    phone: "07-3342765", 
+    url: "http://www.yuanhosp.com.tw/" 
+  },
+  { 
+    name: "健仁醫院", 
+    address: "高雄市楠梓區楠陽路136號", 
+    phone: "07-3529393", 
+    url: "https://www.jiannren.org.tw/" 
+  },
+  { 
+    name: "國軍高雄總醫院", 
+    address: "高雄市苓雅區中正一路2號", 
+    phone: "07-7496592", 
+    url: "https://802.mnd.gov.tw/" 
+  }
 ];

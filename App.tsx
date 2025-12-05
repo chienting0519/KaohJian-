@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, MapPin, MessageCircle, ChevronUp, ClipboardCheck, Stethoscope, Building2, ExternalLink } from 'lucide-react';
-import { CLINIC_INFO, SERVICES, KAOHSIUNG_CLINICS_LIST } from './constants';
+import { CLINIC_INFO, SERVICES, KAOHSIUNG_CLINICS_LIST, ALLIANCE_HOSPITALS } from './constants';
 import ServiceCard from './components/ServiceCard';
 import KidneyCheck from './components/KidneyCheck';
 import AIChat from './components/AIChat';
@@ -10,12 +10,14 @@ import ScheduleTables from './components/ScheduleTables';
 import { ClinicLogo } from './components/ClinicLogo';
 import KnowledgeColumn from './components/KnowledgeColumn';
 import MedicalTeam from './components/MedicalTeam';
+import { AllianceHospital } from './types';
 
 const App: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [infoModal, setInfoModal] = useState<'checkup' | 'visit' | 'booking' | 'kaohsiung_clinics' | null>(null);
+  const [infoModal, setInfoModal] = useState<'checkup' | 'visit' | 'booking' | 'kaohsiung_clinics' | 'alliance' | null>(null);
+  const [selectedAllianceHospital, setSelectedAllianceHospital] = useState<AllianceHospital | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,6 +48,11 @@ const App: React.FC = () => {
       });
       setIsMenuOpen(false);
     }
+  };
+
+  const handleAllianceClick = (hospital: AllianceHospital) => {
+    setSelectedAllianceHospital(hospital);
+    setInfoModal('alliance');
   };
 
   // Marquee items data
@@ -407,18 +414,20 @@ const App: React.FC = () => {
                 </ul>
              </div>
 
-             {/* SEO Links Section */}
+             {/* SEO Links Section - Alliance Hospitals with Modal */}
              <div>
                 <h4 className="text-white font-bold text-lg mb-6 border-l-4 border-lime-500 pl-3">高雄醫療照護聯盟</h4>
                 <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-slate-400 text-sm">
-                   <li><a href="https://www.kmhk.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">高雄市立小港醫院</a></li>
-                   <li><a href="https://www.vghks.gov.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">高雄榮民總醫院</a></li>
-                   <li><a href="https://www.kmuh.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">高雄醫學大學附設醫院</a></li>
-                   <li><a href="https://www.cgmh.org.tw/tw/Systems/AreaInfo/10" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">高雄長庚紀念醫院</a></li>
-                   <li><a href="https://www.edah.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">義大醫療財團法人</a></li>
-                   <li><a href="http://www.yuanhosp.com.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">阮綜合醫院</a></li>
-                   <li><a href="https://www.jiannren.org.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">健仁醫院</a></li>
-                   <li><a href="https://802.mnd.gov.tw/" target="_blank" rel="noreferrer" className="hover:text-lime-400 block">國軍高雄總醫院</a></li>
+                   {ALLIANCE_HOSPITALS.map((hospital, idx) => (
+                      <li key={idx}>
+                        <button 
+                          onClick={() => handleAllianceClick(hospital)}
+                          className="hover:text-lime-400 block text-left w-full transition-colors"
+                        >
+                          {hospital.name}
+                        </button>
+                      </li>
+                   ))}
                 </ul>
              </div>
           </div>
@@ -438,7 +447,7 @@ const App: React.FC = () => {
             className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
             onClick={() => setInfoModal(null)}
           ></div>
-          <div className={`bg-white rounded-2xl w-full ${infoModal === 'kaohsiung_clinics' ? 'max-w-4xl max-h-[85vh]' : 'max-w-md'} p-6 sm:p-8 relative z-10 animate-in zoom-in-95 shadow-2xl flex flex-col`}>
+          <div className={`bg-white rounded-2xl w-full ${['kaohsiung_clinics', 'alliance'].includes(infoModal || '') ? 'max-w-4xl max-h-[85vh]' : 'max-w-md'} p-6 sm:p-8 relative z-10 animate-in zoom-in-95 shadow-2xl flex flex-col`}>
             <button 
               onClick={() => setInfoModal(null)} 
               className="absolute top-4 right-4 p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors z-20"
@@ -605,16 +614,89 @@ const App: React.FC = () => {
                         const isTarget = clinic.name === '高健診所';
                         return (
                           <tr key={index} className={`border-b border-slate-50 transition-colors ${isTarget ? 'bg-cyan-50/50 hover:bg-cyan-50' : 'hover:bg-slate-50'}`}>
-                            <td className={`p-3 sm:p-4 ${isTarget ? 'font-bold text-cyan-800 text-lg' : 'text-slate-400 font-normal'}`}>
+                            <td className={`p-3 sm:p-4 ${isTarget ? 'font-bold text-cyan-800 text-lg' : 'text-slate-200 font-normal'}`}>
                               {clinic.name}
                             </td>
-                            <td className={`p-3 sm:p-4 ${isTarget ? 'text-slate-700 font-medium' : 'text-slate-400'}`}>{clinic.address}</td>
-                            <td className={`p-3 sm:p-4 whitespace-nowrap text-right sm:text-left ${isTarget ? 'text-slate-700 font-bold' : 'text-slate-400'}`}>{clinic.phone}</td>
+                            <td className={`p-3 sm:p-4 ${isTarget ? 'text-slate-700 font-medium' : 'text-slate-200'}`}>{clinic.address}</td>
+                            <td className={`p-3 sm:p-4 whitespace-nowrap text-right sm:text-left ${isTarget ? 'text-slate-700 font-bold' : 'text-slate-200'}`}>{clinic.phone}</td>
                           </tr>
                         );
                       })}
                     </tbody>
                   </table>
+                </div>
+              </div>
+            )}
+
+            {/* Alliance Hospital Info Modal */}
+            {infoModal === 'alliance' && selectedAllianceHospital && (
+              <div className="text-slate-800 flex flex-col h-full overflow-hidden">
+                <div className="mb-4 border-b border-slate-100 pb-3 flex-shrink-0">
+                    <span className="text-cyan-600 font-bold text-xs tracking-wider mb-1 block">高雄醫療照護聯盟</span>
+                    <h3 className="text-2xl font-bold text-slate-800 leading-tight">{selectedAllianceHospital.name}</h3>
+                </div>
+
+                <div className="flex-1 overflow-y-auto pr-1">
+                    <div className="grid md:grid-cols-2 gap-6 h-full">
+                        <div className="space-y-6">
+                            <div className="bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                                <div className="flex items-start gap-4 mb-6">
+                                    <div className="w-10 h-10 rounded-full bg-cyan-100 flex items-center justify-center flex-shrink-0 text-cyan-700 shadow-sm">
+                                        <MapPin className="w-5 h-5" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-slate-500 text-xs uppercase tracking-wide mb-1">醫院地址</h4>
+                                        <p className="text-slate-900 text-lg font-bold leading-snug">{selectedAllianceHospital.address}</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-4">
+                                     <div className="w-10 h-10 rounded-full bg-lime-100 flex items-center justify-center flex-shrink-0 text-lime-700 shadow-sm">
+                                        <Phone className="w-5 h-5" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-slate-500 text-xs uppercase tracking-wide mb-1">聯絡電話</h4>
+                                        <p className="text-slate-900 text-xl font-bold tracking-wide font-mono">{selectedAllianceHospital.phone}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex flex-col gap-3">
+                                 <a 
+                                    href={`tel:${selectedAllianceHospital.phone.split('#')[0]}`} // Strip extension for calling
+                                    className="flex items-center justify-center gap-3 w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-lg py-4 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                                  >
+                                    <Phone className="w-5 h-5" />
+                                    立即撥打電話
+                                  </a>
+                                  
+                                  <a 
+                                    href={selectedAllianceHospital.url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="flex items-center justify-center gap-2 w-full bg-white border border-slate-200 hover:border-cyan-300 hover:bg-cyan-50 text-slate-600 hover:text-cyan-800 font-bold text-base py-3 rounded-xl transition-all"
+                                  >
+                                     <ExternalLink className="w-4 h-4" />
+                                     前往官方網站
+                                  </a>
+                            </div>
+                        </div>
+
+                        {/* Map Iframe */}
+                        <div className="h-64 md:h-auto min-h-[300px] bg-slate-100 rounded-2xl overflow-hidden border border-slate-200 shadow-inner relative">
+                             <iframe
+                               width="100%"
+                               height="100%"
+                               frameBorder="0"
+                               title={`${selectedAllianceHospital.name} 地圖`}
+                               marginHeight={0}
+                               marginWidth={0}
+                               scrolling="no"
+                               src={`https://maps.google.com/maps?q=${encodeURIComponent(selectedAllianceHospital.address)}&t=&z=16&ie=UTF8&iwloc=&output=embed`}
+                               className="absolute inset-0"
+                             ></iframe>
+                        </div>
+                    </div>
                 </div>
               </div>
             )}
