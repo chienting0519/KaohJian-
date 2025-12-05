@@ -83,7 +83,7 @@ const App: React.FC = () => {
           <div className="flex justify-between items-center h-full">
             {/* Logo */}
             <a href="#" onClick={scrollToTop} className="flex items-center gap-3 group">
-              <ClinicLogo className="w-10 h-10 sm:w-12 sm:h-12 group-hover:scale-105 transition-transform" />
+              <ClinicLogo className="w-14 h-14 sm:w-16 sm:h-16 group-hover:scale-105 transition-transform" />
               <div>
                 <h1 className="text-xl sm:text-2xl font-bold text-cyan-900 tracking-tight group-hover:text-cyan-700 transition-colors">
                   {CLINIC_INFO.name}
