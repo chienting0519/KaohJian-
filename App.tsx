@@ -1,16 +1,16 @@
-
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { Menu, X, Phone, MapPin, MessageCircle, ChevronUp, ClipboardCheck, Stethoscope, Building2, ExternalLink } from 'lucide-react';
 import { CLINIC_INFO, SERVICES, KAOHSIUNG_CLINICS_LIST, ALLIANCE_HOSPITALS } from './constants';
 import ServiceCard from './components/ServiceCard';
 import KidneyCheck from './components/KidneyCheck';
-import AIChat from './components/AIChat';
 import ScheduleTables from './components/ScheduleTables';
 import { ClinicLogo } from './components/ClinicLogo';
 import KnowledgeColumn from './components/KnowledgeColumn';
 import MedicalTeam from './components/MedicalTeam';
 import { AllianceHospital } from './types';
+
+// Lazy load AIChat to avoid loading the heavy Gemini SDK on initial page load
+const AIChat = React.lazy(() => import('./components/AIChat'));
 
 const App: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -438,7 +438,36 @@ const App: React.FC = () => {
         </div>
       </footer>
 
-      <AIChat isOpen={isChatOpen} setIsOpen={setIsChatOpen} />
+      {/* Lazy Loaded AIChat */}
+      <div className="fixed bottom-6 right-6 z-50 font-sans">
+        {/* Floating Button (Rendered immediately to avoid layout shift, but Chat is lazy loaded) */}
+        {!isChatOpen && (
+          <button
+            onClick={() => setIsChatOpen(true)}
+            className="group bg-cyan-600 hover:bg-cyan-700 text-white p-4 rounded-full shadow-lg hover:shadow-cyan-500/30 transition-all duration-300 flex items-center gap-3 pr-6 hover:-translate-y-1"
+          >
+            <div className="relative">
+               <MessageCircle className="w-7 h-7" />
+               <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-red-500 rounded-full border-2 border-cyan-600 animate-pulse"></span>
+            </div>
+            <div className="text-left">
+              <div className="text-xs text-cyan-200 font-medium mb-0.5">有問題嗎？</div>
+              <div className="text-base font-bold tracking-wide">詢問 AI 助理</div>
+            </div>
+          </button>
+        )}
+        
+        {/* Chat Window - Only loaded when chat is open */}
+        {isChatOpen && (
+           <Suspense fallback={
+             <div className="bg-white rounded-2xl shadow-2xl mb-4 w-[90vw] sm:w-[380px] h-[550px] flex items-center justify-center border border-cyan-100">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-600"></div>
+             </div>
+           }>
+               <AIChat isOpen={isChatOpen} setIsOpen={setIsChatOpen} />
+           </Suspense>
+        )}
+      </div>
       
       {/* Information Modal */}
       {infoModal && (
