@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 export const ClinicLogo = ({ className = "w-12 h-12" }: { className?: string }) => {
   const [imgError, setImgError] = useState(false);
 
-  // 如果圖片讀取失敗 (例如 public 資料夾沒有 logo.png)，會自動切換顯示下方的備用 SVG
+  // 如果圖片讀取失敗 (例如 public 資料夾沒有 logo.webp)，會自動切換顯示下方的備用 SVG
   if (imgError) {
     return (
       // ★★★ 在這裡貼上您的 SVG 代碼 (方法二) ★★★
@@ -65,8 +65,8 @@ export const ClinicLogo = ({ className = "w-12 h-12" }: { className?: string }) 
 
   return (
     <img 
-      // ★★★ (方法一) 請將您的 Logo 檔案命名為 logo.png 並放入 public 資料夾 ★★★
-      src="/logo.png" 
+      // ★★★ (方法一) 請將您的 Logo 檔案命名為 logo.webp 並放入 public 資料夾 ★★★
+      src="/logo.webp" 
       alt="高健診所 Logo" 
       className={`${className} object-contain`}
       onError={() => setImgError(true)} // 圖片讀取失敗時觸發，轉為顯示上方的 SVG
