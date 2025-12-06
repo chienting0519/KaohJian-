@@ -1,9 +1,10 @@
 
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { ClipboardCheck, Stethoscope, MessageCircle } from 'lucide-react';
+import { ClipboardCheck, Stethoscope } from 'lucide-react';
 import SEO from '../components/SEO';
 import { LayoutContext } from '../components/Layout';
+import { DoctorIcon } from '../components/DoctorIcon';
 
 const Home: React.FC = () => {
   const { setIsChatOpen } = useContext(LayoutContext);
@@ -98,7 +99,9 @@ const Home: React.FC = () => {
                     onClick={() => setIsChatOpen(true)}
                     className="w-full sm:w-auto bg-cyan-500 hover:bg-cyan-400 text-white px-8 py-4 rounded-full font-bold text-xl transition-all shadow-lg shadow-cyan-500/30 text-center transform hover:-translate-y-1 cursor-pointer flex items-center justify-center gap-4 ring-2 ring-white/20"
                   >
-                    <MessageCircle className="w-9 h-9 flex-shrink-0" />
+                    <div className="w-10 h-10 flex-shrink-0 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm shadow-sm border border-white/30">
+                        <DoctorIcon className="w-8 h-8" />
+                    </div>
                     <div className="flex flex-col items-start text-left">
                         <span className="leading-none mb-1.5">諮詢高健 AI 助理</span>
                         <div className="flex items-center gap-2">

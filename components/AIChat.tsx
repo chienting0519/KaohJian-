@@ -4,6 +4,7 @@ import { X, Send, Loader2, UserRound, Phone } from 'lucide-react';
 import { sendMessageToGemini } from '../services/geminiService';
 import { ChatMessage } from '../types';
 import { CLINIC_INFO } from '../constants';
+import { DoctorIcon } from './DoctorIcon';
 
 interface AIChatProps {
   isOpen: boolean;
@@ -203,8 +204,8 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
       {/* Header */}
       <div className="bg-gradient-to-r from-cyan-700 to-cyan-600 p-4 flex justify-between items-center text-white shadow-md">
         <div className="flex items-center gap-3">
-          <div className="bg-white/10 p-2 rounded-full border border-white/20 backdrop-blur-sm">
-            <UserRound className="w-6 h-6" />
+          <div className="w-10 h-10 bg-white/10 rounded-full border-2 border-white/30 backdrop-blur-sm p-0.5 shadow-sm">
+             <DoctorIcon className="w-full h-full" />
           </div>
           <div>
             <h3 className="font-bold text-base tracking-wide text-white">高健 AI 助理</h3>
@@ -224,12 +225,12 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
         {messages.map((msg, idx) => (
           <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             {msg.role === 'model' && (
-                <div className="w-8 h-8 rounded-full bg-cyan-100 border border-cyan-200 flex items-center justify-center mr-2 flex-shrink-0 self-start mt-1 shadow-sm">
-                    <UserRound className="w-5 h-5 text-cyan-700" />
+                <div className="w-9 h-9 mr-2 flex-shrink-0 self-start mt-1 drop-shadow-sm">
+                    <DoctorIcon className="w-full h-full" />
                 </div>
             )}
             <div 
-              className={`max-w-[88%] rounded-2xl px-5 py-4 text-[15px] shadow-sm ${
+              className={`max-w-[85%] rounded-2xl px-5 py-4 text-[15px] shadow-sm ${
                 msg.role === 'user' 
                   ? 'bg-cyan-600 text-white rounded-tr-none' 
                   : 'bg-white text-slate-900 font-bold border border-slate-200 rounded-tl-none'
@@ -241,8 +242,8 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
         ))}
         {isLoading && (
           <div className="flex justify-start">
-            <div className="w-8 h-8 rounded-full bg-cyan-100 border border-cyan-200 flex items-center justify-center mr-2 flex-shrink-0">
-                <UserRound className="w-5 h-5 text-cyan-700" />
+            <div className="w-9 h-9 mr-2 flex-shrink-0 drop-shadow-sm">
+                <DoctorIcon className="w-full h-full" />
             </div>
             <div className="bg-white border border-slate-200 rounded-2xl rounded-tl-none px-5 py-4 shadow-sm flex items-center gap-3">
               <Loader2 className="w-4 h-4 animate-spin text-cyan-600" />

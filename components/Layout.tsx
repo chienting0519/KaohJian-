@@ -1,10 +1,11 @@
 
 import React, { useState, useEffect, Suspense, createContext } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, MapPin, ChevronUp, ClipboardCheck, Building2, ExternalLink, MessageCircle } from 'lucide-react';
+import { Menu, X, Phone, MapPin, ChevronUp, ClipboardCheck, Building2, ExternalLink } from 'lucide-react';
 import { CLINIC_INFO, ALLIANCE_HOSPITALS } from '../constants';
 import { ClinicLogo } from './ClinicLogo';
 import { AllianceHospital } from '../types';
+import { DoctorIcon } from './DoctorIcon';
 
 const AIChat = React.lazy(() => import('./AIChat'));
 
@@ -305,10 +306,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         {isChatOpen === false && (
           <button
             onClick={() => setIsChatOpen(true)}
-            className="group bg-cyan-600 hover:bg-cyan-700 text-white p-4 rounded-full shadow-lg hover:shadow-cyan-500/30 transition-all duration-300 flex items-center gap-3 pr-6 hover:-translate-y-1"
+            className="group bg-cyan-600 hover:bg-cyan-700 text-white p-3 rounded-full shadow-lg hover:shadow-cyan-500/30 transition-all duration-300 flex items-center gap-3 pr-6 hover:-translate-y-1"
           >
             <div className="relative">
-               <MessageCircle className="w-7 h-7" />
+               <DoctorIcon className="w-11 h-11 border-2 border-white rounded-full shadow-md bg-white" />
                <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-red-500 rounded-full border-2 border-cyan-600 animate-pulse"></span>
             </div>
             <div className="text-left">
