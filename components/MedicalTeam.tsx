@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { MEDICAL_TEAM } from '../constants';
 import { Stethoscope, Award, Building2, Medal, UserRound } from 'lucide-react';

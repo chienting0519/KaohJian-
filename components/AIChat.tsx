@@ -107,7 +107,7 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
         }
 
         // Handle [[Warning]] -> Red Text (Bold & Red)
-        if (part.startsWith('[[') && part.endsWith(']]')) {
+        if (part.startsWith('[') && part.endsWith(']')) {
             const warning = part.slice(2, -2);
             return (
                 <span key={partIdx} className="text-red-600 font-extrabold mx-0.5 px-1 bg-red-50 rounded border border-red-100 shadow-sm text-[1.05em]">

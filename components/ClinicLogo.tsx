@@ -52,7 +52,7 @@ export const ClinicLogo = ({ className = "w-12 h-12" }: { className?: string }) 
 
         {/* Connecting Tubes */}
         <path d="M 220 240 Q 220 280 235 280 L 235 380" fill="none" stroke="#155e75" strokeWidth="6" />
-        <path d="M 280 240 Q 280 280 265 280 L 265 380" fill="none" stroke="#155e75" strokeWidth="6" />
+        <path d="M 280 240 Q 280 265 280 L 265 380" fill="none" stroke="#155e75" strokeWidth="6" />
 
         {/* Stars/Sparkles */}
         <path d="M 120 180 L 125 195 L 140 200 L 125 205 L 120 220 L 115 205 L 100 200 L 115 195 Z" fill="#ffffff" />

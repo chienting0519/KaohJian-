@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { KIDNEY_SYMPTOMS, CLINIC_INFO } from '../constants';
 import { AlertCircle, CheckCircle2, ArrowRight, RotateCcw, AlertTriangle, Cloud, Wind, Droplets, Sparkles, Leaf } from 'lucide-react';

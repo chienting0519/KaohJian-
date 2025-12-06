@@ -1,5 +1,3 @@
-
-
 import { OperatingHours, ServiceItem, Symptom, Article, Doctor, Clinic, AllianceHospital } from './types';
 
 export const CLINIC_INFO = {
