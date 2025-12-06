@@ -30,7 +30,7 @@ const TrafficGuide: React.FC = () => {
                      專屬接送服務
                    </h3>
                    <p className="text-slate-700 text-lg leading-relaxed font-bold">
-                     高健診所位於小港區交通樞紐，提供鳳山、林園、大寮與前鎮地區腎友<span className="text-lime-600 font-extrabold text-xl mx-1 px-1 bg-lime-50 rounded">溫馨接送服務</span>。我們了解跨區就醫的不便，因此特別規劃了舒適安全的交通車隊，由經驗豐富的駕駛大哥協助，讓長輩與行動不便的腎友能準時、平安地往返診所與住家，家屬也能更放心。
+                     高健診所位於小港區交通樞紐，提供<span className="text-lime-600 font-extrabold mx-1">鳳山、林園、大寮與前鎮</span>地區腎友<span className="text-lime-600 font-extrabold text-xl mx-1 px-1 bg-lime-50 rounded">溫馨接送服務</span>。我們了解跨區就醫的不便，因此特別規劃了舒適安全的交通車隊，由經驗豐富的駕駛大哥協助，讓長輩與行動不便的腎友能準時、平安地往返診所與住家，家屬也能更放心。
                    </p>
                    <div className="mt-6">
                       <a 
