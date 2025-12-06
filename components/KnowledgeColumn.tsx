@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ARTICLES } from '../constants';
@@ -21,7 +22,7 @@ const KnowledgeColumn: React.FC = () => {
             </span>
           </div>
           
-          <Link to={`/knowledge/${article.id}`} className="block">
+          <Link to={`/knowledge/${article.slug}`} className="block">
             <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-cyan-700 transition-colors line-clamp-1">
               {article.title}
             </h3>
@@ -41,7 +42,7 @@ const KnowledgeColumn: React.FC = () => {
                 ))}
              </div>
              <Link 
-               to={`/knowledge/${article.id}`}
+               to={`/knowledge/${article.slug}`}
                className="text-cyan-600 font-bold text-sm flex items-center gap-1 group-hover:translate-x-1 transition-transform cursor-pointer"
              >
                閱讀更多 <ArrowRight className="w-4 h-4" />

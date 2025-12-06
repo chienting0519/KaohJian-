@@ -5,8 +5,10 @@ import { ARTICLES, CLINIC_INFO } from '../constants';
 import { Calendar, Tag, ArrowLeft, Phone, UserRound } from 'lucide-react';
 
 const ArticleDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const article = ARTICLES.find(a => a.id === id);
+  // Use 'slug' from URL parameters
+  const { slug } = useParams<{ slug: string }>();
+  // Find article by slug
+  const article = ARTICLES.find(a => a.slug === slug);
 
   // SEO: Dynamic Metadata Injection
   useEffect(() => {

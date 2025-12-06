@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 export const DoctorIcon = ({ className = "w-full h-full" }: { className?: string }) => {
@@ -38,9 +39,19 @@ export const DoctorIcon = ({ className = "w-full h-full" }: { className?: string
       <circle cx="29" cy="42" r="4" className="fill-[#ffdec8]" />
       <circle cx="71" cy="42" r="4" className="fill-[#ffdec8]" />
 
-      {/* 頭髮 (旁分) */}
-      <path d="M28 35C28 20 38 10 50 10C65 10 74 20 72 38C72 38 74 30 72 25C70 15 60 12 50 12C40 12 30 18 28 35Z" className="fill-slate-700" />
-      <path d="M72 30C72 30 73 38 72 42L72 35C74 30 72 30 72 30Z" className="fill-slate-700" />
+      {/* 頭髮 (修復版 - 更穩固的路徑) */}
+      <path
+        d="M28 44
+           C 28 22, 36 12, 50 12
+           C 64 12, 72 22, 72 44
+           V 46
+           Q 72 36, 64 30
+           Q 56 24, 50 24
+           Q 38 24, 28 38
+           V 46
+           Z"
+        className="fill-slate-700"
+      />
 
       {/* 五官 */}
       {/* 眼鏡 */}

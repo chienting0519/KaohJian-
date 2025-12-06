@@ -25,7 +25,8 @@ const App: React.FC = () => {
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/checkup" element={<Checkup />} />
           <Route path="/knowledge" element={<Knowledge />} />
-          <Route path="/knowledge/:id" element={<ArticleDetail />} />
+          {/* Change path param from :id to :slug for SEO friendly URLs */}
+          <Route path="/knowledge/:slug" element={<ArticleDetail />} />
           <Route path="/traffic" element={<TrafficGuide />} />
           <Route path="/clinics" element={<ClinicsList />} />
           {/* Catch all to home */}

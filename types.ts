@@ -26,12 +26,13 @@ export interface ChatMessage {
 
 export interface Article {
   id: string;
+  slug: string; // 新增 slug 用於 SEO 網址
   title: string;
   summary: string;
   date: string;
   category: string;
   tags: string[];
-  content: string; // 新增內文欄位
+  content: string;
 }
 
 export interface Doctor {

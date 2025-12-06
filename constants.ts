@@ -101,6 +101,7 @@ export const KIDNEY_SYMPTOMS: Symptom[] = [
 export const ARTICLES: Article[] = [
   {
     id: '5',
+    slug: 'kidney-failure-warning-signs',
     title: '【名醫專欄】喘到只能趴著睡？出現這 5 大徵兆，恐是腎臟在喊救命！',
     summary: '台灣素有「洗腎王國」之稱。腎臟不只是排尿的器官，更掌管全身水分代謝。若出現嚴重水腫、泡泡尿、不明疲倦等徵兆，恐是腎臟在喊救命。',
     date: '2024.12.06',
@@ -150,6 +151,7 @@ export const ARTICLES: Article[] = [
   },
   {
     id: '1',
+    slug: 'foamy-urine-kidney-disease-check',
     title: '泡泡尿是腎臟病嗎？3分鐘教你自我判斷',
     summary: '許多人看到小便有泡泡就擔心是腎虧或腎臟病。其實泡泡尿不等於蛋白尿，透過簡單的觀察原則，您可以初步篩檢風險。',
     date: '2024.03.15',
@@ -173,6 +175,7 @@ export const ARTICLES: Article[] = [
   },
   {
     id: '2',
+    slug: 'diabetes-kidney-protection-diet',
     title: '糖尿病友如何護腎？飲食控制是關鍵',
     summary: '糖尿病是造成台灣洗腎人口第一名的主因。控制血糖與血壓，搭配低蛋白飲食原則，能有效延緩腎功能惡化。',
     date: '2024.02.28',
@@ -197,6 +200,7 @@ export const ARTICLES: Article[] = [
   },
   {
     id: '3',
+    slug: 'hemodialysis-peritoneal-dialysis-intro',
     title: '洗腎不可怕！認識血液透析與腹膜透析',
     summary: '當腎臟功能無法維持身體運作時，透析治療能幫助您延續生活品質。高健診所提供高品質的血液透析環境，讓病患安心治療。',
     date: '2024.01.10',
@@ -225,6 +229,7 @@ export const ARTICLES: Article[] = [
   },
   {
     id: '4',
+    slug: 'gout-high-uric-acid-kidney-damage',
     title: '痛風與高尿酸：隱形的腎臟殺手',
     summary: '高尿酸不僅會引起關節疼痛，長期結晶沉積更會傷害腎臟間質。定期追蹤尿酸值並多喝水，是預防關鍵。',
     date: '2023.12.05',
