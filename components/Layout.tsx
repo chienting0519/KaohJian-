@@ -1,7 +1,8 @@
+
 import React, { useState, useEffect, Suspense } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, MapPin, MessageCircle, ChevronUp, ClipboardCheck, Stethoscope, Building2, ExternalLink } from 'lucide-react';
-import { CLINIC_INFO, KAOHSIUNG_CLINICS_LIST, ALLIANCE_HOSPITALS } from '../constants';
+import { CLINIC_INFO, ALLIANCE_HOSPITALS } from '../constants';
 import { ClinicLogo } from './ClinicLogo';
 import { AllianceHospital } from '../types';
 
@@ -11,7 +12,7 @@ const Layout: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [infoModal, setInfoModal] = useState<'checkup' | 'visit' | 'booking' | 'kaohsiung_clinics' | 'alliance' | null>(null);
+  const [infoModal, setInfoModal] = useState<'checkup' | 'visit' | 'booking' | 'alliance' | null>(null);
   const [selectedAllianceHospital, setSelectedAllianceHospital] = useState<AllianceHospital | null>(null);
   const location = useLocation();
 
@@ -235,12 +236,24 @@ const Layout: React.FC = () => {
                    <li><Link to="/schedule" className="hover:text-lime-400 transition-colors block">門診時間</Link></li>
                    <li><Link to="/checkup" className="hover:text-lime-400 transition-colors block">腎臟檢測</Link></li>
                    <li>
-                     <button 
-                       onClick={() => setInfoModal('kaohsiung_clinics')}
+                     <Link 
+                       to="/clinics"
+                       target="_blank"
+                       rel="noopener noreferrer"
                        className="hover:text-lime-400 transition-colors block text-left"
                      >
                        高雄市洗腎診所
-                     </button>
+                     </Link>
+                   </li>
+                   <li>
+                     <a 
+                       href="https://www.tckdf.org.tw/Main/Index"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="hover:text-lime-400 transition-colors block text-left"
+                     >
+                       財團法人腎臟病防治基金會
+                     </a>
                    </li>
                 </ul>
              </div>
@@ -304,7 +317,7 @@ const Layout: React.FC = () => {
             className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
             onClick={() => setInfoModal(null)}
           ></div>
-          <div className={`bg-white rounded-2xl w-full ${['kaohsiung_clinics', 'alliance'].includes(infoModal || '') ? 'max-w-4xl max-h-[85vh]' : 'max-w-md'} p-6 sm:p-8 relative z-10 animate-in zoom-in-95 shadow-2xl flex flex-col`}>
+          <div className={`bg-white rounded-2xl w-full ${infoModal === 'alliance' ? 'max-w-4xl max-h-[85vh]' : 'max-w-md'} p-6 sm:p-8 relative z-10 animate-in zoom-in-95 shadow-2xl flex flex-col`}>
             <button 
               onClick={() => setInfoModal(null)} 
               className="absolute top-4 right-4 p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors z-20"
@@ -403,35 +416,6 @@ const Layout: React.FC = () => {
                       立即 Line 掛號
                     </a>
                   </div>
-                </div>
-              </div>
-            )}
-
-            {infoModal === 'kaohsiung_clinics' && (
-              <div className="text-slate-800 flex flex-col h-full overflow-hidden">
-                <h3 className="text-2xl font-bold text-cyan-800 mb-4 border-b border-slate-100 pb-3 flex-shrink-0">高雄市洗腎醫療院所名冊</h3>
-                <div className="overflow-y-auto flex-1 pr-2">
-                  <table className="w-full text-left text-sm sm:text-base border-collapse">
-                    <thead className="bg-cyan-50 sticky top-0 z-10">
-                      <tr>
-                        <th className="p-3 sm:p-4 font-bold text-cyan-900 border-b border-cyan-100">醫院名稱</th>
-                        <th className="p-3 sm:p-4 font-bold text-cyan-900 border-b border-cyan-100">地址</th>
-                        <th className="p-3 sm:p-4 font-bold text-cyan-900 border-b border-cyan-100 text-right sm:text-left">電話</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {KAOHSIUNG_CLINICS_LIST.map((clinic, index) => {
-                        const isTarget = clinic.name === '高健診所';
-                        return (
-                          <tr key={index} className={`border-b border-slate-50 transition-colors ${isTarget ? 'bg-cyan-50/50 hover:bg-cyan-50' : 'hover:bg-slate-50'}`}>
-                            <td className={`p-3 sm:p-4 ${isTarget ? 'font-bold text-cyan-800 text-lg' : 'text-slate-200 font-normal'}`}>{clinic.name}</td>
-                            <td className={`p-3 sm:p-4 ${isTarget ? 'text-slate-700 font-medium' : 'text-slate-200'}`}>{clinic.address}</td>
-                            <td className={`p-3 sm:p-4 whitespace-nowrap text-right sm:text-left ${isTarget ? 'text-slate-700 font-bold' : 'text-slate-200'}`}>{clinic.phone}</td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
                 </div>
               </div>
             )}

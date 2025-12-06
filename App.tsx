@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
@@ -9,6 +10,7 @@ import Schedule from './pages/Schedule';
 import Checkup from './pages/Checkup';
 import Knowledge from './pages/Knowledge';
 import ArticleDetail from './pages/ArticleDetail';
+import ClinicsList from './pages/ClinicsList';
 
 const App: React.FC = () => {
   return (
@@ -23,6 +25,7 @@ const App: React.FC = () => {
           <Route path="checkup" element={<Checkup />} />
           <Route path="knowledge" element={<Knowledge />} />
           <Route path="knowledge/:id" element={<ArticleDetail />} />
+          <Route path="clinics" element={<ClinicsList />} />
           {/* Catch all to home */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>

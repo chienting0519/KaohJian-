@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { KIDNEY_SYMPTOMS, CLINIC_INFO } from '../constants';
-import { AlertCircle, CheckCircle2, ArrowRight, Leaf, AlertTriangle, RotateCcw } from 'lucide-react';
+import { AlertCircle, CheckCircle2, ArrowRight, Leaf, AlertTriangle, RotateCcw, User, Stethoscope, UserRound } from 'lucide-react';
 
 const KidneyCheck: React.FC = () => {
   const [answers, setAnswers] = useState<Record<string, boolean>>({});
@@ -117,7 +117,7 @@ const KidneyCheck: React.FC = () => {
       {!showResult ? (
         <div className="p-4 sm:p-8">
           
-          {/* 宮崎駿風格衛教區塊 (Ghibli Style Layout with Flat Characters) */}
+          {/* 宮崎駿風格衛教區塊 (Ghibli Style Layout with Flat Icons) */}
           <div className="mb-12 space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-700">
             
             {/* 1. 衛教短文：自然的過濾器 */}
@@ -128,11 +128,8 @@ const KidneyCheck: React.FC = () => {
                
                <div className="relative z-10">
                  <div className="flex items-center gap-3 mb-4">
-                    <span className="bg-[#7fb069] text-white px-4 py-1.5 rounded-full text-sm font-bold tracking-widest shadow-sm flex items-center gap-2">
-                        <Leaf className="w-3 h-3" />
-                        森林物語
-                    </span>
-                    <h3 className="text-xl font-bold text-[#4a6b45] tracking-wide">
+                    <h3 className="text-xl font-bold text-[#4a6b45] tracking-wide flex items-center gap-2">
+                        <Leaf className="w-6 h-6" />
                         身體裡的生命之河
                     </h3>
                  </div>
@@ -153,7 +150,7 @@ const KidneyCheck: React.FC = () => {
                </div>
             </div>
 
-            {/* 2. 醫師與病患對話小劇場 (Updated Flat Design Avatars) */}
+            {/* 2. 醫師與病患對話小劇場 (Updated to Lucide Icons) */}
             <div className="relative">
                <div className="text-center mb-8">
                   <span className="inline-block px-6 py-2 rounded-full bg-[#f0f4f8] text-[#5c7c8a] text-sm font-bold border border-[#dce5eb] shadow-sm tracking-widest">
@@ -163,39 +160,13 @@ const KidneyCheck: React.FC = () => {
 
                <div className="space-y-10 max-w-3xl mx-auto">
                   
-                  {/* Scene 1: Patient (Uncle - Flat Design) */}
+                  {/* Scene 1: Patient (Uncle) */}
                   <div className="flex items-start gap-4 sm:gap-8 group">
-                     {/* Flat Avatar: Uncle (Geometric & Recognizable) */}
+                     {/* Icon Avatar: Uncle */}
                      <div className="w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 relative z-10 transition-transform hover:scale-105 duration-300">
-                        <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-sm" xmlns="http://www.w3.org/2000/svg">
-                           {/* Background - Lime */}
-                           <circle cx="50" cy="50" r="50" fill="#bef264" />
-                           {/* Body - Green Vest */}
-                           <path d="M15,100 Q50,85 85,100 L85,110 L15,110 Z" fill="#65a30d" />
-                           <path d="M40,90 L40,110 M60,90 L60,110" stroke="#365314" strokeWidth="0.5" />
-                           {/* Head */}
-                           <circle cx="50" cy="55" r="22" fill="#ffedd5" />
-                           {/* Hair - Grey Balding */}
-                           <path d="M26,55 Q26,30 40,28 L60,28 Q74,30 74,55" fill="#e2e8f0" />
-                           <path d="M26,55 L26,45" fill="#e2e8f0" />
-                           <path d="M74,55 L74,45" fill="#e2e8f0" />
-                           {/* Ears */}
-                           <circle cx="27" cy="58" r="3" fill="#ffedd5" />
-                           <circle cx="73" cy="58" r="3" fill="#ffedd5" />
-                           {/* Glasses - Thick Black Frames */}
-                           <g fill="none" stroke="#1f2937" strokeWidth="2.5">
-                               <circle cx="42" cy="55" r="7" fill="rgba(255,255,255,0.4)" />
-                               <circle cx="58" cy="55" r="7" fill="rgba(255,255,255,0.4)" />
-                               <line x1="49" y1="55" x2="51" y2="55" />
-                               <line x1="28" y1="55" x2="35" y2="55" />
-                               <line x1="65" y1="55" x2="72" y2="55" />
-                           </g>
-                           {/* Eyes */}
-                           <circle cx="42" cy="55" r="1.5" fill="#1f2937" />
-                           <circle cx="58" cy="55" r="1.5" fill="#1f2937" />
-                           {/* Mustache - Grey */}
-                           <path d="M40,68 Q50,64 60,68 Q50,76 40,68 Z" fill="#cbd5e1" />
-                        </svg>
+                        <div className="w-full h-full rounded-full bg-lime-100 border-4 border-white shadow-md flex items-center justify-center relative overflow-hidden">
+                           <User className="w-16 h-16 text-lime-600 absolute bottom-0 translate-y-2" />
+                        </div>
                         <div className="absolute -bottom-2 -right-2 bg-white px-3 py-1 rounded-full text-xs font-bold text-slate-500 border border-slate-200 shadow-sm">伯伯</div>
                      </div>
                      
@@ -209,35 +180,16 @@ const KidneyCheck: React.FC = () => {
                      </div>
                   </div>
 
-                  {/* Scene 2: Doctor (Male - Flat Design) */}
+                  {/* Scene 2: Doctor (Male) */}
                   <div className="flex items-start gap-4 sm:gap-8 flex-row-reverse group">
-                     {/* Flat Avatar: Male Doctor (Geometric & Recognizable) */}
+                     {/* Icon Avatar: Doctor */}
                      <div className="w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 relative z-10 transition-transform hover:scale-105 duration-300">
-                        <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-sm" xmlns="http://www.w3.org/2000/svg">
-                           {/* Background - Blue */}
-                           <circle cx="50" cy="50" r="50" fill="#bae6fd" />
-                           {/* Body - White Coat */}
-                           <path d="M15,100 Q50,90 85,100 L85,110 L15,110 Z" fill="#ffffff" />
-                           <path d="M50,90 L50,110" stroke="#e2e8f0" strokeWidth="1" />
-                           {/* Shirt & Tie */}
-                           <path d="M40,85 L50,95 L60,85" fill="#e0f2fe" />
-                           <path d="M50,85 L50,105" stroke="#0369a1" strokeWidth="4" strokeLinecap="round" />
-                           {/* Stethoscope */}
-                           <path d="M30,90 C30,110 70,110 70,90" fill="none" stroke="#334155" strokeWidth="3" />
-                           {/* Head */}
-                           <circle cx="50" cy="55" r="22" fill="#ffedd5" />
-                           {/* Hair - Short Dark */}
-                           <path d="M28,52 Q25,25 50,22 Q75,25 72,52 L72,40 Q75,25 50,25 Q25,25 28,40 Z" fill="#1e293b" />
-                           {/* Ears */}
-                           <circle cx="27" cy="55" r="3" fill="#ffedd5" />
-                           <circle cx="73" cy="55" r="3" fill="#ffedd5" />
-                           {/* Eyes */}
-                           <circle cx="43" cy="55" r="2.5" fill="#1e293b" />
-                           <circle cx="57" cy="55" r="2.5" fill="#1e293b" />
-                           {/* Mouth - Smile */}
-                           <path d="M45,68 Q50,72 55,68" fill="none" stroke="#be123c" strokeWidth="1.5" strokeLinecap="round" />
-                        </svg>
-                        
+                        <div className="w-full h-full rounded-full bg-cyan-100 border-4 border-white shadow-md flex items-center justify-center relative overflow-hidden">
+                           <div className="absolute top-2 right-1/2 translate-x-1/2 z-20 bg-white rounded-full p-1 shadow-sm">
+                              <Stethoscope className="w-5 h-5 text-cyan-600" />
+                           </div>
+                           <UserRound className="w-16 h-16 text-cyan-600 absolute bottom-0 translate-y-1" />
+                        </div>
                         <div className="absolute -bottom-2 -left-2 bg-white px-3 py-1 rounded-full text-xs font-bold text-cyan-600 border border-cyan-100 shadow-sm">醫師</div>
                      </div>
                      

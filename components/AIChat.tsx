@@ -1,5 +1,6 @@
+
 import React, { useState, useRef, useEffect } from 'react';
-import { X, Send, Loader2, Bot, Phone } from 'lucide-react';
+import { X, Send, Loader2, Stethoscope, Phone } from 'lucide-react';
 import { sendMessageToGemini } from '../services/geminiService';
 import { ChatMessage } from '../types';
 import { CLINIC_INFO } from '../constants';
@@ -203,7 +204,7 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
       <div className="bg-gradient-to-r from-cyan-700 to-cyan-600 p-4 flex justify-between items-center text-white shadow-md">
         <div className="flex items-center gap-3">
           <div className="bg-white/10 p-2 rounded-full border border-white/20 backdrop-blur-sm">
-            <Bot className="w-6 h-6" />
+            <Stethoscope className="w-6 h-6" />
           </div>
           <div>
             <h3 className="font-bold text-base tracking-wide text-white">高健 AI 助理</h3>
@@ -224,7 +225,7 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
           <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             {msg.role === 'model' && (
                 <div className="w-8 h-8 rounded-full bg-cyan-100 border border-cyan-200 flex items-center justify-center mr-2 flex-shrink-0 self-start mt-1 shadow-sm">
-                    <Bot className="w-5 h-5 text-cyan-700" />
+                    <Stethoscope className="w-5 h-5 text-cyan-700" />
                 </div>
             )}
             <div 
@@ -241,7 +242,7 @@ const AIChat: React.FC<AIChatProps> = ({ isOpen, setIsOpen }) => {
         {isLoading && (
           <div className="flex justify-start">
             <div className="w-8 h-8 rounded-full bg-cyan-100 border border-cyan-200 flex items-center justify-center mr-2 flex-shrink-0">
-                <Bot className="w-5 h-5 text-cyan-700" />
+                <Stethoscope className="w-5 h-5 text-cyan-700" />
             </div>
             <div className="bg-white border border-slate-200 rounded-2xl rounded-tl-none px-5 py-4 shadow-sm flex items-center gap-3">
               <Loader2 className="w-4 h-4 animate-spin text-cyan-600" />
