@@ -59,6 +59,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     { path: '/schedule', label: '門診時間' },
     { path: '/checkup', label: '腎臟檢測' },
     { path: '/knowledge', label: '健康新知' },
+    { path: '/traffic', label: '交通指引' },
   ];
 
   return (
@@ -258,8 +259,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                    <li>
                      <Link 
                        to="/clinics"
-                       target="_blank"
-                       rel="noopener noreferrer"
                        className="hover:text-lime-400 transition-colors block text-left"
                      >
                        高雄市洗腎診所

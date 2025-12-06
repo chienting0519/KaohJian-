@@ -11,6 +11,7 @@ import Checkup from './pages/Checkup';
 import Knowledge from './pages/Knowledge';
 import ArticleDetail from './pages/ArticleDetail';
 import ClinicsList from './pages/ClinicsList';
+import TrafficGuide from './pages/TrafficGuide';
 
 const App: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const App: React.FC = () => {
           <Route path="/checkup" element={<Checkup />} />
           <Route path="/knowledge" element={<Knowledge />} />
           <Route path="/knowledge/:id" element={<ArticleDetail />} />
+          <Route path="/traffic" element={<TrafficGuide />} />
           <Route path="/clinics" element={<ClinicsList />} />
           {/* Catch all to home */}
           <Route path="*" element={<Navigate to="/" replace />} />

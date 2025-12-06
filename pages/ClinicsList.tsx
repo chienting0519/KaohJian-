@@ -33,9 +33,9 @@ const ClinicsList: React.FC = () => {
                     const isTarget = clinic.name === '高健診所';
                     return (
                       <tr key={index} className={`border-b border-slate-50 transition-colors ${isTarget ? 'bg-cyan-50/50 hover:bg-cyan-50' : 'hover:bg-slate-50'}`}>
-                        <td className={`p-4 ${isTarget ? 'font-bold text-cyan-800 text-lg' : 'text-slate-600 font-medium'}`}>{clinic.name}</td>
-                        <td className={`p-4 ${isTarget ? 'text-slate-700 font-medium' : 'text-slate-500'}`}>{clinic.address}</td>
-                        <td className={`p-4 whitespace-nowrap ${isTarget ? 'text-slate-700 font-bold' : 'text-slate-500'}`}>{clinic.phone}</td>
+                        <td className={`p-4 ${isTarget ? 'font-bold text-cyan-800 text-lg' : 'text-slate-300 font-medium'}`}>{clinic.name}</td>
+                        <td className={`p-4 ${isTarget ? 'text-slate-700 font-medium' : 'text-slate-200'}`}>{clinic.address}</td>
+                        <td className={`p-4 whitespace-nowrap ${isTarget ? 'text-slate-700 font-bold' : 'text-slate-200'}`}>{clinic.phone}</td>
                       </tr>
                     );
                   })}
