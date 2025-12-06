@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { KIDNEY_SYMPTOMS, CLINIC_INFO } from '../constants';
-import { AlertCircle, CheckCircle2, ArrowRight, RotateCcw, AlertTriangle, Cloud, Wind, Droplets, Sparkles } from 'lucide-react';
+import { AlertCircle, CheckCircle2, ArrowRight, RotateCcw, AlertTriangle, Cloud, Wind, Droplets, Sparkles, Leaf } from 'lucide-react';
 
 const KidneyCheck: React.FC = () => {
   const [answers, setAnswers] = useState<Record<string, boolean>>({});
@@ -147,7 +147,7 @@ const KidneyCheck: React.FC = () => {
                </div>
             </div>
 
-            {/* 2. 四格漫畫小劇場 - Ghibli Layout */}
+            {/* 2. 四格漫畫小劇場 - Ghibli Layout with Character Emojis */}
             <div className="bg-[#fcfdfc] p-6 sm:p-8 rounded-3xl border border-slate-100 shadow-lg relative">
                {/* Tape Element */}
                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-100/50 rotate-1 backdrop-blur-sm shadow-sm border border-white"></div>
@@ -155,61 +155,70 @@ const KidneyCheck: React.FC = () => {
                <div className="text-center mb-8">
                   <h3 className="text-xl font-bold text-[#2d6a4f] tracking-wide flex items-center justify-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-lime-400"></span>
-                    診間裡的微風對話
+                    森林診所的悄悄話
                     <span className="w-2 h-2 rounded-full bg-lime-400"></span>
                   </h3>
                </div>
 
                <div className="grid md:grid-cols-4 gap-4">
                   
-                  {/* Panel 1 */}
+                  {/* Panel 1: The Bear (Strong but oblivious) */}
                   <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-[0_4px_10px_rgba(0,0,0,0.03)] flex flex-col items-center hover:-translate-y-1 transition-transform duration-500">
                      <div className="w-full aspect-[4/3] bg-gradient-to-t from-orange-50 to-white rounded-xl mb-3 flex items-center justify-center relative overflow-hidden border border-orange-100">
-                        <span className="text-5xl drop-shadow-sm filter contrast-125">👴</span>
+                        {/* Bear Emoji representing a Totoro-like strong creature */}
+                        <span className="text-6xl drop-shadow-sm filter contrast-125 transform hover:scale-110 transition-transform cursor-default">🐻</span>
                         <div className="absolute bottom-0 w-full h-1 bg-[#88c999]/30"></div>
                      </div>
                      <div className="bg-[#fff9e6] rounded-xl p-3 w-full text-center relative border border-[#ffeeba]">
                          <p className="text-sm font-bold text-slate-700 leading-snug">
-                           「醫生啊，我平常能吃能睡，身體像大樹一樣硬朗，幹嘛檢查？」
+                           「我是森林裡的大熊，強壯得很，不用檢查啦！」
                          </p>
                      </div>
                   </div>
 
-                  {/* Panel 2 */}
+                  {/* Panel 2: The Girl (Wisdom/Healer) */}
                   <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-[0_4px_10px_rgba(0,0,0,0.03)] flex flex-col items-center hover:-translate-y-1 transition-transform duration-500 delay-100">
                      <div className="w-full aspect-[4/3] bg-gradient-to-t from-blue-50 to-white rounded-xl mb-3 flex items-center justify-center relative overflow-hidden border border-blue-100">
-                        <span className="text-5xl drop-shadow-sm">👩‍⚕️</span>
+                        {/* Girl Emoji representing the spirited protagonist */}
+                        <span className="text-6xl drop-shadow-sm transform hover:rotate-6 transition-transform cursor-default">👧</span>
                         <Cloud className="absolute top-2 right-2 text-white w-6 h-6 opacity-80" />
                      </div>
                      <div className="bg-[#e3f2fd] rounded-xl p-3 w-full text-center relative border border-[#bbdefb]">
                          <p className="text-sm font-bold text-slate-700 leading-snug">
-                           「伯伯，腎臟就像<span className="text-cyan-600">安靜的樹根</span>。壞掉時是不會喊痛的喔！」
+                           「大熊先生，腎臟就像<span className="text-cyan-600">樹的根</span>。生病時是不會喊痛的喔！」
                          </p>
                      </div>
                   </div>
 
-                  {/* Panel 3 */}
+                  {/* Panel 3: Soot Sprites (Hidden Danger) */}
                   <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-[0_4px_10px_rgba(0,0,0,0.03)] flex flex-col items-center hover:-translate-y-1 transition-transform duration-500 delay-200">
-                     <div className="w-full aspect-[4/3] bg-gradient-to-t from-slate-100 to-white rounded-xl mb-3 flex items-center justify-center relative overflow-hidden border border-slate-200">
-                        <span className="text-5xl drop-shadow-sm opacity-80 blur-[0.5px]">🍂</span>
+                     <div className="w-full aspect-[4/3] bg-gradient-to-t from-slate-100 to-white rounded-xl mb-3 flex items-center justify-center relative overflow-hidden border border-slate-200 group/panel3">
+                        {/* Black Circles representing Makkuro Kurosuke (Soot Sprites) */}
+                        <div className="relative">
+                            <span className="text-4xl absolute -left-6 top-2 animate-bounce delay-75 opacity-80">⚫</span>
+                            <span className="text-5xl relative z-10 animate-bounce">⚫</span>
+                            <span className="text-3xl absolute -right-5 bottom-0 animate-bounce delay-150 opacity-80">⚫</span>
+                        </div>
                         <Wind className="absolute bottom-2 left-2 text-slate-300 w-8 h-8 animate-pulse" />
                      </div>
                      <div className="bg-[#f5f5f5] rounded-xl p-3 w-full text-center relative border border-slate-200">
                          <p className="text-sm font-bold text-slate-600 leading-snug">
-                           (等到葉子枯黃掉落...通常根部已經受傷很深了)
+                           「就像灰塵精靈(毒素)悄悄堆積... 等發現時通常太晚了。」
                          </p>
                      </div>
                   </div>
 
-                  {/* Panel 4 */}
+                  {/* Panel 4: Sprout (Magic/Health) */}
                   <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-[0_4px_10px_rgba(0,0,0,0.03)] flex flex-col items-center hover:-translate-y-1 transition-transform duration-500 delay-300">
                      <div className="w-full aspect-[4/3] bg-gradient-to-t from-lime-50 to-white rounded-xl mb-3 flex items-center justify-center relative overflow-hidden border border-lime-100">
-                        <span className="text-5xl drop-shadow-sm">✨</span>
+                        {/* Sprout Emoji representing growth/Totoro's tree magic */}
+                        <span className="text-6xl drop-shadow-sm animate-pulse cursor-default">🌱</span>
                         <Sparkles className="absolute top-2 left-2 text-yellow-400 w-5 h-5 animate-pulse" />
+                        <Leaf className="absolute bottom-2 right-2 text-lime-400 w-4 h-4 opacity-50 rotate-45" />
                      </div>
                      <div className="bg-[#f1f8e9] rounded-xl p-3 w-full text-center relative border border-[#dcedc8]">
                          <p className="text-sm font-bold text-[#33691e] leading-snug">
-                           「趁現在樹葉還茂密，花一分鐘檢查，守護您的森林！」
+                           「施展『定期檢查』的魔法，讓身體的森林永遠翠綠！」
                          </p>
                      </div>
                   </div>
