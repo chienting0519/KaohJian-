@@ -207,7 +207,7 @@ const KidneyCheck: React.FC = () => {
             
             <div className="flex items-center justify-center pt-8">
                 <div className="flex flex-col items-center animate-bounce text-slate-300">
-                    <span className="text-xs font-bold mb-1 tracking-widest text-[#7fb069]">SCROLL DOWN</span>
+                    <span className="text-sm font-bold mb-1 tracking-wider text-[#7fb069]">一分鐘檢測腎臟健康</span>
                     <ArrowRight className="w-6 h-6 rotate-90 text-[#7fb069]" />
                 </div>
             </div>
