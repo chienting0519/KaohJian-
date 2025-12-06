@@ -1,6 +1,7 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { KIDNEY_SYMPTOMS, CLINIC_INFO } from '../constants';
-import { AlertCircle, CheckCircle2, ArrowRight, RotateCcw, AlertTriangle } from 'lucide-react';
+import { AlertCircle, CheckCircle2, ArrowRight, RotateCcw, AlertTriangle, Cloud, Wind, Droplets, Sparkles } from 'lucide-react';
 
 const KidneyCheck: React.FC = () => {
   const [answers, setAnswers] = useState<Record<string, boolean>>({});
@@ -105,45 +106,160 @@ const KidneyCheck: React.FC = () => {
   const result = getRiskResult(score);
 
   return (
-    <div ref={containerRef} className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
+    <div ref={containerRef} className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100">
       <div className="p-8 bg-cyan-700 text-white text-center relative overflow-hidden">
         <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-600 rounded-full -translate-y-1/2 translate-x-1/2 opacity-50"></div>
         <div className="absolute bottom-0 left-0 w-32 h-32 bg-lime-500 rounded-full translate-y-1/2 -translate-x-1/2 opacity-30"></div>
-        <h2 className="text-3xl font-bold mb-2 relative z-10">互動式腎臟健康檢測</h2>
-        <p className="text-cyan-100 relative z-10">花一分鐘檢視您的身體訊號，預防勝於治療</p>
+        <h2 className="text-3xl font-bold mb-2 relative z-10 tracking-wide">互動式腎臟健康檢測</h2>
+        <p className="text-cyan-100 relative z-10 font-medium">花一分鐘檢視您的身體訊號，預防勝於治療</p>
       </div>
 
       {!showResult ? (
-        <div className="p-8">
-          <p className="mb-6 text-slate-600 font-medium border-l-4 border-lime-500 pl-3">請勾選您最近是否有以下狀況：</p>
-          <div className="grid md:grid-cols-2 gap-4">
-            {KIDNEY_SYMPTOMS.map((symptom) => (
-              <label 
-                key={symptom.id} 
-                className={`flex items-center p-4 border rounded-xl cursor-pointer transition-all duration-200 ${answers[symptom.id] ? 'bg-cyan-50 border-cyan-500 shadow-md transform -translate-y-0.5' : 'hover:bg-slate-50 border-slate-200'}`}
-              >
-                <div className={`w-6 h-6 rounded border-2 mr-3 flex items-center justify-center transition-colors ${answers[symptom.id] ? 'bg-cyan-600 border-cyan-600' : 'border-slate-300 bg-white'}`}>
-                  {answers[symptom.id] && <CheckCircle2 className="w-4 h-4 text-white" />}
-                </div>
-                <input
-                  type="checkbox"
-                  className="hidden"
-                  checked={!!answers[symptom.id]}
-                  onChange={() => handleToggle(symptom.id)}
-                />
-                <span className={`${answers[symptom.id] ? 'text-cyan-900 font-bold' : 'text-slate-700'}`}>
-                  {symptom.question}
-                </span>
-              </label>
-            ))}
+        <div className="p-4 sm:p-8">
+          
+          {/* 宮崎駿風格衛教區塊 (Ghibli Style) */}
+          <div className="mb-12 space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-700">
+            
+            {/* 1. 知識卡：自然的過濾器 (Watercolor Card) */}
+            <div className="bg-gradient-to-br from-[#e0f7fa] to-[#e8f5e9] rounded-3xl p-6 shadow-md border border-white relative overflow-hidden group">
+               {/* Decorative Background Elements */}
+               <div className="absolute top-0 left-0 w-full h-full opacity-40 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+               <Cloud className="absolute top-4 right-8 text-white w-16 h-16 opacity-60 animate-pulse" />
+               <Wind className="absolute bottom-4 left-8 text-cyan-200 w-12 h-12 opacity-50" />
+               
+               <div className="flex flex-col md:flex-row items-center gap-6 relative z-10">
+                  <div className="w-24 h-24 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center flex-shrink-0 shadow-sm border-2 border-cyan-100">
+                     <Droplets className="w-10 h-10 text-cyan-400" />
+                  </div>
+                  <div className="flex-1 text-center md:text-left">
+                     <div className="inline-block bg-[#2d6a4f] text-white px-4 py-1 rounded-full text-xs font-bold tracking-widest mb-2 shadow-sm">
+                        生命之河
+                     </div>
+                     <h3 className="text-2xl font-bold text-[#1b4332] mb-2 font-sans">
+                        腎臟，是身體裡的清流
+                     </h3>
+                     <p className="text-[#40916c] text-lg font-medium leading-relaxed">
+                       就像森林裡的河流能帶走落葉與泥沙，
+                       腎臟這條<span className="text-cyan-600 font-bold bg-white/50 px-1 rounded">24小時不間斷的河流</span>，
+                       負責沖刷身體的毒素。當河流堵塞時，森林就會生病。
+                     </p>
+                  </div>
+               </div>
+            </div>
+
+            {/* 2. 四格漫畫小劇場 - Ghibli Layout */}
+            <div className="bg-[#fcfdfc] p-6 sm:p-8 rounded-3xl border border-slate-100 shadow-lg relative">
+               {/* Tape Element */}
+               <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-100/50 rotate-1 backdrop-blur-sm shadow-sm border border-white"></div>
+               
+               <div className="text-center mb-8">
+                  <h3 className="text-xl font-bold text-[#2d6a4f] tracking-wide flex items-center justify-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-lime-400"></span>
+                    診間裡的微風對話
+                    <span className="w-2 h-2 rounded-full bg-lime-400"></span>
+                  </h3>
+               </div>
+
+               <div className="grid md:grid-cols-4 gap-4">
+                  
+                  {/* Panel 1 */}
+                  <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-[0_4px_10px_rgba(0,0,0,0.03)] flex flex-col items-center hover:-translate-y-1 transition-transform duration-500">
+                     <div className="w-full aspect-[4/3] bg-gradient-to-t from-orange-50 to-white rounded-xl mb-3 flex items-center justify-center relative overflow-hidden border border-orange-100">
+                        <span className="text-5xl drop-shadow-sm filter contrast-125">👴</span>
+                        <div className="absolute bottom-0 w-full h-1 bg-[#88c999]/30"></div>
+                     </div>
+                     <div className="bg-[#fff9e6] rounded-xl p-3 w-full text-center relative border border-[#ffeeba]">
+                         <p className="text-sm font-bold text-slate-700 leading-snug">
+                           「醫生啊，我平常能吃能睡，身體像大樹一樣硬朗，幹嘛檢查？」
+                         </p>
+                     </div>
+                  </div>
+
+                  {/* Panel 2 */}
+                  <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-[0_4px_10px_rgba(0,0,0,0.03)] flex flex-col items-center hover:-translate-y-1 transition-transform duration-500 delay-100">
+                     <div className="w-full aspect-[4/3] bg-gradient-to-t from-blue-50 to-white rounded-xl mb-3 flex items-center justify-center relative overflow-hidden border border-blue-100">
+                        <span className="text-5xl drop-shadow-sm">👩‍⚕️</span>
+                        <Cloud className="absolute top-2 right-2 text-white w-6 h-6 opacity-80" />
+                     </div>
+                     <div className="bg-[#e3f2fd] rounded-xl p-3 w-full text-center relative border border-[#bbdefb]">
+                         <p className="text-sm font-bold text-slate-700 leading-snug">
+                           「伯伯，腎臟就像<span className="text-cyan-600">安靜的樹根</span>。壞掉時是不會喊痛的喔！」
+                         </p>
+                     </div>
+                  </div>
+
+                  {/* Panel 3 */}
+                  <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-[0_4px_10px_rgba(0,0,0,0.03)] flex flex-col items-center hover:-translate-y-1 transition-transform duration-500 delay-200">
+                     <div className="w-full aspect-[4/3] bg-gradient-to-t from-slate-100 to-white rounded-xl mb-3 flex items-center justify-center relative overflow-hidden border border-slate-200">
+                        <span className="text-5xl drop-shadow-sm opacity-80 blur-[0.5px]">🍂</span>
+                        <Wind className="absolute bottom-2 left-2 text-slate-300 w-8 h-8 animate-pulse" />
+                     </div>
+                     <div className="bg-[#f5f5f5] rounded-xl p-3 w-full text-center relative border border-slate-200">
+                         <p className="text-sm font-bold text-slate-600 leading-snug">
+                           (等到葉子枯黃掉落...通常根部已經受傷很深了)
+                         </p>
+                     </div>
+                  </div>
+
+                  {/* Panel 4 */}
+                  <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-[0_4px_10px_rgba(0,0,0,0.03)] flex flex-col items-center hover:-translate-y-1 transition-transform duration-500 delay-300">
+                     <div className="w-full aspect-[4/3] bg-gradient-to-t from-lime-50 to-white rounded-xl mb-3 flex items-center justify-center relative overflow-hidden border border-lime-100">
+                        <span className="text-5xl drop-shadow-sm">✨</span>
+                        <Sparkles className="absolute top-2 left-2 text-yellow-400 w-5 h-5 animate-pulse" />
+                     </div>
+                     <div className="bg-[#f1f8e9] rounded-xl p-3 w-full text-center relative border border-[#dcedc8]">
+                         <p className="text-sm font-bold text-[#33691e] leading-snug">
+                           「趁現在樹葉還茂密，花一分鐘檢查，守護您的森林！」
+                         </p>
+                     </div>
+                  </div>
+
+               </div>
+            </div>
+            
+            <div className="flex items-center gap-2 text-sm text-slate-400 justify-center pt-2">
+                <span className="w-1 h-1 rounded-full bg-slate-300"></span>
+                <span className="font-medium text-slate-500">往下滑動，聆聽身體的聲音</span>
+                <span className="w-1 h-1 rounded-full bg-slate-300"></span>
+            </div>
           </div>
-          <div className="mt-8 flex flex-col items-center gap-4">
+
+          <div className="bg-white border-t border-slate-100 pt-8">
+            <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center">
+              <span className="w-2 h-8 bg-cyan-500 rounded mr-3"></span>
+              請勾選您最近是否有以下狀況：
+            </h3>
+            
+            <div className="grid md:grid-cols-2 gap-4">
+              {KIDNEY_SYMPTOMS.map((symptom) => (
+                <label 
+                  key={symptom.id} 
+                  className={`flex items-center p-4 border rounded-xl cursor-pointer transition-all duration-200 ${answers[symptom.id] ? 'bg-cyan-50 border-cyan-500 shadow-md transform -translate-y-0.5' : 'hover:bg-slate-50 border-slate-200'}`}
+                >
+                  <div className={`w-7 h-7 rounded-lg border-2 mr-3 flex items-center justify-center transition-colors flex-shrink-0 ${answers[symptom.id] ? 'bg-cyan-500 border-cyan-500' : 'border-slate-300 bg-white'}`}>
+                    {answers[symptom.id] && <CheckCircle2 className="w-5 h-5 text-white" />}
+                  </div>
+                  <input
+                    type="checkbox"
+                    className="hidden"
+                    checked={!!answers[symptom.id]}
+                    onChange={() => handleToggle(symptom.id)}
+                  />
+                  <span className={`text-lg ${answers[symptom.id] ? 'text-cyan-900 font-bold' : 'text-slate-700 font-medium'}`}>
+                    {symptom.question}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10 flex flex-col items-center gap-6">
             
             <label 
-              className={`flex items-center px-6 py-3 border rounded-full cursor-pointer transition-all duration-200 ${noSymptoms ? 'bg-cyan-50 border-cyan-500 shadow-sm' : 'hover:bg-slate-50 border-slate-300'}`}
+              className={`flex items-center px-8 py-4 border rounded-full cursor-pointer transition-all duration-200 ${noSymptoms ? 'bg-lime-50 border-lime-500 shadow-md' : 'hover:bg-slate-50 border-slate-300'}`}
             >
-              <div className={`w-5 h-5 rounded border mr-2 flex items-center justify-center transition-colors ${noSymptoms ? 'bg-cyan-600 border-cyan-600' : 'border-slate-400 bg-white'}`}>
-                {noSymptoms && <CheckCircle2 className="w-3.5 h-3.5 text-white" />}
+              <div className={`w-6 h-6 rounded-full border-2 mr-3 flex items-center justify-center transition-colors ${noSymptoms ? 'bg-lime-500 border-lime-500' : 'border-slate-400 bg-white'}`}>
+                {noSymptoms && <CheckCircle2 className="w-4 h-4 text-white" />}
               </div>
               <input
                 type="checkbox"
@@ -151,20 +267,20 @@ const KidneyCheck: React.FC = () => {
                 checked={noSymptoms}
                 onChange={handleNoSymptomsCheck}
               />
-              <span className={`${noSymptoms ? 'text-cyan-900 font-bold' : 'text-slate-600 font-medium'}`}>
+              <span className={`text-lg ${noSymptoms ? 'text-lime-800 font-bold' : 'text-slate-600 font-bold'}`}>
                 我完全沒有以上症狀
               </span>
             </label>
 
             <button
               onClick={handleShowResult}
-              className="bg-lime-500 hover:bg-lime-600 text-white font-bold py-3 px-12 rounded-full transition-all duration-300 shadow-lg hover:shadow-lime-500/40 flex items-center gap-2 text-lg transform hover:-translate-y-1"
+              className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-4 px-16 rounded-full transition-all duration-300 shadow-lg shadow-cyan-200 hover:shadow-xl flex items-center gap-3 text-xl transform hover:-translate-y-1 active:scale-95"
             >
-              查看分析結果 <ArrowRight className="w-5 h-5" />
+              查看分析結果 <ArrowRight className="w-6 h-6" />
             </button>
             
             {error && (
-              <div className="flex items-center gap-2 text-orange-600 font-bold bg-orange-50 px-4 py-2 rounded-lg border border-orange-200 animate-in fade-in slide-in-from-top-1">
+              <div className="flex items-center gap-2 text-red-600 font-bold bg-red-50 px-6 py-3 rounded-xl border border-red-100 animate-in fade-in slide-in-from-top-1 shadow-sm">
                  <AlertTriangle className="w-5 h-5" />
                  {error}
               </div>
@@ -173,32 +289,32 @@ const KidneyCheck: React.FC = () => {
         </div>
       ) : (
         <div className="p-8 flex flex-col items-center text-center animate-fade-in">
-          <div className={`w-24 h-24 rounded-full flex items-center justify-center mb-6 ${result.bg} shadow-inner`}>
-            {score === 0 ? <CheckCircle2 className={`w-14 h-14 ${result.iconColor}`} /> : <AlertCircle className={`w-14 h-14 ${result.iconColor}`} />}
+          <div className={`w-28 h-28 rounded-full flex items-center justify-center mb-6 ${result.bg} shadow-inner`}>
+            {score === 0 ? <CheckCircle2 className={`w-16 h-16 ${result.iconColor}`} /> : <AlertCircle className={`w-16 h-16 ${result.iconColor}`} />}
           </div>
-          <h3 className="text-2xl font-bold text-slate-800 mb-2">檢測結果：<span className={result.color}>{result.level}</span></h3>
-          <div className={`p-6 rounded-xl ${result.bg} ${result.border} border mb-8 max-w-2xl w-full text-left`}>
-            <p className="text-slate-800 text-lg leading-relaxed whitespace-pre-line">{result.msg}</p>
+          <h3 className="text-3xl font-bold text-slate-800 mb-2">檢測結果：<span className={result.color}>{result.level}</span></h3>
+          <div className={`p-8 rounded-2xl ${result.bg} ${result.border} border mb-10 max-w-2xl w-full text-left shadow-sm`}>
+            <p className="text-slate-800 text-xl leading-loose whitespace-pre-line font-medium">{result.msg}</p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 w-full justify-center max-w-lg">
             <a 
               href={CLINIC_INFO.bookingLink} 
               target="_blank" 
               rel="noreferrer"
-              className="bg-[#06c755] hover:bg-[#05b34c] text-white font-bold py-3 px-8 rounded-full transition-all duration-300 shadow-md flex items-center justify-center gap-2 hover:shadow-lg"
+              className="bg-[#06c755] hover:bg-[#05b34c] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg flex items-center justify-center gap-3 hover:-translate-y-1 flex-1 text-lg"
             >
-              <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-5 h-5" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-6 h-6" />
               <span>立即 Line 預約掛號</span>
             </a>
             <button
               onClick={resetTest}
-              className="bg-white border-2 border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300 font-semibold py-3 px-8 rounded-full transition-all duration-300 flex items-center justify-center gap-2"
+              className="bg-white border-2 border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-400 font-bold py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 flex-1 text-lg"
             >
-              <RotateCcw className="w-4 h-4" /> 重新檢測
+              <RotateCcw className="w-5 h-5" /> 重新檢測
             </button>
           </div>
-          <p className="mt-6 text-xs text-slate-400">本檢測僅供參考，無法取代專業醫師診斷。如有身體不適請務必就醫。</p>
+          <p className="mt-8 text-sm text-slate-400">本檢測僅供參考，無法取代專業醫師診斷。如有身體不適請務必就醫。</p>
         </div>
       )}
     </div>

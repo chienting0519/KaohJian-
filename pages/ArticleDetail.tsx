@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ARTICLES, CLINIC_INFO } from '../constants';
 import { Calendar, Tag, ArrowLeft, Phone, UserRound, Share2 } from 'lucide-react';
@@ -7,6 +7,68 @@ import { Calendar, Tag, ArrowLeft, Phone, UserRound, Share2 } from 'lucide-react
 const ArticleDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const article = ARTICLES.find(a => a.id === id);
+
+  // SEO: Dynamic Metadata Injection
+  useEffect(() => {
+    if (article) {
+      // 1. Update Browser Tab Title
+      document.title = `${article.title} | 高健診所衛教專欄`;
+
+      // 2. Update Meta Description (for Google Search Snippet)
+      let metaDescription = document.querySelector('meta[name="description"]');
+      if (!metaDescription) {
+        metaDescription = document.createElement('meta');
+        metaDescription.setAttribute('name', 'description');
+        document.head.appendChild(metaDescription);
+      }
+      metaDescription.setAttribute('content', article.summary);
+
+      // 3. Update Open Graph Title (for Line/FB sharing)
+      let ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute('content', article.title);
+
+      // 4. Inject Medical WebPage Structured Data (JSON-LD)
+      const schemaData = {
+        "@context": "https://schema.org",
+        "@type": "MedicalWebPage",
+        "headline": article.title,
+        "description": article.summary,
+        "datePublished": article.date.replace(/\./g, '-'), // Format: YYYY-MM-DD
+        "author": {
+          "@type": "MedicalOrganization",
+          "name": CLINIC_INFO.name
+        },
+        "publisher": {
+          "@type": "MedicalOrganization",
+          "name": CLINIC_INFO.name,
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://kaohjianclinic.zeabur.app/logo.webp"
+          }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": window.location.href
+        }
+      };
+
+      const scriptId = 'medical-article-schema';
+      let script = document.getElementById(scriptId);
+      if (!script) {
+        script = document.createElement('script');
+        script.id = scriptId;
+        script.setAttribute('type', 'application/ld+json');
+        document.head.appendChild(script);
+      }
+      script.textContent = JSON.stringify(schemaData);
+    }
+
+    // Cleanup: Reset title when leaving the page
+    return () => {
+      document.title = `${CLINIC_INFO.name} | 高雄小港腎臟專科 • 洗腎中心`;
+      // We don't remove meta tags to avoid flickering, browser handles next page load
+    };
+  }, [article]);
 
   if (!article) {
     return <Navigate to="/knowledge" replace />;
