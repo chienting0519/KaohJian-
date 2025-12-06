@@ -43,7 +43,7 @@ const ArticleDetail: React.FC = () => {
           "name": CLINIC_INFO.name,
           "logo": {
             "@type": "ImageObject",
-            "url": "https://kaohjianclinic.zeabur.app/logo.webp"
+            "url": "https://khjclinic.com/logo.webp"
           }
         },
         "mainEntityOfPage": {
