@@ -19,7 +19,6 @@
     <title>高健診所 | 高雄小港腎臟專科 • 洗腎中心 • 糖尿病高血壓治療 (鳳山/林園/大寮/前鎮首選)</title>
     <meta name="title" content="高健診所 | 高雄小港腎臟專科 • 洗腎中心 • 糖尿病高血壓治療 (鳳山/林園/大寮/前鎮首選)" />
     <meta name="description" content="高雄小港高健診所(KHJ Clinic)位於沿海一路，專精血液透析(洗腎)、糖尿病與高血壓治療。提供小港、鳳山、林園、大寮、前鎮等地區的免費溫馨接送服務，是南高雄腎友最推薦的洗腎中心與腎臟專科診所。" />
-    <meta name="keywords" content="高健診所, 洗腎診所, 小港洗腎診所, 鳳山洗腎診所, 林園洗腎診所, 大寮洗腎診所, 前鎮洗腎診所, 小港洗腎, 鳳山洗腎, 林園洗腎, 大寮洗腎, 前鎮洗腎, 高雄腎臟科, 小港高血壓治療, 高雄國際機場附近診所, 沿海一路診所, 小港糖尿病, 前鎮腎臟科, 溫馨接送, 免費成人健檢" />
     
     <meta name="geo.region" content="TW-KHH" />
     <meta name="geo.placename" content="Kaohsiung City, Xiaogang District" />
@@ -31,7 +30,6 @@
     <meta property="og:title" content="高健診所 - 高雄小港腎臟健康的守護者" />
     <meta property="og:description" content="結合醫學中心等級透析技術與社區溫馨照護。小港、鳳山、林園、大寮、前鎮地區腎友的首選。" />
     <meta property="og:site_name" content="高健診所 KHJ Clinic" />
-    <meta property="og:locale" content="zh_TW" />
     <meta property="og:image" content="https://khjclinic.com/logo.webp" />
 
     <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
@@ -51,48 +49,43 @@
       "slogan": "高雄市民的健康就交給高健診所",
       "description": "高雄小港區專業腎臟內科診所，位於沿海一路88號。提供高品質血液透析、小港高血壓治療、糖尿病管理與免費成人健檢服務。",
       "telephone": "+886-7-802-7828",
-      "email": "service@khjclinic.com",
-      "hasMap": "https://www.google.com/maps/search/?api=1&query=高健診所+高雄市小港區沿海一路88號",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "沿海一路88號",
-        "addressLocality": "小港區",
-        "addressRegion": "高雄市",
-        "postalCode": "812",
-        "addressCountry": "TW"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 22.5649129,
-        "longitude": 120.3541459
-      },
+      "address": { "@type": "PostalAddress", "streetAddress": "沿海一路88號", "addressLocality": "小港區", "addressRegion": "高雄市", "postalCode": "812", "addressCountry": "TW" },
+      "geo": { "@type": "GeoCoordinates", "latitude": 22.5649129, "longitude": 120.3541459 },
       "areaServed": ["小港區", "林園區", "大寮區", "前鎮區", "鳳山區"],
-      "openingHoursSpecification": [
-        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Wednesday", "Friday"], "opens": "08:00", "closes": "22:00" },
-        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Thursday", "Saturday"], "opens": "08:00", "closes": "16:00" }
-      ],
       "medicalSpecialty": [
         { "@type": "MedicalSpecialty", "name": "Nephrology", "alternateName": "腎臟科" },
-        { "@type": "MedicalSpecialty", "name": "InternalMedicine", "alternateName": "一般內科" },
         { "@type": "MedicalSpecialty", "name": "Dialysis", "alternateName": "血液透析" }
       ],
       "priceRange": "$$"
     }
     </script>
     
-    <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@18.3.1",
-        "react/": "https://esm.sh/react@18.3.1/",
-        "react-dom": "https://esm.sh/react-dom@18.3.1",
-        "react-dom/client": "https://esm.sh/react-dom@18.3.1/client?deps=react@18.3.1",
-        "react-router-dom": "https://esm.sh/react-router-dom@6.22.3?deps=react@18.3.1,react-dom@18.3.1",
-        "lucide-react": "https://esm.sh/lucide-react@0.344.0?deps=react@18.3.1,react-dom@18.3.1",
-        "@google/genai": "https://esm.sh/@google/genai@0.1.0"
-      }
-    }
+    <script type="module">
+      import React from "https://esm.sh/react@18.3.1";
+      import ReactDOM from "https://esm.sh/react-dom@18.3.1/client";
+      window.React = React;
+      window.ReactDOM = ReactDOM;
     </script>
+    
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react/": "https://esm.sh/react@18.3.1/",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client?deps=react@18.3.1",
+    
+    "react-router-dom": "https://esm.sh/react-router-dom@6.22.3?deps=react@18.3.1,react-dom@18.3.1",
+    "lucide-react": "https://esm.sh/lucide-react@0.344.0?deps=react@18.3.1,react-dom@18.3.1",
+    "@google/genai": "https://esm.sh/@google/genai@0.1.0",
+    
+    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
+    "vite": "data:application/javascript,export default {}", 
+    "@vitejs/plugin-react": "data:application/javascript,export default {}"
+  }
+}
+</script>
+
   </head>
   
   <body class="bg-slate-50 text-slate-800 antialiased">
@@ -104,13 +97,8 @@
                 background-color: #f8fafc; z-index: 9999;
                 font-family: system-ui, -apple-system, sans-serif;
             }
-            .loading-logo {
-                width: 100px; height: auto;
-                animation: breathe 2s ease-in-out infinite;
-            }
-            .loading-text {
-                margin-top: 20px; color: #475569; font-size: 1.1rem; font-weight: 500;
-            }
+            .loading-logo { width: 100px; height: auto; animation: breathe 2s ease-in-out infinite; }
+            .loading-text { margin-top: 20px; color: #475569; font-size: 1.1rem; font-weight: 500; }
             @keyframes breathe {
                 0%, 100% { opacity: 1; transform: scale(1); }
                 50% { opacity: 0.7; transform: scale(0.95); }
