@@ -1,6 +1,7 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { KIDNEY_SYMPTOMS, CLINIC_INFO } from '../constants';
-import { AlertCircle, CheckCircle2, ArrowRight, RotateCcw, AlertTriangle, Cloud, Wind, Droplets, Sparkles, Leaf } from 'lucide-react';
+import { AlertCircle, CheckCircle2, ArrowRight, Leaf, AlertTriangle, RotateCcw } from 'lucide-react';
 
 const KidneyCheck: React.FC = () => {
   const [answers, setAnswers] = useState<Record<string, boolean>>({});
@@ -116,119 +117,147 @@ const KidneyCheck: React.FC = () => {
       {!showResult ? (
         <div className="p-4 sm:p-8">
           
-          {/* 宮崎駿風格衛教區塊 (Ghibli Style) */}
+          {/* 宮崎駿風格衛教區塊 (Ghibli Style Layout with Flat Characters) */}
           <div className="mb-12 space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-700">
             
-            {/* 1. 知識卡：自然的過濾器 (Watercolor Card) */}
-            <div className="bg-gradient-to-br from-[#e0f7fa] to-[#e8f5e9] rounded-3xl p-6 shadow-md border border-white relative overflow-hidden group">
-               {/* Decorative Background Elements */}
-               <div className="absolute top-0 left-0 w-full h-full opacity-40 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
-               <Cloud className="absolute top-4 right-8 text-white w-16 h-16 opacity-60 animate-pulse" />
-               <Wind className="absolute bottom-4 left-8 text-cyan-200 w-12 h-12 opacity-50" />
+            {/* 1. 衛教短文：自然的過濾器 */}
+            <div className="bg-[#f4fcf0] rounded-3xl p-8 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.05)] border border-[#e0ebd4] relative overflow-hidden">
+               {/* 裝飾性背景元素：像森林光斑 */}
+               <div className="absolute top-0 right-0 w-48 h-48 bg-lime-100 rounded-full mix-blend-multiply filter blur-2xl opacity-40 -translate-y-1/2 translate-x-1/4"></div>
+               <div className="absolute bottom-0 left-0 w-32 h-32 bg-cyan-100 rounded-full mix-blend-multiply filter blur-2xl opacity-40 translate-y-1/2 -translate-x-1/4"></div>
                
-               <div className="flex flex-col md:flex-row items-center gap-6 relative z-10">
-                  <div className="w-24 h-24 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center flex-shrink-0 shadow-sm border-2 border-cyan-100">
-                     <Droplets className="w-10 h-10 text-cyan-400" />
-                  </div>
-                  <div className="flex-1 text-center md:text-left">
-                     <div className="inline-block bg-[#2d6a4f] text-white px-4 py-1 rounded-full text-xs font-bold tracking-widest mb-2 shadow-sm">
-                        生命之河
-                     </div>
-                     <h3 className="text-2xl font-bold text-[#1b4332] mb-2 font-sans">
-                        腎臟，是身體裡的清流
-                     </h3>
-                     <p className="text-[#40916c] text-lg font-medium leading-relaxed">
-                       就像森林裡的河流能帶走落葉與泥沙，
-                       腎臟這條<span className="text-cyan-600 font-bold bg-white/50 px-1 rounded">24小時不間斷的河流</span>，
-                       負責沖刷身體的毒素。當河流堵塞時，森林就會生病。
-                     </p>
-                  </div>
+               <div className="relative z-10">
+                 <div className="flex items-center gap-3 mb-4">
+                    <span className="bg-[#7fb069] text-white px-4 py-1.5 rounded-full text-sm font-bold tracking-widest shadow-sm flex items-center gap-2">
+                        <Leaf className="w-3 h-3" />
+                        森林物語
+                    </span>
+                    <h3 className="text-xl font-bold text-[#4a6b45] tracking-wide">
+                        身體裡的生命之河
+                    </h3>
+                 </div>
+                 
+                 <div className="text-[#556b4f] font-medium leading-relaxed space-y-4 text-lg">
+                    <p>
+                      如果把我們的身體比喻成一座生意盎然的森林，那麼<strong>腎臟</strong>就像是森林裡那條負責淨化水源的<strong>河流</strong>。
+                      它安靜地將血液中的代謝廢物沖刷帶走，讓身體保持純淨與平衡。
+                    </p>
+                    <p className="flex items-start gap-4 bg-white/80 p-5 rounded-2xl border border-[#e0ebd4] shadow-sm text-[#6b7c62]">
+                       <AlertCircle className="w-6 h-6 text-[#e6b89c] flex-shrink-0 mt-0.5" />
+                       <span>
+                         然而，這條河流非常「沈默」。當過濾網受損、河水開始混濁時，它通常<strong>不會發出疼痛的訊號</strong>。
+                         這就是為什麼許多人直到身體嚴重水腫、極度疲倦時，才驚覺腎臟生病了。
+                       </span>
+                    </p>
+                 </div>
                </div>
             </div>
 
-            {/* 2. 四格漫畫小劇場 - Ghibli Layout with Character Emojis */}
-            <div className="bg-[#fcfdfc] p-6 sm:p-8 rounded-3xl border border-slate-100 shadow-lg relative">
-               {/* Tape Element */}
-               <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-100/50 rotate-1 backdrop-blur-sm shadow-sm border border-white"></div>
-               
+            {/* 2. 醫師與病患對話小劇場 (Updated Flat Design Avatars) */}
+            <div className="relative">
                <div className="text-center mb-8">
-                  <h3 className="text-xl font-bold text-[#2d6a4f] tracking-wide flex items-center justify-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-lime-400"></span>
-                    森林診所的悄悄話
-                    <span className="w-2 h-2 rounded-full bg-lime-400"></span>
-                  </h3>
+                  <span className="inline-block px-6 py-2 rounded-full bg-[#f0f4f8] text-[#5c7c8a] text-sm font-bold border border-[#dce5eb] shadow-sm tracking-widest">
+                    診間裡的悄悄話
+                  </span>
                </div>
 
-               <div className="grid md:grid-cols-4 gap-4">
+               <div className="space-y-10 max-w-3xl mx-auto">
                   
-                  {/* Panel 1: The Bear (Strong but oblivious) */}
-                  <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-[0_4px_10px_rgba(0,0,0,0.03)] flex flex-col items-center hover:-translate-y-1 transition-transform duration-500">
-                     <div className="w-full aspect-[4/3] bg-gradient-to-t from-orange-50 to-white rounded-xl mb-3 flex items-center justify-center relative overflow-hidden border border-orange-100">
-                        {/* Bear Emoji representing a Totoro-like strong creature */}
-                        <span className="text-6xl drop-shadow-sm filter contrast-125 transform hover:scale-110 transition-transform cursor-default">🐻</span>
-                        <div className="absolute bottom-0 w-full h-1 bg-[#88c999]/30"></div>
+                  {/* Scene 1: Patient (Uncle - Flat Design) */}
+                  <div className="flex items-start gap-4 sm:gap-8 group">
+                     {/* Flat Avatar: Uncle (Geometric & Recognizable) */}
+                     <div className="w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 relative z-10 transition-transform hover:scale-105 duration-300">
+                        <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-sm" xmlns="http://www.w3.org/2000/svg">
+                           {/* Background - Lime */}
+                           <circle cx="50" cy="50" r="50" fill="#bef264" />
+                           {/* Body - Green Vest */}
+                           <path d="M15,100 Q50,85 85,100 L85,110 L15,110 Z" fill="#65a30d" />
+                           <path d="M40,90 L40,110 M60,90 L60,110" stroke="#365314" strokeWidth="0.5" />
+                           {/* Head */}
+                           <circle cx="50" cy="55" r="22" fill="#ffedd5" />
+                           {/* Hair - Grey Balding */}
+                           <path d="M26,55 Q26,30 40,28 L60,28 Q74,30 74,55" fill="#e2e8f0" />
+                           <path d="M26,55 L26,45" fill="#e2e8f0" />
+                           <path d="M74,55 L74,45" fill="#e2e8f0" />
+                           {/* Ears */}
+                           <circle cx="27" cy="58" r="3" fill="#ffedd5" />
+                           <circle cx="73" cy="58" r="3" fill="#ffedd5" />
+                           {/* Glasses - Thick Black Frames */}
+                           <g fill="none" stroke="#1f2937" strokeWidth="2.5">
+                               <circle cx="42" cy="55" r="7" fill="rgba(255,255,255,0.4)" />
+                               <circle cx="58" cy="55" r="7" fill="rgba(255,255,255,0.4)" />
+                               <line x1="49" y1="55" x2="51" y2="55" />
+                               <line x1="28" y1="55" x2="35" y2="55" />
+                               <line x1="65" y1="55" x2="72" y2="55" />
+                           </g>
+                           {/* Eyes */}
+                           <circle cx="42" cy="55" r="1.5" fill="#1f2937" />
+                           <circle cx="58" cy="55" r="1.5" fill="#1f2937" />
+                           {/* Mustache - Grey */}
+                           <path d="M40,68 Q50,64 60,68 Q50,76 40,68 Z" fill="#cbd5e1" />
+                        </svg>
+                        <div className="absolute -bottom-2 -right-2 bg-white px-3 py-1 rounded-full text-xs font-bold text-slate-500 border border-slate-200 shadow-sm">伯伯</div>
                      </div>
-                     <div className="bg-[#fff9e6] rounded-xl p-3 w-full text-center relative border border-[#ffeeba]">
-                         <p className="text-sm font-bold text-slate-700 leading-snug">
-                           「我是森林裡的大熊，強壯得很，不用檢查啦！」
-                         </p>
-                     </div>
-                  </div>
-
-                  {/* Panel 2: The Girl (Wisdom/Healer) */}
-                  <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-[0_4px_10px_rgba(0,0,0,0.03)] flex flex-col items-center hover:-translate-y-1 transition-transform duration-500 delay-100">
-                     <div className="w-full aspect-[4/3] bg-gradient-to-t from-blue-50 to-white rounded-xl mb-3 flex items-center justify-center relative overflow-hidden border border-blue-100">
-                        {/* Girl Emoji representing the spirited protagonist */}
-                        <span className="text-6xl drop-shadow-sm transform hover:rotate-6 transition-transform cursor-default">👧</span>
-                        <Cloud className="absolute top-2 right-2 text-white w-6 h-6 opacity-80" />
-                     </div>
-                     <div className="bg-[#e3f2fd] rounded-xl p-3 w-full text-center relative border border-[#bbdefb]">
-                         <p className="text-sm font-bold text-slate-700 leading-snug">
-                           「大熊先生，腎臟就像<span className="text-cyan-600">樹的根</span>。生病時是不會喊痛的喔！」
-                         </p>
-                     </div>
-                  </div>
-
-                  {/* Panel 3: Soot Sprites (Hidden Danger) */}
-                  <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-[0_4px_10px_rgba(0,0,0,0.03)] flex flex-col items-center hover:-translate-y-1 transition-transform duration-500 delay-200">
-                     <div className="w-full aspect-[4/3] bg-gradient-to-t from-slate-100 to-white rounded-xl mb-3 flex items-center justify-center relative overflow-hidden border border-slate-200 group/panel3">
-                        {/* Black Circles representing Makkuro Kurosuke (Soot Sprites) */}
-                        <div className="relative">
-                            <span className="text-4xl absolute -left-6 top-2 animate-bounce delay-75 opacity-80">⚫</span>
-                            <span className="text-5xl relative z-10 animate-bounce">⚫</span>
-                            <span className="text-3xl absolute -right-5 bottom-0 animate-bounce delay-150 opacity-80">⚫</span>
-                        </div>
-                        <Wind className="absolute bottom-2 left-2 text-slate-300 w-8 h-8 animate-pulse" />
-                     </div>
-                     <div className="bg-[#f5f5f5] rounded-xl p-3 w-full text-center relative border border-slate-200">
-                         <p className="text-sm font-bold text-slate-600 leading-snug">
-                           「就像灰塵精靈(毒素)悄悄堆積... 等發現時通常太晚了。」
-                         </p>
-                     </div>
-                  </div>
-
-                  {/* Panel 4: Sprout (Magic/Health) */}
-                  <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-[0_4px_10px_rgba(0,0,0,0.03)] flex flex-col items-center hover:-translate-y-1 transition-transform duration-500 delay-300">
-                     <div className="w-full aspect-[4/3] bg-gradient-to-t from-lime-50 to-white rounded-xl mb-3 flex items-center justify-center relative overflow-hidden border border-lime-100">
-                        {/* Sprout Emoji representing growth/Totoro's tree magic */}
-                        <span className="text-6xl drop-shadow-sm animate-pulse cursor-default">🌱</span>
-                        <Sparkles className="absolute top-2 left-2 text-yellow-400 w-5 h-5 animate-pulse" />
-                        <Leaf className="absolute bottom-2 right-2 text-lime-400 w-4 h-4 opacity-50 rotate-45" />
-                     </div>
-                     <div className="bg-[#f1f8e9] rounded-xl p-3 w-full text-center relative border border-[#dcedc8]">
-                         <p className="text-sm font-bold text-[#33691e] leading-snug">
-                           「施展『定期檢查』的魔法，讓身體的森林永遠翠綠！」
-                         </p>
+                     
+                     {/* Dialogue Bubble */}
+                     <div className="flex-1 bg-white p-6 rounded-3xl rounded-tl-none shadow-[0_4px_15px_-3px_rgba(0,0,0,0.05)] border border-[#eef2f5] relative mt-4 group-hover:border-[#ffdcb8] transition-colors">
+                        <div className="absolute -left-2.5 top-0 w-5 h-5 bg-white border-l border-t border-[#eef2f5] transform -rotate-45 group-hover:border-[#ffdcb8] transition-colors"></div>
+                        <p className="text-[#546e7a] font-bold text-lg leading-relaxed">
+                           「醫生啊，我平常身體硬朗得很！<br/>
+                           雖然最近<span className="text-[#d97706] bg-[#fff3e0] px-1 rounded">小便泡泡</span>多了點，人容易累，但應該只是年紀大了吧？真的有必要做檢查嗎？」
+                        </p>
                      </div>
                   </div>
 
+                  {/* Scene 2: Doctor (Male - Flat Design) */}
+                  <div className="flex items-start gap-4 sm:gap-8 flex-row-reverse group">
+                     {/* Flat Avatar: Male Doctor (Geometric & Recognizable) */}
+                     <div className="w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 relative z-10 transition-transform hover:scale-105 duration-300">
+                        <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-sm" xmlns="http://www.w3.org/2000/svg">
+                           {/* Background - Blue */}
+                           <circle cx="50" cy="50" r="50" fill="#bae6fd" />
+                           {/* Body - White Coat */}
+                           <path d="M15,100 Q50,90 85,100 L85,110 L15,110 Z" fill="#ffffff" />
+                           <path d="M50,90 L50,110" stroke="#e2e8f0" strokeWidth="1" />
+                           {/* Shirt & Tie */}
+                           <path d="M40,85 L50,95 L60,85" fill="#e0f2fe" />
+                           <path d="M50,85 L50,105" stroke="#0369a1" strokeWidth="4" strokeLinecap="round" />
+                           {/* Stethoscope */}
+                           <path d="M30,90 C30,110 70,110 70,90" fill="none" stroke="#334155" strokeWidth="3" />
+                           {/* Head */}
+                           <circle cx="50" cy="55" r="22" fill="#ffedd5" />
+                           {/* Hair - Short Dark */}
+                           <path d="M28,52 Q25,25 50,22 Q75,25 72,52 L72,40 Q75,25 50,25 Q25,25 28,40 Z" fill="#1e293b" />
+                           {/* Ears */}
+                           <circle cx="27" cy="55" r="3" fill="#ffedd5" />
+                           <circle cx="73" cy="55" r="3" fill="#ffedd5" />
+                           {/* Eyes */}
+                           <circle cx="43" cy="55" r="2.5" fill="#1e293b" />
+                           <circle cx="57" cy="55" r="2.5" fill="#1e293b" />
+                           {/* Mouth - Smile */}
+                           <path d="M45,68 Q50,72 55,68" fill="none" stroke="#be123c" strokeWidth="1.5" strokeLinecap="round" />
+                        </svg>
+                        
+                        <div className="absolute -bottom-2 -left-2 bg-white px-3 py-1 rounded-full text-xs font-bold text-cyan-600 border border-cyan-100 shadow-sm">醫師</div>
+                     </div>
+                     
+                     {/* Dialogue Bubble */}
+                     <div className="flex-1 bg-[#f0f9ff] p-6 rounded-3xl rounded-tr-none shadow-[0_4px_15px_-3px_rgba(0,0,0,0.05)] border border-[#e0f2fe] relative mt-4 group-hover:border-[#bde0fe] transition-colors">
+                        <div className="absolute -right-2.5 top-0 w-5 h-5 bg-[#f0f9ff] border-r border-t border-[#e0f2fe] transform rotate-45 group-hover:border-[#bde0fe] transition-colors"></div>
+                        <p className="text-[#0c4a6e] font-bold text-lg leading-relaxed">
+                           「伯伯，其實<span className="text-[#0369a1] bg-white px-1.5 rounded mx-1 shadow-sm">泡泡尿</span>和<span className="text-[#0369a1] bg-white px-1.5 rounded mx-1 shadow-sm">不明疲倦</span>正是腎臟發出的求救訊號喔！<br/>
+                           因為腎臟不會痛，我們更要透過檢查來傾聽它的聲音。來，我們花 1 分鐘做個快速檢測，早期發現就能早期保養！」
+                        </p>
+                     </div>
+                  </div>
                </div>
             </div>
             
-            <div className="flex items-center gap-2 text-sm text-slate-400 justify-center pt-2">
-                <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                <span className="font-medium text-slate-500">往下滑動，聆聽身體的聲音</span>
-                <span className="w-1 h-1 rounded-full bg-slate-300"></span>
+            <div className="flex items-center justify-center pt-8">
+                <div className="flex flex-col items-center animate-bounce text-slate-300">
+                    <span className="text-xs font-bold mb-1 tracking-widest text-[#7fb069]">SCROLL DOWN</span>
+                    <ArrowRight className="w-6 h-6 rotate-90 text-[#7fb069]" />
+                </div>
             </div>
           </div>
 
@@ -275,54 +304,70 @@ const KidneyCheck: React.FC = () => {
                 checked={noSymptoms}
                 onChange={handleNoSymptomsCheck}
               />
-              <span className={`text-lg ${noSymptoms ? 'text-lime-800 font-bold' : 'text-slate-600 font-bold'}`}>
-                我完全沒有以上症狀
+              <span className={`text-lg font-bold ${noSymptoms ? 'text-lime-700' : 'text-slate-500'}`}>
+                我完全沒有以上症狀，身體狀況良好
               </span>
             </label>
 
             <button
               onClick={handleShowResult}
-              className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-4 px-16 rounded-full transition-all duration-300 shadow-lg shadow-cyan-200 hover:shadow-xl flex items-center gap-3 text-xl transform hover:-translate-y-1 active:scale-95"
+              className="group relative bg-cyan-600 hover:bg-cyan-500 text-white text-xl font-bold py-4 px-12 rounded-full shadow-lg hover:shadow-cyan-500/30 transition-all duration-300 hover:-translate-y-1 w-full sm:w-auto overflow-hidden"
             >
-              查看分析結果 <ArrowRight className="w-6 h-6" />
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                開始分析風險
+                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
             
             {error && (
-              <div className="flex items-center gap-2 text-red-600 font-bold bg-red-50 px-6 py-3 rounded-xl border border-red-100 animate-in fade-in slide-in-from-top-1 shadow-sm">
-                 <AlertTriangle className="w-5 h-5" />
-                 {error}
+              <div className="flex items-center gap-2 text-red-500 bg-red-50 px-4 py-2 rounded-lg animate-bounce">
+                <AlertCircle className="w-5 h-5" />
+                <span className="font-bold">{error}</span>
               </div>
             )}
           </div>
         </div>
       ) : (
-        <div className="p-8 flex flex-col items-center text-center animate-fade-in">
-          <div className={`w-28 h-28 rounded-full flex items-center justify-center mb-6 ${result.bg} shadow-inner`}>
-            {score === 0 ? <CheckCircle2 className={`w-16 h-16 ${result.iconColor}`} /> : <AlertCircle className={`w-16 h-16 ${result.iconColor}`} />}
-          </div>
-          <h3 className="text-3xl font-bold text-slate-800 mb-2">檢測結果：<span className={result.color}>{result.level}</span></h3>
-          <div className={`p-8 rounded-2xl ${result.bg} ${result.border} border mb-10 max-w-2xl w-full text-left shadow-sm`}>
-            <p className="text-slate-800 text-xl leading-loose whitespace-pre-line font-medium">{result.msg}</p>
+        <div className="p-8 animate-in fade-in zoom-in-95 duration-500">
+          <div className={`rounded-2xl p-8 border-2 ${result.border} ${result.bg} mb-8 text-center`}>
+            <div className={`w-20 h-20 mx-auto rounded-full bg-white flex items-center justify-center mb-4 shadow-sm border-2 ${result.border}`}>
+              {score === 0 ? <CheckCircle2 className={`w-10 h-10 ${result.iconColor}`} /> : <AlertTriangle className={`w-10 h-10 ${result.iconColor}`} />}
+            </div>
+            <h3 className={`text-2xl font-bold mb-2 ${result.color}`}>
+              風險評估：{result.level}
+            </h3>
+            <div className="w-16 h-1 bg-current opacity-20 mx-auto mb-6 rounded-full"></div>
+            <p className="text-lg text-slate-700 font-bold whitespace-pre-line leading-relaxed">
+              {result.msg}
+            </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 w-full justify-center max-w-lg">
-            <a 
-              href={CLINIC_INFO.bookingLink} 
-              target="_blank" 
-              rel="noreferrer"
-              className="bg-[#06c755] hover:bg-[#05b34c] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg flex items-center justify-center gap-3 hover:-translate-y-1 flex-1 text-lg"
-            >
-              <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-6 h-6" />
-              <span>立即 Line 預約掛號</span>
-            </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={resetTest}
-              className="bg-white border-2 border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-400 font-bold py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 flex-1 text-lg"
+              className="flex items-center justify-center gap-2 px-8 py-3 rounded-xl border-2 border-slate-200 text-slate-600 font-bold hover:bg-slate-50 hover:border-slate-300 transition-all"
             >
-              <RotateCcw className="w-5 h-5" /> 重新檢測
+              <RotateCcw className="w-5 h-5" />
+              重新檢測
             </button>
+            <a
+              href={CLINIC_INFO.bookingLink}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center justify-center gap-2 px-8 py-3 rounded-xl bg-[#06c755] hover:bg-[#05b34c] text-white font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
+            >
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="Line" className="w-5 h-5" />
+              立即 Line 預約諮詢
+            </a>
           </div>
-          <p className="mt-8 text-sm text-slate-400">本檢測僅供參考，無法取代專業醫師診斷。如有身體不適請務必就醫。</p>
+          
+          <div className="mt-8 text-center">
+             <p className="text-sm text-slate-400">
+               本檢測結果僅供衛教參考，不能取代專業醫師診斷。<br/>
+               若有任何身體不適，請務必尋求專業醫療協助。
+             </p>
+          </div>
         </div>
       )}
     </div>

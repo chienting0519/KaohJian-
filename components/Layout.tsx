@@ -121,33 +121,31 @@ const Layout: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Menu Dropdown */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white border-t border-slate-100 absolute w-full shadow-lg animate-in slide-in-from-top-5 duration-200 h-[calc(100vh-80px)] overflow-y-auto pb-20">
-            <div className="flex flex-col p-4 space-y-2">
-               {navLinks.map((link) => (
-                  <NavLink
-                    key={link.path}
-                    to={link.path}
-                    onClick={closeMenu}
-                    className={({ isActive }) => 
-                        `px-4 py-3 font-bold rounded-xl transition-all text-xl ${isActive ? 'text-cyan-700 bg-cyan-50' : 'text-slate-600 hover:text-cyan-700 hover:bg-cyan-50'}`
-                    }
-                  >
-                    {link.label}
-                  </NavLink>
-               ))}
-               <a 
-                 href={CLINIC_INFO.bookingLink}
-                 target="_blank"
-                 rel="noreferrer" 
-                 className="mt-2 bg-[#06c755] hover:bg-[#05b34c] text-white px-4 py-3 rounded-xl font-bold text-center shadow-sm text-xl"
-               >
-                 立即預約掛號
-               </a>
-            </div>
+        {/* Mobile Menu Dropdown (Optimized) */}
+        <div className={`md:hidden absolute top-full left-0 w-full bg-white border-t border-slate-100 shadow-lg transition-all duration-300 ease-in-out overflow-hidden ${isMenuOpen ? 'max-h-[calc(100vh-80px)] opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div className="flex flex-col p-6 space-y-4 h-[calc(100vh-80px)] overflow-y-auto pb-32">
+             {navLinks.map((link) => (
+                <NavLink
+                  key={link.path}
+                  to={link.path}
+                  onClick={closeMenu}
+                  className={({ isActive }) => 
+                      `block px-6 py-4 font-bold rounded-2xl transition-all text-xl ${isActive ? 'text-cyan-700 bg-cyan-50 shadow-sm' : 'text-slate-600 hover:text-cyan-700 hover:bg-slate-50'}`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+             ))}
+             <a 
+               href={CLINIC_INFO.bookingLink}
+               target="_blank"
+               rel="noreferrer" 
+               className="mt-4 bg-[#06c755] hover:bg-[#05b34c] text-white px-6 py-4 rounded-2xl font-bold text-center shadow-md text-xl active:scale-95 transition-transform"
+             >
+               立即預約掛號
+             </a>
           </div>
-        )}
+        </div>
       </nav>
 
       {/* Fixed Marquee Banner */}
