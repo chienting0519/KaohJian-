@@ -215,7 +215,7 @@ const KidneyCheck: React.FC = () => {
 
           <div className="bg-white border-t border-slate-100 pt-8">
             <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center">
-              <span className="w-2 h-8 bg-cyan-500 rounded mr-3"></span>
+              <span className="w-2 h-8 bg-cyan-50 rounded mr-3"></span>
               請勾選您最近是否有以下狀況：
             </h3>
             
