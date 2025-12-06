@@ -1,7 +1,8 @@
+
 import React, { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ARTICLES, CLINIC_INFO } from '../constants';
-import { Calendar, Tag, ArrowLeft, Phone, UserRound, Share2 } from 'lucide-react';
+import { Calendar, Tag, ArrowLeft, Phone, UserRound } from 'lucide-react';
 
 const ArticleDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();

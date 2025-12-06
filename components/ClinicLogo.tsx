@@ -12,9 +12,9 @@ export const ClinicLogo = ({ className = "w-12 h-12" }: { className?: string }) 
         viewBox="0 0 500 500"
         className={className}
         xmlns="http://www.w3.org/2000/svg"
-        aria-label="高健診所 Logo"
+        aria-label="高健診所 Logo - 高雄小港腎臟專科"
       >
-        <title>高健診所 Logo</title>
+        <title>高健診所 Logo - 高雄小港腎臟專科</title>
         {/* Background Circle */}
         <circle cx="250" cy="250" r="240" fill="#ffffff" stroke="#155e75" strokeWidth="15" />
         <circle cx="250" cy="250" r="220" fill="#0891b2" />
@@ -67,7 +67,7 @@ export const ClinicLogo = ({ className = "w-12 h-12" }: { className?: string }) 
     <img 
       // ★★★ (方法一) 請將您的 Logo 檔案命名為 logo.webp 並放入 public 資料夾 ★★★
       src="/logo.webp" 
-      alt="高健診所 Logo" 
+      alt="高健診所 Logo - 高雄小港腎臟專科" 
       className={`${className} object-contain`}
       onError={() => setImgError(true)} // 圖片讀取失敗時觸發，轉為顯示上方的 SVG
     />

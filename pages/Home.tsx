@@ -1,20 +1,18 @@
-import React from 'react';
-import { Link, useOutletContext } from 'react-router-dom';
+
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { ClipboardCheck, Stethoscope, MessageCircle } from 'lucide-react';
 import SEO from '../components/SEO';
-
-interface LayoutContext {
-  setIsChatOpen: (isOpen: boolean) => void;
-}
+import { LayoutContext } from '../components/Layout';
 
 const Home: React.FC = () => {
-  const { setIsChatOpen } = useOutletContext<LayoutContext>();
+  const { setIsChatOpen } = useContext(LayoutContext);
 
   return (
     <>
       <SEO 
-        title="首頁 - 守護腎臟健康" 
-        description="高健診所位於高雄小港，專精血液透析(洗腎)、腎臟科檢查、糖尿病與高血壓治療。提供小港、鳳山、林園、大寮、前鎮溫馨接送服務。" 
+        title="高健診所 | 高雄小港腎臟專科 • 洗腎中心 • 糖尿病高血壓治療 (鳳山/林園/大寮/前鎮首選)" 
+        description="高雄小港區沿海一路診所推薦。高健診所(KHJ Clinic)專精血液透析(洗腎)、腎臟科檢查。提供小港、鳳山、林園、大寮、前鎮地區溫馨接送服務。鄰近高雄國際機場站，停車方便，是您最信賴的腎臟專科團隊。" 
       />
       <section className="relative bg-gradient-to-br from-cyan-900 via-cyan-800 to-blue-900 text-white min-h-[calc(100vh-144px)] flex items-center justify-center overflow-hidden py-12">
         <div className="absolute inset-0 opacity-10 pattern-grid-lg"></div>

@@ -1,14 +1,22 @@
 
-import React, { useState, useEffect, Suspense } from 'react';
-import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, MapPin, MessageCircle, ChevronUp, ClipboardCheck, Stethoscope, Building2, ExternalLink } from 'lucide-react';
+import React, { useState, useEffect, Suspense, createContext } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Menu, X, Phone, MapPin, ChevronUp, ClipboardCheck, Building2, ExternalLink, MessageCircle } from 'lucide-react';
 import { CLINIC_INFO, ALLIANCE_HOSPITALS } from '../constants';
 import { ClinicLogo } from './ClinicLogo';
 import { AllianceHospital } from '../types';
 
 const AIChat = React.lazy(() => import('./AIChat'));
 
-const Layout: React.FC = () => {
+export const LayoutContext = createContext<{
+  setIsChatOpen: (isOpen: boolean) => void;
+}>({ setIsChatOpen: () => {} });
+
+interface LayoutProps {
+  children?: React.ReactNode;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -95,8 +103,13 @@ const Layout: React.FC = () => {
                   <NavLink
                     key={link.path}
                     to={link.path}
+                    end={link.path === '/'}
                     className={({ isActive }) => 
-                        `px-4 py-2 font-bold rounded-full transition-all text-lg lg:text-xl ${isActive ? 'text-cyan-700 bg-cyan-50' : 'text-slate-600 hover:text-cyan-700 hover:bg-cyan-50'}`
+                      `px-4 py-2 font-bold rounded-full transition-all text-lg lg:text-xl ${
+                        isActive 
+                        ? 'text-cyan-700 bg-cyan-50 active-nav' 
+                        : 'text-slate-600 hover:text-cyan-700 hover:bg-cyan-50'
+                      }`
                     }
                   >
                     {link.label}
@@ -129,9 +142,14 @@ const Layout: React.FC = () => {
                 <NavLink
                   key={link.path}
                   to={link.path}
+                  end={link.path === '/'}
                   onClick={closeMenu}
                   className={({ isActive }) => 
-                      `block px-6 py-4 font-bold rounded-2xl transition-all text-xl ${isActive ? 'text-cyan-700 bg-cyan-50 shadow-sm' : 'text-slate-600 hover:text-cyan-700 hover:bg-slate-50'}`
+                    `block px-6 py-4 font-bold rounded-2xl transition-all text-xl ${
+                      isActive 
+                      ? 'text-cyan-700 bg-cyan-50 shadow-sm' 
+                      : 'text-slate-600 hover:text-cyan-700 hover:bg-slate-50'
+                    }`
                   }
                 >
                   {link.label}
@@ -173,7 +191,9 @@ const Layout: React.FC = () => {
 
       {/* Main Content Area */}
       <main className="pt-[144px] flex-grow">
-          <Outlet context={{ setIsChatOpen }} />
+          <LayoutContext.Provider value={{ setIsChatOpen }}>
+            {children}
+          </LayoutContext.Provider>
       </main>
 
       {/* Footer */}

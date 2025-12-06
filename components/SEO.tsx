@@ -16,10 +16,17 @@ const SEO: React.FC<SEOProps> = ({
   const location = useLocation();
 
   useEffect(() => {
-    // 1. Update Document Title
-    document.title = `${title} | ${CLINIC_INFO.name}`;
+    // 1. Determine the final title
+    // If the provided title already includes the clinic name, use it as is.
+    // Otherwise, append the clinic name for branding consistency.
+    const finalTitle = title.includes(CLINIC_INFO.name) 
+      ? title 
+      : `${title} | ${CLINIC_INFO.name}`;
 
-    // 2. Update Meta Tags Helper
+    // 2. Update Document Title
+    document.title = finalTitle;
+
+    // 3. Update Meta Tags Helper
     const updateMeta = (name: string, content: string, attribute: 'name' | 'property' = 'name') => {
       let element = document.querySelector(`meta[${attribute}="${name}"]`);
       if (!element) {
@@ -39,12 +46,10 @@ const SEO: React.FC<SEOProps> = ({
     }
 
     // Open Graph
-    updateMeta('og:title', `${title} | ${CLINIC_INFO.name}`, 'property');
+    updateMeta('og:title', finalTitle, 'property');
     updateMeta('og:description', description, 'property');
     updateMeta('og:url', window.location.href, 'property');
 
-    // Scroll to top on route change is handled by ScrollToTop component, 
-    // but SEO metadata should update immediately.
   }, [title, description, keywords, location]);
 
   return null;

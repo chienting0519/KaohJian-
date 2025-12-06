@@ -16,20 +16,20 @@ const App: React.FC = () => {
   return (
     <Router>
       <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="services" element={<Services />} />
-          <Route path="team" element={<Team />} />
-          <Route path="schedule" element={<Schedule />} />
-          <Route path="checkup" element={<Checkup />} />
-          <Route path="knowledge" element={<Knowledge />} />
-          <Route path="knowledge/:id" element={<ArticleDetail />} />
-          <Route path="clinics" element={<ClinicsList />} />
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/schedule" element={<Schedule />} />
+          <Route path="/checkup" element={<Checkup />} />
+          <Route path="/knowledge" element={<Knowledge />} />
+          <Route path="/knowledge/:id" element={<ArticleDetail />} />
+          <Route path="/clinics" element={<ClinicsList />} />
           {/* Catch all to home */}
           <Route path="*" element={<Navigate to="/" replace />} />
-        </Route>
-      </Routes>
+        </Routes>
+      </Layout>
     </Router>
   );
 };
