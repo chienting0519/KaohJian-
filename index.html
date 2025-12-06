@@ -19,6 +19,7 @@
     <title>高健診所 | 高雄小港腎臟專科 • 洗腎中心 • 糖尿病高血壓治療 (鳳山/林園/大寮/前鎮首選)</title>
     <meta name="title" content="高健診所 | 高雄小港腎臟專科 • 洗腎中心 • 糖尿病高血壓治療 (鳳山/林園/大寮/前鎮首選)" />
     <meta name="description" content="高雄小港高健診所(KHJ Clinic)位於沿海一路，專精血液透析(洗腎)、糖尿病與高血壓治療。提供小港、鳳山、林園、大寮、前鎮等地區的免費溫馨接送服務，是南高雄腎友最推薦的洗腎中心與腎臟專科診所。" />
+    <meta name="keywords" content="高健診所, 洗腎診所, 小港洗腎, 鳳山洗腎, 林園洗腎, 大寮洗腎, 前鎮洗腎, 高雄腎臟科, 糖尿病, 高血壓, 成人健檢" />
     
     <meta name="geo.region" content="TW-KHH" />
     <meta name="geo.placename" content="Kaohsiung City, Xiaogang District" />
@@ -32,8 +33,10 @@
     <meta property="og:site_name" content="高健診所 KHJ Clinic" />
     <meta property="og:image" content="https://khjclinic.com/logo.webp" />
 
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
@@ -60,32 +63,22 @@
     }
     </script>
     
-    <script type="module">
-      import React from "https://esm.sh/react@18.3.1";
-      import ReactDOM from "https://esm.sh/react-dom@18.3.1/client";
-      window.React = React;
-      window.ReactDOM = ReactDOM;
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@18.3.1",
+        "react/": "https://esm.sh/react@18.3.1/",
+        "react-dom": "https://esm.sh/react-dom@18.3.1",
+        "react-dom/client": "https://esm.sh/react-dom@18.3.1/client?deps=react@18.3.1",
+        "react-router-dom": "https://esm.sh/react-router-dom@6.22.3?deps=react@18.3.1,react-dom@18.3.1",
+        "lucide-react": "https://esm.sh/lucide-react@0.344.0?deps=react@18.3.1,react-dom@18.3.1",
+        "@google/genai": "https://esm.sh/@google/genai@0.1.0",
+        "react-dom/": "https://esm.sh/react-dom@18.3.1/",
+        "vite": "data:application/javascript,export default {}", 
+        "@vitejs/plugin-react": "data:application/javascript,export default {}"
+      }
+    }
     </script>
-    
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@18.3.1",
-    "react/": "https://esm.sh/react@18.3.1/",
-    "react-dom": "https://esm.sh/react-dom@18.3.1",
-    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client?deps=react@18.3.1",
-    
-    "react-router-dom": "https://esm.sh/react-router-dom@6.22.3?deps=react@18.3.1,react-dom@18.3.1",
-    "lucide-react": "https://esm.sh/lucide-react@0.344.0?deps=react@18.3.1,react-dom@18.3.1",
-    "@google/genai": "https://esm.sh/@google/genai@0.1.0",
-    
-    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
-    "vite": "data:application/javascript,export default {}", 
-    "@vitejs/plugin-react": "data:application/javascript,export default {}"
-  }
-}
-</script>
-
   </head>
   
   <body class="bg-slate-50 text-slate-800 antialiased">
