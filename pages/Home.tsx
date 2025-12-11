@@ -141,7 +141,7 @@ const Home: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                  <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:shadow-md transition-shadow">
                     <h3 className="text-xl font-bold text-cyan-900 mb-2">血液透析中心</h3>
-                    <p className="text-slate-600">配備個人電視與電動床，提供寬敞舒適的洗腎環境。</p>
+                    <p className="text-slate-600">配備個人電視與床單棉被，提供寬敞舒適的洗腎環境。</p>
                  </div>
                  <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:shadow-md transition-shadow">
                     <h3 className="text-xl font-bold text-cyan-900 mb-2">溫馨接送服務</h3>
