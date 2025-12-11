@@ -41,7 +41,7 @@ const Home: React.FC = () => {
             
             {/* 服務區域顯示 */}
             <div className="hidden sm:flex flex-wrap items-center justify-center gap-4 text-2xl lg:text-3xl font-bold text-white/90 mb-10 tracking-wide animate-in fade-in duration-700 delay-200 bg-white/10 py-3 px-8 rounded-full backdrop-blur-sm inline-flex border border-white/20">
-              <span className="flex items-center gap-2"><MapPin className="w-6 h-6 text-lime-400" /> 溫馨接送服務：</span>
+              <span className="flex items-center gap-2"><MapPin className="w-6 h-6 text-lime-400" /> 溫馨接送：</span>
               <span>鳳山</span>•<span>小港</span>•<span>林園</span>•<span>大寮</span>•<span>前鎮</span>
             </div>
 
