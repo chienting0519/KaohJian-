@@ -20,10 +20,6 @@ const Services: React.FC = () => {
       question: "洗腎費用多少？健保有給付嗎？",
       answer: "在台灣，血液透析（洗腎）屬於健保全額給付的重大傷病項目。持有重大傷病卡的腎友，在高健診所接受透析治療免部分負擔。我們更提供免掛號費優惠，希望能減輕腎友長期的經濟壓力。"
     }
-    {
-    question: "免費成人健檢的資格是什麼？幾歲可以做？",
-    answer: "依據國健署最新擴大補助方案，年滿 30 歲即可享有免費健檢服務！30-39 歲民眾每 3 年補助一次，40-64 歲每 3 年一次，65 歲以上每年一次。請攜帶健保卡至高健診所櫃台辦理。"
-  },
   ];
 
   const faqSchema = {
@@ -93,12 +89,7 @@ const Services: React.FC = () => {
                    </li>
                 </ul>
              </div>
-              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:shadow-md transition-shadow">
-                <h3 className="text-xl font-bold text-cyan-900 mb-2">免費成人健檢</h3>
-                  <p className="text-slate-600">最新政策受惠族群擴大！
-                    <strong>滿 30 歲</strong>即可檢查。包含血糖、血脂、肝腎功能與尿蛋白檢測。
-                  </p>
-              </div>
+
              <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
                 <h2 className="text-2xl font-bold text-cyan-900 mb-6 flex items-center gap-3">
                    <CheckCircle2 className="w-6 h-6 text-lime-500" />

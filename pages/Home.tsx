@@ -143,10 +143,8 @@ const Home: React.FC = () => {
                  </div>
                  <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:shadow-md transition-shadow">
                     <h3 className="text-xl font-bold text-cyan-900 mb-2">免費成人健檢</h3>
-                    <p className="text-slate-600"><span className="text-lime-600 font-bold">擴大補助！</span>
-     年滿 30 歲民眾即可篩檢 (30-39歲每3年一次)，40-64歲每3年一次，65歲每年一次。
+                    <p className="text-slate-600">滿40歲每3年一次，滿65歲每年一次。包含血糖、血脂、肝腎功能。</p>
                  </div>
-                 </p>
               </div>
 
            </div>
