@@ -38,7 +38,7 @@ const TrafficGuide: React.FC = () => {
                         className="inline-flex items-center gap-2 text-cyan-700 font-bold hover:text-cyan-500 transition-colors border-b-2 border-cyan-100 hover:border-cyan-400 pb-0.5"
                       >
                         <Phone className="w-4 h-4" />
-                        洽詢接送範圍：{CLINIC_INFO.phone}
+                        洽詢接送服務：{CLINIC_INFO.phone}
                       </a>
                    </div>
                 </div>

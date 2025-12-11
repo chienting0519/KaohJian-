@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { SERVICES, CLINIC_INFO } from '../constants';
@@ -9,8 +10,8 @@ const Services: React.FC = () => {
   
   const faqList = [
     {
-      question: "高健診所有提供洗腎接送服務嗎？範圍是哪裡？",
-      answer: "有的。高健診所提供免費的洗腎溫馨接送服務。我們的專車服務範圍涵蓋：高雄市小港區、鳳山區、林園區、大寮區及前鎮區。我們致力於解決腎友的交通難題，讓您風雨無阻安心就診。"
+      question: "高健診所有提供溫馨接送服務嗎？服務區域是哪裡？",
+      answer: "有的。高健診所提供免費的溫馨接送服務。我們的接送服務範圍涵蓋：高雄市小港區、鳳山區、林園區、大寮區及前鎮區。我們致力於解決腎友的交通難題，讓您風雨無阻安心就診。"
     },
     {
       question: "我有糖尿病，需要定期看腎臟科嗎？",

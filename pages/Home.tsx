@@ -42,13 +42,13 @@ const Home: React.FC = () => {
             
             {/* 地區關鍵字強化區塊 */}
             <div className="hidden sm:flex flex-wrap items-center justify-center gap-4 text-2xl lg:text-3xl font-bold text-white/90 mb-10 tracking-wide animate-in fade-in duration-700 delay-200 bg-white/10 py-3 px-8 rounded-full backdrop-blur-sm inline-flex border border-white/20">
-              <h3 className="flex items-center gap-2 m-0 text-inherit font-inherit"><MapPin className="w-6 h-6 text-lime-400" /> 洗腎專車接送範圍：</h3>
+              <h3 className="flex items-center gap-2 m-0 text-inherit font-inherit"><MapPin className="w-6 h-6 text-lime-400" /> 免費溫馨接送服務：</h3>
               <span>鳳山</span>•<span>小港</span>•<span>林園</span>•<span>大寮</span>•<span>前鎮</span>
             </div>
 
             {/* Mobile View */}
             <div className="flex sm:hidden flex-col items-center justify-center gap-2 text-xl font-bold text-lime-300 mb-10 tracking-wide animate-in fade-in duration-700 delay-200">
-                <p className="text-white text-sm mb-1 opacity-80">洗腎專車接送範圍</p>
+                <p className="text-white text-sm mb-1 opacity-80">免費溫馨接送服務</p>
                 <div className="flex items-center gap-3">
                   <span>鳳山</span>•<span>小港</span>•<span>林園</span>
                 </div>
@@ -107,7 +107,7 @@ const Home: React.FC = () => {
                     <strong>高健診所 (KaohJian Clinic)</strong> 是高雄小港區首選的腎臟專科診所。我們由前榮總、成大醫院主治醫師團隊駐診，專精於<strong>蛋白尿治療</strong>、<strong>慢性腎臟病 (CKD) 防治</strong>以及高品質的<strong>血液透析 (洗腎)</strong> 服務。
                  </p>
                  <p className="text-slate-600 text-lg leading-relaxed text-justify">
-                    為了體恤腎友與家屬，我們特別提供<strong>「免費洗腎接送專車」</strong>，服務範圍涵蓋小港、鳳山、林園、大寮及前鎮區。診所內全面採用德國原裝透析機台與雙重 RO 純水系統，讓您在社區診所也能享有醫學中心等級的安全與品質。
+                    為了體恤腎友與家屬，我們特別提供<strong>「免費溫馨接送服務」</strong>，服務範圍涵蓋小港、鳳山、林園、大寮及前鎮區。診所內全面採用德國原裝透析機台與雙重 RO 純水系統，讓您在社區診所也能享有醫學中心等級的安全與品質。
                  </p>
                  
                  <div className="pt-4 flex flex-wrap gap-4">
@@ -135,7 +135,7 @@ const Home: React.FC = () => {
                     <p className="text-slate-600">德國 Fresenius 原裝機台、雙重 RO 水處理，高清除率人工腎臟。</p>
                  </div>
                  <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:shadow-md transition-shadow">
-                    <h3 className="text-xl font-bold text-cyan-900 mb-2">洗腎專車接送</h3>
+                    <h3 className="text-xl font-bold text-cyan-900 mb-2">溫馨接送服務</h3>
                     <p className="text-slate-600">小港、鳳山、林園、大寮、前鎮免費接送，風雨無阻。</p>
                  </div>
                  <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:shadow-md transition-shadow">
