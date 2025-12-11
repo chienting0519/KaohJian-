@@ -1,29 +1,27 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { SERVICES, CLINIC_INFO } from '../constants';
 import ServiceCard from '../components/ServiceCard';
 import SEO from '../components/SEO';
-import { Phone, CalendarClock, HelpCircle } from 'lucide-react'; // ★★★ 修正：使用舊版名稱 HelpCircle 以避免匯入錯誤
+import { Phone, CalendarClock, HelpCircle, CheckCircle2 } from 'lucide-react';
 
 const Services: React.FC = () => {
   
   const faqList = [
     {
-      question: "高健診所有提供洗腎接送服務嗎？",
-      answer: "有的。我們提供小港、鳳山、林園、大寮及前鎮地區的溫馨接送服務，協助行動不便的腎友準時往返診所。"
+      question: "高健診所有提供洗腎接送服務嗎？範圍是哪裡？",
+      answer: "有的。高健診所提供免費的洗腎溫馨接送服務。我們的專車服務範圍涵蓋：高雄市小港區、鳳山區、林園區、大寮區及前鎮區。我們致力於解決腎友的交通難題，讓您風雨無阻安心就診。"
     },
     {
-      question: "糖尿病患者需要看腎臟科嗎？",
-      answer: "強烈建議定期追蹤。糖尿病是造成洗腎的第一大主因，透過微量白蛋白檢測 (ACR) 與藥物控制，能有效延緩腎功能惡化。"
+      question: "我有糖尿病，需要定期看腎臟科嗎？",
+      answer: "強烈建議定期追蹤。統計顯示，台灣洗腎患者中有超過 45% 是由糖尿病引起的（糖尿病腎病變）。透過定期檢測「微量白蛋白 (ACR)」與「腎絲球過濾率 (eGFR)」，配合藥物控制，能有效延緩腎功能惡化，避免走上洗腎之路。"
     },
     {
-      question: "洗腎的費用是健保給付嗎？",
-      answer: "是的，血液透析治療由健保全額給付。高健診所提供免掛號費的優惠，減輕腎友的長期負擔。"
+      question: "洗腎費用多少？健保有給付嗎？",
+      answer: "在台灣，血液透析（洗腎）屬於健保全額給付的重大傷病項目。持有重大傷病卡的腎友，在高健診所接受透析治療免部分負擔。我們更提供免掛號費優惠，希望能減輕腎友長期的經濟壓力。"
     }
   ];
 
-  // SEO Schema
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -37,8 +35,9 @@ const Services: React.FC = () => {
   return (
     <>
       <SEO 
-        title="專業服務項目" 
-        description="高健診所提供腎臟專科、一般內科、免費成人健檢、預防醫學等全方位醫療服務。專精蛋白尿、糖尿病、高血壓控制與高品質血液透析。" 
+        title="醫療服務項目 | 血液透析 • 成人健檢 • 慢性病治療" 
+        description="高健診所提供全方位腎臟醫療服務：高品質血液透析(洗腎)、糖尿病與高血壓共照網、痛風治療、免費成人健檢及大腸癌篩檢。小港鳳山地區首選。" 
+        keywords="血液透析,洗腎中心,高雄成人健檢,糖尿病共照網,高血壓治療,痛風飲食,腎臟病前兆"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
@@ -46,16 +45,17 @@ const Services: React.FC = () => {
         <div className="container mx-auto px-4">
           
           <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4">
-            <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm mb-2 block">Our Services</span>
-            <h1 className="text-3xl md:text-5xl font-bold text-slate-800 mb-4">高健診所 專業醫療服務</h1>
+            <span className="text-cyan-600 font-bold tracking-wider uppercase text-sm mb-2 block">Our Medical Services</span>
+            <h1 className="text-3xl md:text-5xl font-bold text-slate-800 mb-4">高健診所 專業醫療項目</h1>
             <div className="w-24 h-1.5 bg-lime-500 mx-auto rounded-full"></div>
             <p className="mt-6 text-slate-600 max-w-2xl mx-auto text-lg leading-relaxed">
-              我們不只治療疾病，更重視預防與生活品質。<br/>
-              從<span className="text-cyan-700 font-bold">血液透析</span>到<span className="text-cyan-700 font-bold">慢性病管理</span>，提供您最完整的腎臟照護。
+              我們引進與醫學中心同等級的透析設備，並結合社區診所的便利性。<br/>
+              從<span className="text-cyan-700 font-bold">血液透析</span>到<span className="text-cyan-700 font-bold">三高慢性病管理</span>，提供您最完整的腎臟照護。
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 mb-16">
+          {/* 服務卡片區 */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 mb-20">
             {SERVICES.map((service, index) => (
               <div key={index} className="animate-in fade-in slide-in-from-bottom-8 duration-700 h-full" style={{ animationDelay: `${index * 100}ms` }}>
                   <ServiceCard service={service} />
@@ -63,7 +63,60 @@ const Services: React.FC = () => {
             ))}
           </div>
 
-          {/* ★★★ 補回這個視覺區塊 (這就是您漏掉的部分) ★★★ */}
+          {/* ★★★ SEO 強化內容區塊 (增加文字密度與長尾關鍵字) ★★★ */}
+          <div className="grid md:grid-cols-2 gap-12 mb-20 animate-in fade-in slide-in-from-bottom-10">
+             <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                <h2 className="text-2xl font-bold text-cyan-900 mb-6 flex items-center gap-3">
+                   <CheckCircle2 className="w-6 h-6 text-lime-500" />
+                   血液透析中心特色
+                </h2>
+                <ul className="space-y-4 text-slate-600 text-lg">
+                   <li className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full mt-2.5 flex-shrink-0"></div>
+                      <p><strong>德國原裝設備：</strong>全院採用 Fresenius 4008S/5008S 高階洗腎機，提供穩定的透析品質。</p>
+                   </li>
+                   <li className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full mt-2.5 flex-shrink-0"></div>
+                      <p><strong>雙重 RO 純水：</strong>定期檢測水質內毒素，確保透析用水純淨安全，減少發炎反應。</p>
+                   </li>
+                   <li className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full mt-2.5 flex-shrink-0"></div>
+                      <p><strong>個人化空間：</strong>每床配備專屬電視，環境寬敞明亮，讓洗腎過程更放鬆舒適。</p>
+                   </li>
+                   <li className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full mt-2.5 flex-shrink-0"></div>
+                      <p><strong>不斷電系統：</strong>備有大型發電機，即使颱風停電也能確保治療不中斷。</p>
+                   </li>
+                </ul>
+             </div>
+
+             <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                <h2 className="text-2xl font-bold text-cyan-900 mb-6 flex items-center gap-3">
+                   <CheckCircle2 className="w-6 h-6 text-lime-500" />
+                   內科與慢性病照護
+                </h2>
+                <ul className="space-y-4 text-slate-600 text-lg">
+                   <li className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full mt-2.5 flex-shrink-0"></div>
+                      <p><strong>糖尿病共同照護網：</strong>提供營養衛教、眼底檢查轉診與足部護理指導。</p>
+                   </li>
+                   <li className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full mt-2.5 flex-shrink-0"></div>
+                      <p><strong>高血壓/高血脂：</strong>精準藥物調整，預防中風與心肌梗塞併發症。</p>
+                   </li>
+                   <li className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full mt-2.5 flex-shrink-0"></div>
+                      <p><strong>痛風與高尿酸：</strong>急性期消炎止痛與長期降尿酸治療，保護腎臟功能。</p>
+                   </li>
+                   <li className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full mt-2.5 flex-shrink-0"></div>
+                      <p><strong>一般內科：</strong>感冒、腸胃炎、過敏、皮膚疾病等常見問題診療。</p>
+                   </li>
+                </ul>
+             </div>
+          </div>
+
+          {/* FAQ 區塊 */}
           <div className="max-w-4xl mx-auto mb-20 animate-in fade-in slide-in-from-bottom-10">
              <div className="text-center mb-10">
                 <div className="inline-flex items-center gap-2 bg-cyan-50 text-cyan-800 px-4 py-1.5 rounded-full text-sm font-bold mb-3">
