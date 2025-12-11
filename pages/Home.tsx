@@ -144,7 +144,7 @@ const Home: React.FC = () => {
                     <p className="text-slate-600">配備個人電視與床單棉被，提供寬敞舒適的洗腎環境。</p>
                  </div>
                  <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:shadow-md transition-shadow">
-                    <h3 className="text-xl font-bold text-cyan-900 mb-2">溫馨接送服務</h3>
+                    <h3 className="text-xl font-bold text-cyan-900 mb-2">溫馨接送</h3>
                     <p className="text-slate-600">服務範圍涵蓋小港、鳳山、林園、大寮、前鎮等區域。</p>
                  </div>
                  <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:shadow-md transition-shadow">

@@ -272,7 +272,47 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                        rel="noopener noreferrer"
                        className="hover:text-lime-400 transition-colors block text-left"
                      >
-                       財團法人腎臟病防治基金會
+                       腎臟病防治基金會
+                     </a>
+                   </li>
+                   <li>
+                     <a 
+                       href="https://health.businessweekly.com.tw/JHospital.aspx?id=HOSP000002974"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="hover:text-lime-400 transition-colors block text-left"
+                     >
+                       良醫健康網
+                     </a>
+                   </li>
+                   <li>
+                     <a 
+                       href="https://www.clinics.com.tw/hospital/3502112113"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="hover:text-lime-400 transition-colors block text-left"
+                     >
+                       台灣診所網
+                     </a>
+                   </li>
+                   <li>
+                     <a 
+                       href="https://kb.commonhealth.com.tw/hospitals/8966.html"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="hover:text-lime-400 transition-colors block text-left"
+                     >
+                       康健知識庫
+                     </a>
+                   </li>
+                   <li>
+                     <a 
+                       href="https://udnhealth-hd.com/HD/clinic/374"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="hover:text-lime-400 transition-colors block text-left"
+                     >
+                       元氣網透析專區
                      </a>
                    </li>
                 </ul>
