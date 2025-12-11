@@ -1,3 +1,4 @@
+
 import { OperatingHours, ServiceItem, Symptom, Article, Doctor, Clinic, AllianceHospital } from './types';
 
 export const CLINIC_INFO = {
@@ -67,7 +68,7 @@ export const SERVICES: ServiceItem[] = [
     description: "腎臟病早期沒有症狀。我們引進精密檢測儀器，只需微量尿液與血液，即可早期發現蛋白尿與腎功能異常。",
     icon: "ClipboardList",
     items: [
-      "免費成人健康檢查 (40歲以上每3年1次)",
+      "免費成人健康檢查 (30歲以上每3年1次)",
       "精準微量白蛋白尿檢測 (ACR) - 糖尿病腎病變篩檢",
       "腎絲球過濾率 (eGFR) 追蹤",
       "老人健檢與四癌篩檢 (大腸癌糞便潛血)",

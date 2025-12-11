@@ -1,3 +1,4 @@
+
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ClipboardCheck, Stethoscope, ArrowRight, MapPin, Phone } from 'lucide-react';
@@ -143,7 +144,7 @@ const Home: React.FC = () => {
                  </div>
                  <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:shadow-md transition-shadow">
                     <h3 className="text-xl font-bold text-cyan-900 mb-2">免費成人健檢</h3>
-                    <p className="text-slate-600">滿40歲每3年一次，滿65歲每年一次。包含血糖、血脂、肝腎功能。</p>
+                    <p className="text-slate-600">滿30歲每3年一次，滿65歲每年一次。包含血糖、血脂、肝腎功能。</p>
                  </div>
               </div>
 

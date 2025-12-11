@@ -392,7 +392,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
                       <h4 className="font-bold text-cyan-900 text-lg mb-1 flex items-center gap-2">1. 免費成人健檢</h4>
                       <ul className="list-disc pl-5 text-sm text-slate-600 space-y-0.5">
-                          <li><strong>資格：</strong>40-64歲每3年一次，65歲以上每年一次。</li>
+                          <li><strong>資格：</strong>30-64歲每3年一次，65歲以上每年一次。</li>
                           <li><strong>內容：</strong>身體檢查、血糖、血脂、肝腎功能、尿液檢查。</li>
                       </ul>
                   </div>
