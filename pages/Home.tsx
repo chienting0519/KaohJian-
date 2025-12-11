@@ -153,7 +153,7 @@ const Home: React.FC = () => {
                  </div>
                  <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:shadow-md transition-shadow">
                     <h3 className="text-xl font-bold text-cyan-900 mb-2">免費成人健檢</h3>
-                    <p className="text-slate-600">提供40歲以上民眾免費健康檢查，早期發現潛在風險。</p>
+                    <p className="text-slate-600">提供30歲以上民眾免費健康檢查，早期發現潛在風險。</p>
                  </div>
               </div>
 
