@@ -81,7 +81,13 @@
                 background-color: #f8fafc; z-index: 9999;
                 font-family: system-ui, -apple-system, sans-serif;
             }
-            .loading-logo { width: 100px; height: auto; animation: breathe 2s ease-in-out infinite; }
+            .loading-logo { 
+                width: 100px; 
+                height: 100px; 
+                object-fit: contain; 
+                border-radius: 50%; /* Force circular shape */
+                animation: breathe 2s ease-in-out infinite; 
+            }
             .loading-text { margin-top: 20px; color: #475569; font-size: 1.1rem; font-weight: 500; }
             @keyframes breathe {
                 0%, 100% { opacity: 1; transform: scale(1); }
@@ -89,7 +95,7 @@
             }
         </style>
         <div class="loading-container">
-            <!-- Updated to match favicon (logo.webp) and removed fixed width/height attributes to rely on CSS -->
+            <!-- Updated to match favicon (logo.webp) and rely on CSS for shape -->
             <img src="/logo.webp" alt="高健診所" class="loading-logo">
             <div class="loading-text">高健診所 守護您的健康...</div>
         </div>

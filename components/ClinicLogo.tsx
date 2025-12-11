@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 export const ClinicLogo = ({ className = "w-12 h-12" }: { className?: string }) => {
@@ -68,7 +69,7 @@ export const ClinicLogo = ({ className = "w-12 h-12" }: { className?: string }) 
       // ★★★ (方法一) 請將您的 Logo 檔案命名為 logo.webp 並放入 public 資料夾 ★★★
       src="/logo.webp" 
       alt="高健診所 Logo - 高雄小港腎臟專科" 
-      className={`${className} object-contain`}
+      className={`${className} object-contain rounded-full`}
       onError={() => setImgError(true)} // 圖片讀取失敗時觸發，轉為顯示上方的 SVG
     />
   );
