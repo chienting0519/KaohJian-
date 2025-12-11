@@ -3,7 +3,6 @@ import React, { useState, useEffect, Suspense, createContext } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, MapPin, ChevronUp, ClipboardCheck, Building2, ExternalLink } from 'lucide-react';
 import { CLINIC_INFO, ALLIANCE_HOSPITALS } from '../constants';
-import { ClinicLogo } from './ClinicLogo';
 import { AllianceHospital } from '../types';
 import { DoctorIcon } from './DoctorIcon';
 
@@ -88,7 +87,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="flex justify-between items-center h-full">
             {/* Logo */}
             <Link to="/" onClick={scrollToTop} className="flex items-center gap-3 group">
-              <ClinicLogo className="w-14 h-14 sm:w-16 sm:h-16 group-hover:scale-105 transition-transform" />
+              {/* Logo removed as requested */}
               <div>
                 <h1 className="text-xl sm:text-2xl font-bold text-cyan-900 tracking-tight group-hover:text-cyan-700 transition-colors">
                   {CLINIC_INFO.name}
