@@ -386,16 +386,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </button>
 
             {infoModal === 'checkup' && (
-              <div className="text-slate-800">
-                <h3 className="text-xl font-bold text-cyan-800 mb-4 border-b border-slate-100 pb-3">免費健康檢查項目</h3>
-                <div className="space-y-3 text-base leading-relaxed">
-                  <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                      <h4 className="font-bold text-cyan-900 text-lg mb-1 flex items-center gap-2">1. 免費成人健檢</h4>
-                      <ul className="list-disc pl-5 text-sm text-slate-600 space-y-0.5">
-                          <li><strong>資格：</strong>40-64歲每3年一次，65歲以上每年一次。</li>
-                          <li><strong>內容：</strong>身體檢查、血糖、血脂、肝腎功能、尿液檢查。</li>
-                      </ul>
-                  </div>
+            infoModal === 'checkup'
                   <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
                       <h4 className="font-bold text-cyan-900 text-lg mb-1 flex items-center gap-2">2. 大腸癌篩檢 (糞便潛血)</h4>
                       <ul className="list-disc pl-5 text-sm text-slate-600 space-y-0.5">
